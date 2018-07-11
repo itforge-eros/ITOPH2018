@@ -25,6 +25,7 @@
             
             
             $this->view('pages/index', $data);
+            //$this->view('pages/underconstruction.php');
         }
 
         public function details($slug){
@@ -97,15 +98,6 @@
                     if(empty($data['candidate0'.$i.'_id'])){$data['candidate0'.$i.'_id_err'] = 'กรุณาหมายเลขบัตรประชาชนสมาชิกคนที่ '.$i;}
                     if(strlen($data['candidate0'.$i.'_id']) != 13) {
                         $data['candidate0'.$i.'_id_err'] = 'หมายเลขบัตรประชาชนไม่ถูกต้อง';
-                    } else {
-                    $sum = 0;
-                    for($j=0;$j<12;$j++) {
-                        $digitValue = substr($data['candidate0'.$i.'_id'],$j,1);
-                        $digitId = substr($data['candidate0'.$i.'_id'],$j,1);
-                        $sum += (int)($digitValue)*($digitId);
-                    }
-                    $digit13 = substr($data['candidate0'.$i.'_id'],12,1);
-                    if((11-($sum%11))%10 != (int)($digit13)) {$data['candidate0'.$i.'_id_err'] = 'หมายเลขบัตรประชาชนไม่ถูกต้อง';}
                     }
 
                     if(empty($data['candidate0'.$i.'_age'])){$data['candidate0'.$i.'_age_err'] = 'กรุณากรอกอายุสมาชิกคนที่ '.$i;}
@@ -146,6 +138,7 @@
                 }
 
                 if(!$error){
+                    
                     $tmpt_filename = uniqid('IT-OPENHOUSE-2018-');
                     $filename = $tmpt_filename.".pdf";
                     if($slug != "game"){
@@ -155,7 +148,10 @@
                     }
                     $data['registration_date'] = date("Y-m-d H:i:s");
                     $data['pdf_filename'] = $filename;
-
+                    for($i=1; $i<=6; $i++){
+                        $data['candidate0'.$i.'_id'] = id_crypt($data['candidate0'.$i.'_id'], 'e');
+                    }
+                    
                     if($this->competitionModel->addRegistration($data)){
 
                         if($registrationType == "competition"):
@@ -183,50 +179,16 @@
                             <head>
                                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                                 <style>
-                                body, .container, h1, h2, h3, p {font-family: "Garuda";}
-
-                                h1, h2{
-                                    font-weight: bold;
-                                    margin-top: 0.75em;
-                                    margin-bottom: 0.25em;
-                                }
-
-                                h2 {
-                                    text-align: center;
-                                }
-
-                                h3 {
-                                    text-align: left;
-                                    font-weight: bold;
-                                    margin-top: 1em;
-                                    margin-bottom: -0.25em;
-                                }
-
-                                p {
-                                    font-weight: normal;
-                                    font-size: 16pt;
-                                }
-
-                                strong {
-                                    font-weight: bold;
-                                    font-size: 14pt;
-                                }
-
-                                .img-wrapper {
-                                    width: 100%;
-                                    text-align: center;
-                                }
-
-                                img {
-                                    width: 360px;
-                                }
-
-                                .right {
-                                    width: 50%;
-                                    float: right;
-                                    text-align: center;
-                                }
-                            </style>
+                                    body, .container, h1, h2, h3, p {font-family: "Garuda";}
+                                    h1, h2{font-weight: bold; margin-top: 0.75em; margin-bottom: 0.25em;}
+                                    h2 {text-align: center;}
+                                    h3 {text-align: left; font-weight: bold; margin-top: 1em; margin-bottom: -0.25em;}
+                                    p {font-weight: normal; font-size: 16pt;}
+                                    strong {font-weight: bold; font-size: 14pt;}
+                                    .img-wrapper {width: 100%; text-align: center;}
+                                    img {width: 360px;}
+                                    .right {width: 50%; float: right; text-align: center;}
+                                </style>
                             </head>
                             <body>
                             <div class="container">
@@ -247,106 +209,33 @@
                                         <td></td>
                                         <td></td>
                                     </tr>
-                                </table>
-                                <h3>สมาชิกคนที่ 1</h3>
-                                <hr>
-                                <table>
-                                    <tr>
-                                        <td><strong>ชื่อ-นามสกุล</strong></td>
-                                        <td>'.$data['candidate01_name'].'</td>
-                                        <td><strong>รหัสประจำตัวประชาชน</strong></td>
-                                        <td>'.$data['candidate01_id'].'</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>อายุ</strong></td>
-                                        <td>'.$data['candidate01_age'].'</td>
-                                        <td><strong>ชั้นมัธยมศึกษาปีที่</strong></td>
-                                        <td>'.$data['candidate01_grade'].'</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>อีเมล</strong></td>
-                                        <td>'.$data['candidate01_email'].'</td>
-                                        <td><strong>เบอร์โทรศัพท์</strong></td>
-                                        <td>'.$data['candidate01_phone'].'</td>
-                                    </tr>
                                 </table>';
-                                if(!empty($data['candidate02_name'])):
+                                for($i=1; $i<=6 ;$i++):
                                     $content .= '
-                                        <h3>สมาชิกคนที่ 2</h3>
+                                        <h3>สมาชิกคนที่ '.$i.'</h3>
                                         <hr>
                                         <table>
                                             <tr>
                                                 <td><strong>ชื่อ-นามสกุล</strong></td>
-                                                <td>'.$data['candidate02_name'].'</td>
+                                                <td>'.$data['candidate0'.$i.'_name'].'</td>
                                                 <td><strong>รหัสประจำตัวประชาชน</strong></td>
-                                                <td>'.$data['candidate02_id'].'</td>
+                                                <td>'.$data['candidate0'.$i.'_id'].'</td>
                                             </tr>
                                             <tr>
                                                 <td><strong>อายุ</strong></td>
-                                                <td>'.$data['candidate02_age'].'</td>
-                                                <td><strong>ระดับการศึกษา</strong></td>
-                                                <td>'.$data['candidate02_grade'].'</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>อีเมล</strong></td>
-                                                <td>'.$data['candidate02_email'].'</td>
-                                                <td><strong>เบอร์โทรศัพท์</strong></td>
-                                                <td>'.$data['candidate02_phone'].'</td>
-                                            </tr>
-                                        </table>';
-                                endif;
-                                if(!empty($data['candidate03_name'])):
-                                    $content .= '
-                                        <h3>สมาชิกคนที่ 3</h3>
-                                        <hr>
-                                        <table>
-                                            <tr>
-                                                <td><strong>ชื่อ-นามสกุล</strong></td>
-                                                <td>'.$data['candidate03_name'].'</td>
-                                                <td><strong>รหัสประจำตัวประชาชน</strong></td>
-                                                <td>'.$data['candidate03_id'].'</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>อายุ</strong></td>
-                                                <td>'.$data['candidate03_age'].'</td>
+                                                <td>'.$data['candidate0'.$i.'_age'].'</td>
                                                 <td><strong>ชั้นมัธยมศึกษาปีที่</strong></td>
-                                                <td>'.$data['candidate03_grade'].'</td>
+                                                <td>'.$data['candidate0'.$i.'_grade'].'</td>
                                             </tr>
                                             <tr>
                                                 <td><strong>อีเมล</strong></td>
-                                                <td>'.$data['candidate03_email'].'</td>
+                                                <td>'.$data['candidate0'.$i.'_email'].'</td>
                                                 <td><strong>เบอร์โทรศัพท์</strong></td>
-                                                <td>'.$data['candidate03_phone'].'</td>
+                                                <td>'.$data['candidate0'.$i.'_phone'].'</td>
                                             </tr>
                                         </table>';
-                                endif;
-                                if(!empty($data['candidate04_name'])):
-                                    for($i=4; $i<=6 ;$i++):
-                                        $content .= '
-                                            <h3>สมาชิกคนที่ '.$i.'</h3>
-                                            <hr>
-                                            <table>
-                                                <tr>
-                                                    <td><strong>ชื่อ-นามสกุล</strong></td>
-                                                    <td>'.$data['candidate0'.$i.'_name'].'</td>
-                                                    <td><strong>รหัสประจำตัวประชาชน</strong></td>
-                                                    <td>'.$data['candidate0'.$i.'_id'].'</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><strong>อายุ</strong></td>
-                                                    <td>'.$data['candidate0'.$i.'_age'].'</td>
-                                                    <td><strong>ชั้นมัธยมศึกษาปีที่</strong></td>
-                                                    <td>'.$data['candidate0'.$i.'_grade'].'</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><strong>อีเมล</strong></td>
-                                                    <td>'.$data['candidate0'.$i.'_email'].'</td>
-                                                    <td><strong>เบอร์โทรศัพท์</strong></td>
-                                                    <td>'.$data['candidate0'.$i.'_phone'].'</td>
-                                                </tr>
-                                            </table>';
-                                    endfor;
-                                endif;
+                                    if(empty($data['candidate0'.$i.'_name'])){break;}
+                                endfor;
                             
                             $content .= '
                                 <h3>ข้อมูลอาจารย์ที่ปรึกษา</h3>
@@ -390,13 +279,13 @@
 
                             // Create a message
                             $message = (new Swift_Message('IT Openhouse 2018: ใบสมัครการแข่งขัน'))
-                                ->setFrom(['openhouse2018@edu.bstudio.click' => 'IT Openhouse 2018'])
+                                ->setFrom([MAIL_SENDER => MAIL_SENDER_NAME])
                                 ->setTo([$data['teacher_email'] => $data['teacher_name']])
                                 ->setBody(
                                     '<html>
                                         <body>
                                             <img src="'.URLROOT.'/public/assets/img/openhouse-2018-logo.svg">
-                                            <h1> นี่คือใบสมัครแข่งขันรายการ ' . $registrationDataModel->title . '</h1>
+                                            <h1> ขอบคุณที่ร่วมเป็นส่วนหนึ่งในงาน IT Openhouse 2018 นี่คือใบสมัคร ' . $registrationDataModel->title . ' ของคุณ </h1>
                                         </body>
                                     </html>'
                                 ,'text/html')
@@ -435,19 +324,10 @@
                 if(empty($data['candidate01_id'])){$data['candidate01_id_err'] = 'กรุณาหมายเลขบัตรประชาชน';}
                 else if(strlen($data['candidate01_id']) != 13) {
                     $data['candidate01_id_err'] = 'หมายเลขบัตรประชาชนไม่ถูกต้อง';
-                  } else {
-                    $sum = 0;
-                    for($i=0;$i<12;$i++) {
-                        $digitValue = substr($data['candidate01_id'],$i,1);
-                        $digitId = substr($data['candidate01_id'],$i,1);
-                        $sum += (int)($digitValue)*($digitId);
-                    }
-                    $digit13 = substr($data['candidate01_id'],12,1);
-                    if((11-($sum%11))%10 != (int)($digit13)) {$data['candidate01_id_err'] = 'หมายเลขบัตรประชาชนไม่ถูกต้อง';}
-                  }
+                }
 
                 if(empty($data['candidate01_age'])){$data['candidate01_age_err'] = 'กรุณากรอกอายุ';}
-                else if($data['candidate01_age'] < 10 || $data['candidate01_age'] > 30){$data['candidate01_age'] = 'อายุไม่ถูกต้อง';}
+                else if($data['candidate01_age'] < 10 || $data['candidate01_age'] > 30){$data['candidate01_age_err'] = 'อายุไม่ถูกต้อง';}
 
                 if(empty($data['candidate01_school'])){$data['candidate01_school_err'] = 'กรุณากรอกชื่อสถาบัน';}
 
@@ -476,6 +356,7 @@
                     $filename = $tmpt_filename.".pdf";
                     $data['registration_date'] = date("Y-m-d H:i:s");
                     $data['pdf_filename'] = $filename;
+                    $data['candidate01_id'] = id_crypt($data['candidate01_id'], 'e');
 
                     if($this->competitionModel->addRegistration($data)){
 
@@ -486,50 +367,16 @@
                         <head>
                             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                             <style>
-                            body, .container, h1, h2, h3, p {font-family: "Garuda";}
-
-                            h1, h2{
-                                font-weight: bold;
-                                margin-top: 0.75em;
-                                margin-bottom: 0.25em;
-                            }
-
-                            h2 {
-                                text-align: center;
-                            }
-
-                            h3 {
-                                text-align: left;
-                                font-weight: bold;
-                                margin-top: 1em;
-                                margin-bottom: -0.25em;
-                            }
-
-                            p {
-                                font-weight: normal;
-                                font-size: 16pt;
-                            }
-
-                            strong {
-                                font-weight: bold;
-                                font-size: 14pt;
-                            }
-
-                            .img-wrapper {
-                                width: 100%;
-                                text-align: center;
-                            }
-
-                            img {
-                                width: 360px;
-                            }
-
-                            .right {
-                                width: 50%;
-                                float: right;
-                                text-align: center;
-                            }
-                        </style>
+                                body, .container, h1, h2, h3, p {font-family: "Garuda";}
+                                h1, h2{font-weight: bold; margin-top: 0.75em; margin-bottom: 0.25em;}
+                                h2 {text-align: center;}
+                                h3 {text-align: left; font-weight: bold; margin-top: 1em; margin-bottom: -0.25em;}
+                                p {font-weight: normal; font-size: 16pt;}
+                                strong {font-weight: bold; font-size: 14pt;}
+                                .img-wrapper {width: 100%; text-align: center;}
+                                img {width: 360px;}
+                                .right {width: 50%; float: right; text-align: center;}
+                            </style>
                         </head>
                         <body>
                         <div class="container">
@@ -582,13 +429,13 @@
 
                         // Create a message
                         $message = (new Swift_Message('IT Openhouse 2018: ใบสมัคร'))
-                            ->setFrom(['openhouse2018@edu.bstudio.click' => 'IT Openhouse 2018'])
+                            ->setFrom([MAIL_SENDER => MAIL_SENDER_NAME])
                             ->setTo([$data['candidate01_email'] => $data['candidate01_name']])
                             ->setBody(
                                 '<html>
                                     <body>
                                         <img src="'.URLROOT.'/public/assets/img/openhouse-2018-logo.svg">
-                                        <h1> นี่คือใบยืนย้นการลงทะเบียน</h1>
+                                        <h1> ขอบคุณที่ร่วมเป็นส่วนหนึ่งในงาน IT Openhouse 2018 นี่คือใบสมัครของคุณ </h1>
                                     </body>
                                 </html>'
                             ,'text/html')
@@ -627,6 +474,13 @@
                     $data['candidate0'.$i.'_school'] = '';
                     $data['candidate0'.$i.'_phone'] = '';
                     $data['candidate0'.$i.'_email'] = '';
+                    $data['candidate0'.$i.'_name_err'] = '';
+                    $data['candidate0'.$i.'_age_err'] = '';
+                    $data['candidate0'.$i.'_id_err'] = '';
+                    $data['candidate0'.$i.'_grade_err'] = '';
+                    $data['candidate0'.$i.'_school_err'] = '';
+                    $data['candidate0'.$i.'_phone_err'] = '';
+                    $data['candidate0'.$i.'_email_err'] = '';
                 }
 
                 $this->view('pages/registration', $data);

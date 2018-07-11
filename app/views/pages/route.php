@@ -16,42 +16,42 @@
                         <div class="card-columns">
                             <a href="" data-modal="#arlmodal" class="modal__trigger">
                                 <div id="arl" class="card p-3">
-                                    <p>รถไฟฟ้า AIRPORT RAIL LINK</p>
+                                    <h2>รถไฟฟ้า AIRPORT RAIL LINK</h2>
                                 </div>
                             </a>
                             <a href="" data-modal="#trainmodal" class="modal__trigger">
                                 <div id="train" class="card p-3">
-                                    <p>รถไฟ</p>
+                                    <h2>รถไฟ</h2>
                                 </div>
                             </a>
                             <a href="" data-modal="#localmodal" class="modal__trigger">
                                 <div id="local" class="card p-3">
-                                    <p>รถสองแถว</p>
+                                    <h2>รถสองแถว</h2>
                                 </div>
                             </a>
                             <a href="" data-modal="#expressvanmodal" class="modal__trigger">
                                 <div id="expressvan" class="card p-3">
-                                    <p>รถตู้ด่วนพิเศษ</p>
+                                    <h2>รถตู้ด่วนพิเศษ</h2>
                                 </div>
                             </a>
                             <a href="" data-modal="#vanmodal" class="modal__trigger">
                                 <div id="van" class="card p-3">
-                                    <p>รถตู้ประจำทาง</p>
+                                    <h2>รถตู้ประจำทาง</h2>
                                 </div>
                             </a>
                             <a href="" data-modal="#carmodal" class="modal__trigger">
                                 <div id="car" class="card p-3">
-                                    <p>รถยนต์</p>
+                                    <h2>รถยนต์</h2>
                                 </div>
                             </a>
                             <a href="" data-modal="#sabtmodal" class="modal__trigger">
                                 <div id="sabt" class="card p-3">
-                                    <p>SUVARNABHUMI AIRPORT BUS TERMINAL</p>
+                                    <h2>SUVARNABHUMI AIRPORT BUS TERMINAL</h2>
                                 </div>
                             </a>
                             <a href="" data-modal="#busmodal" class="modal__trigger">
                                 <div id="bus" class="card p-3">
-                                    <p>รถเมล์</p>
+                                    <h2>รถเมล์</h2>
                                 </div>
                             </a>
                         </div>
@@ -367,5 +367,4 @@
     }());
     Modal.init();
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpm6EyB8FfCsb_btqZAeLtueLtGHk8YSg&callback=initMap" async defer></script>
 <?php require APPROOT . '/views/inc/footer.php'; ?>

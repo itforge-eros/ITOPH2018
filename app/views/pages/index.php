@@ -19,7 +19,7 @@
                         <h2>ตั้งแต่เวลา 9.00 เป็นต้นไป</h2>
                         <p>เปิดบ้านไอทีลาดกระบัง "IT LADKRABANG OPEN HOUSE 2018" กลับมาอีกครั้งกับการเปิดบ้านสร้างมุมมองใหม่ ค้นหาคำตอบในสิ่งที่ชอบ พร้อมด้วยการสร้างโอกาสในการเตรียมตัวสู่ไอทีลาดกระบัง มาพบคำตอบได้ในงานนี้ทั้งสาระและความสนุกจากกิจกรรมมากมาย จัดโดยคณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง</p>
                         <a href="<?php echo URLROOT; ?>/pages/timetable/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">กำหนดการ</a>
-                        <a href="<?php echo URLROOT; ?>/pages/registration/individual/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ลงทะเบียนสำหรับผู้เข้าชมงาน</a>
+                        <a href="<?php /* echo URLROOT;/pages/registration/individual/ */?>#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ลงทะเบียนสำหรับผู้เข้าชมงาน</a>
                     </div> 
                 </div>
             </section>
@@ -234,12 +234,12 @@
             .setTween("#infosection", 0.5, {opacity: 1})
             .addTo(controller)
 
-        var at20 = new TimelineMax()
-            .add(TweenMax.to("#stick01", 0.5, {width: "100vw", ease: Back.easeOut}), 0)
-            .add(TweenMax.to("#bubble01", 0.75, {transform: "matrix(1, 0, 0, 1, 0.512012, 88.331832)", ease: Back.easeOut}), 0)
-            .add(TweenMax.to("#stick02", 0.25, {width: "92vw", ease: Back.easeOut}), 0.5)
-            .add(TweenMax.to("#stick03", 0.5, {width: "95vw", ease: Back.easeOut}), 0)
-            .add(TweenMax.to("#stick04", 0.25, {width: "88vw", ease: Back.easeOut}), 0.5)
+        var at0 = new TimelineMax()
+            .add(TweenMax.to("#stick01", 0.5, {width: "100vw", ease: Back.easeOut}), 1)
+            .add(TweenMax.to("#bubble01", 0.75, {transform: "matrix(1, 0, 0, 1, 0.512012, 88.331832)", ease: Back.easeOut}), 1)
+            .add(TweenMax.to("#stick02", 0.25, {width: "92vw", ease: Back.easeOut}), 1.5)
+            .add(TweenMax.to("#stick03", 0.5, {width: "95vw", ease: Back.easeOut}), 1)
+            .add(TweenMax.to("#stick04", 0.25, {width: "88vw", ease: Back.easeOut}), 1.5)
 
         var at200 = new TimelineMax()
             .add(TweenMax.to("#selectingsection", 0.5, {opacity: 1}))
@@ -277,8 +277,8 @@
                 TweenMax.to("#movies", 0.25, {ease: Power4.easeOut, opacity: 1}, 0),
             ])
         
-        var bg_light_stick = new ScrollMagic.Scene({tweenChanges: true, offset: offset20})
-            .setTween(at20)
+        var bg_light_stick = new ScrollMagic.Scene({tweenChanges: true, offset: 0})
+            .setTween(at0)
             .addTo(controller)
 
         var bebras = new ScrollMagic.Scene({tweenChanges: true, offset: offset300})

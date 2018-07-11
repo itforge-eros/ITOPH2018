@@ -17,7 +17,7 @@
              if(file_exists('../app/views/'.$view.'.php')){
                  require_once '../app/views/'.$view.'.php';
              } else {
-                 die('Come back later');
+                 die('หน้าเว็บกำลังอยู่ระหว่างการปรับปรุง ขออภัยในความไม่สะดวก');
              }
          }
      }

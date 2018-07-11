@@ -12,4 +12,10 @@
             return $this->db->resultSet();
         }
 
+        public function deleteIndividualRegistrators($id){
+            $this->db->query('DELETE FROM registrations WHERE id = :id');
+            $this->db->bind(":id", $id);
+            return $this->db->execute();
+        }
+
     }

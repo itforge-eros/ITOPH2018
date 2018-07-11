@@ -173,6 +173,15 @@
 
         }
 
-        
+        public function delete($id){
+            
+            if($this->individualModel->deleteIndividualRegistrators($id)){
+                flash('page_message', 'Record deleted');
+                redirect('admin');
+            } else {
+                die("Something went wrong");
+            }
+
+        }
 
     }
