@@ -6,7 +6,7 @@
                 <?php if(isLoggedIn()) : ?>
                 <div class="col-lg-12">
                     <a href="<?php echo URLROOT; ?>/admin" class="btn btn-light"><i class="fas fa-angle-left"></i> กลับ</a>
-                    <a href="<?php echo URLROOT; ?>/admin/edit/<?php echo $data['competition']->id;?>" class="btn btn-dark"><i class="fas fa-edit"></i>แก้ไข</a>
+                    <?php /*<a href="<?php echo URLROOT; ?>/admin/edit/<?php echo $data['competition']->id;?>" class="btn btn-dark"><i class="fas fa-edit"></i>แก้ไข</a> */?>
                         <!--<form action="<?php //echo URLROOT; ?>/admin/delete/<?php //echo $data['competition']->id;?>" class="pull-right" method="post">
                             <input type="submit" value="ลบหน้านี้" class="btn btn-danger">
                         </form>-->

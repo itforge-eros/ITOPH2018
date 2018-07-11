@@ -287,10 +287,18 @@ Accent: #fdb127
             border: 1px solid #CCC;
             border-radius: 16px;
         }
+
+        @media screen and (max-width: 989px) {
+            #bg-animate {display: none;}
+            .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {margin-bottom: 1em;}
+
+            #bebras .img-container {min-height: 100px;}
+            #bebras .info {text-align: center;}
+
+            .workshops .row .info {padding: 1em;}
+        }
         
         @media screen and (max-width: 768px) {
-            #bg-animate {display: none;}
-
             .workshops {padding: 2em 0;}
             .workshops hr {margin-bottom: 2em;}
         
@@ -981,6 +989,12 @@ header.page-header {
     position: fixed;
     top: 0;
     z-index: 100000;
+}
+
+.details-for-admin .card-columns {
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
 }
 
 .version-needs-attention > h2 { color: rgba(0, 0, 0, 0.5); }

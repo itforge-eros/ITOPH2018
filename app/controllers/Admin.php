@@ -7,6 +7,9 @@
 
             //$this->pageModel = $this->model('Page');
             $this->competitionModel = $this->model('Competition');
+            $this->individualModel = $this->model('Individual');
+            $this->workshopModel = $this->model('Workshop');
+            $this->bebrasModel = $this->model('Bebras');
         }
 
         public function index(){
@@ -19,6 +22,36 @@
                 'competitions' => $competitions
             ];
             $this->view('admin/index', $data);
+        }
+
+        public function details($registrationType){
+
+            switch($registrationType){
+                case "individual":
+                    $registrationDataModel = $this->individualModel->getIndividualRegistrators();
+                    break;
+
+                case "competition":
+                    $registrationDataModel = $this->competitionModel->getCompetitionRegistrators();
+                    break;
+
+                case "workshop":
+                    $registrationDataModel = $this->workshopModel->getWorkshopRegistrators();
+                    break;
+
+                case "bebras":
+                    $registrationDataModel = $this->bebrasModel->getBebrasRegistrators();
+                    break;
+
+                default:
+                    redirect();
+            }
+
+            $data = [
+                'registrationType' => $registrationType,
+                'registrationDataModel' => $registrationDataModel
+            ];
+            $this->view('admin/details', $data);
         }
 
         public function add(){

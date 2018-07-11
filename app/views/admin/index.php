@@ -14,7 +14,7 @@
                     <div class="col-lg-6 col-sm-12">
                         <div class="scrolling-wrapper">
                             <article class="admin-competitions">
-                                <h2>การแข่งขัน</h2> <a href="<?php echo URLROOT; ?>/admin/add" class="btn"><i class="fas fa-plus"></i>เพิ่มการแข่งขัน</a>
+                                <h2>การแข่งขัน</h2> <a href="<?php echo URLROOT; ?>/admin/add" class="btn"><?php //<i class="fas fa-plus"></i>เพิ่มการแข่งขัน</a> ?>
                                 <hr>
                                 <div>    
                                     <?php foreach($data['competitions'] as $competition): ?>
@@ -26,19 +26,24 @@
                     </div>
                     <div class="col-lg-6 col-sm-12">
                         <div class="card-columns">
-                            <a href="" data-toggle="modal" data-target="">
+                            <a href="<?php echo URLROOT; ?>/admin/details/individual">
                                 <div id="getRegisters" class="card p-3">
                                     <p>ดูรายชื่อผู้สมัครเข้าชม</p>
                                 </div>
                             </a>
-                            <a href="" data-modal="" class="modal__trigger">
+                            <a href="<?php echo URLROOT; ?>/admin/details/competition">
                                 <div id="getCompetitionRegisters" class="card p-3">
                                     <p>ดูรายชื่อผู้สมัครแข่งขัน</p>
                                 </div>
                             </a>
-                            <a href="" data-modal="" class="modal__trigger">
+                            <a href="<?php echo URLROOT; ?>/admin/details/workshop">
+                                <div id="getCompetitionRegisters" class="card p-3">
+                                    <p>ดูรายชื่อผู้สมัครเวิร์คชอป</p>
+                                </div>
+                            </a>
+                            <a href="<?php echo URLROOT; ?>/admin/details/bebras">
                                 <div id="getTestRegisters" class="card p-3">
-                                    <p>ดูรายชื่อผู้สมัครเข้าทดสอบ</p>
+                                    <p>ดูรายชื่อผู้สมัครเข้าทดสอบ BEBRAS</p>
                                 </div>
                             </a>
                         </div>
