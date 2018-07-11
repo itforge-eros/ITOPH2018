@@ -74,7 +74,7 @@ Accent: #fdb127
     
     /* Nav */
         nav {background: #FFF; z-index: 20000;}
-        .navbar-brand img {width: 80px;}
+        .navbar-brand img {width: 120px;}
     
     /* Footer */
         
@@ -335,12 +335,26 @@ Accent: #fdb127
         }
         
         @media screen and (max-width: 768px) {
-            .navbar-brand img {width: 60px;}
 
             .workshops {padding: 2em 0;}
             .workshops hr {margin-bottom: 2em;}
 
             .table-responsive td {font-size: 0.9em; padding: 0.25em;}
+
+            .table-responsive {    
+                width: 100%;
+                margin-bottom: 15px;
+                overflow-x: auto;
+                overflow-y: hidden;
+                -webkit-overflow-scrolling: touch;
+                -ms-overflow-style: -ms-autohiding-scrollbar;
+                border: 1px solid #DDD;
+            }
+
+            .table {
+                width: 155%;
+                max-width: 155%;
+            }
         
             .events .modal-content .properties {text-align: center; margin-bottom: 0.5em;}
             .events .modal-content .description {
@@ -366,7 +380,6 @@ Accent: #fdb127
 
         @media screen and (max-width: 568px){
 
-            .navbar-brand img {width: 50px;}
             ul, menu, dir {-webkit-margin-before: 0.25em;}
             .workshops .row img {width: 80px;}
             .workshops .row .info {padding: 0.25em 0 0 0.85em; width: 61%;}
