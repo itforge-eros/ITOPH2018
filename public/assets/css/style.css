@@ -267,6 +267,16 @@ Accent: #fdb127
             margin-bottom: 1em;
         }
 
+        .events i {
+            display: block;
+            color: #FFF;
+            margin-top: 1em;
+            font-size: 1.5em;
+            cursor: pointer;
+            text-align: right;
+            margin: 1em;
+        }
+
         .events .modal-content {margin-top: -1.5em; color: #FFF;}
         .events .modal-content h2 {margin-bottom: 0;}
         .events .modal-content small {font-weight: 200;}
@@ -1031,7 +1041,7 @@ header.page-header {
     }
 
     .scrolling-card img:hover {
-        width: unset;
+        width: 80px;
     }
 
     .scrolling-card h2 {
