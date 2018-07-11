@@ -133,4 +133,16 @@
             return $row;
         }
 
+        public function getCompetitionRegistrators(){
+            $this->db->query('
+                SELECT * 
+                FROM registrations 
+                WHERE (category = :security) OR (category = :game) OR (category = :skill) OR (category = :website)');
+            $this->db->bind(":security", "security");
+            $this->db->bind(":game", "game");
+            $this->db->bind(":skill", "skill");
+            $this->db->bind(":website", "website");
+            return $this->db->resultSet();
+        }
+
     }

@@ -18,4 +18,16 @@
             return $row;
         }
 
+        public function getWorkshopRegistrators(){
+            $this->db->query('
+                SELECT * 
+                FROM registrations 
+                WHERE (category = :multimedia) OR (category = :se) OR (category = :networks) OR (category = :datascience)');
+            $this->db->bind(":multimedia", "multimedia");
+            $this->db->bind(":se", "se");
+            $this->db->bind(":networks", "networks");
+            $this->db->bind(":datascience", "datascience");
+            return $this->db->resultSet();
+        }
+
     }
