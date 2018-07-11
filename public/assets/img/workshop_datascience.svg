@@ -1,1 +1,79 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080"><defs><style>.cls-1,.cls-10,.cls-6{fill:#fff;}.cls-1,.cls-10,.cls-2,.cls-4,.cls-5,.cls-6,.cls-7,.cls-8,.cls-9{stroke:#6b839a;}.cls-1,.cls-10,.cls-2,.cls-4,.cls-6,.cls-7,.cls-8,.cls-9{stroke-linecap:round;stroke-linejoin:round;}.cls-1,.cls-4,.cls-5,.cls-7{stroke-width:5px;}.cls-2,.cls-7{fill:none;}.cls-2{stroke-width:3px;}.cls-3,.cls-5{fill:#6b839a;}.cls-4,.cls-8,.cls-9{fill:#edf6f7;}.cls-5{stroke-miterlimit:10;}.cls-6{stroke-width:2px;}.cls-8{stroke-width:10px;opacity:0.5;}.cls-9{stroke-width:4px;}</style></defs><title>workshop_datascience</title><g id="Layer_3" data-name="Layer 3"><path class="cls-1" d="M620.07,526.35l269,73.38C848.87,747.32,694.29,835.65,546.7,795.4S310.77,600.57,351,453c33.2-121.74,145.08-206.5,271.27-205.49Z"/><path class="cls-2" d="M838.36,373.65a208.47,208.47,0,0,0-57-46.92"/><path class="cls-2" d="M885.42,541.5a208.62,208.62,0,0,0-34.75-151.86"/><path class="cls-2" d="M852.46,350.39a208.51,208.51,0,0,0-31-26.4"/><path class="cls-2" d="M910.89,497.65a208.55,208.55,0,0,0-52.14-140.44"/><path class="cls-3" d="M655.85,519.45,857.1,574.33a208.59,208.59,0,0,0-99.34-236.89Z"/><path class="cls-4" d="M751.57,250q-12.35-5.28-25.13-9.38"/><path class="cls-4" d="M714.29,237.06a287.06,287.06,0,0,0-68.59-10l-7,287,137-252.33q-7.87-4.28-16-8.05"/><path class="cls-2" d="M694.77,218.48c29.64,3.83,75.83,21.18,82,27.28"/><line class="cls-2" x1="671.05" y1="217.21" x2="683.95" y2="217.79"/></g><g id="Layer_6" data-name="Layer 6"><path class="cls-4" d="M588.18,664.05H223.71V758.5a13,13,0,0,0-.68,4.07c0,26,81.56,47,182.18,47,98.56,0,178.83-20.21,182.06-45.45h.91Z"/><ellipse class="cls-3" cx="407.52" cy="662.27" rx="184.6" ry="47.03"/><path class="cls-4" d="M587.39,541.66H222.92v94.45a12.74,12.74,0,0,0-.69,4.07c0,26,81.57,47,182.18,47,98.56,0,178.83-20.21,182.07-45.45h.91Z"/><ellipse class="cls-3" cx="406.72" cy="539.88" rx="184.6" ry="47.03"/><path class="cls-4" d="M588.18,420.11H223.71v94.45a13,13,0,0,0-.68,4.06c0,26,81.56,47,182.18,47,98.56,0,178.83-20.2,182.06-45.44h.91Z"/><ellipse class="cls-1" cx="406.15" cy="418.33" rx="182.23" ry="47.03"/></g><g id="Layer_2" data-name="Layer 2"><circle class="cls-5" cx="477.26" cy="749.93" r="123.29"/><path class="cls-1" d="M488,787.31c42.31,2.49,81.46-5.1,111.56-19.57a123.29,123.29,0,0,1-245.18-24.32c.16-2.69.41-5.36.74-8C383.17,763.7,431.76,784,488,787.31Z"/><circle class="cls-4" cx="417.98" cy="771.16" r="27.1"/><circle class="cls-6" cx="417.96" cy="771.64" r="18.82"/></g><g id="Layer_5" data-name="Layer 5"><path class="cls-4" d="M546.57,487.05a142.76,142.76,0,1,0,200.8,20.88A142.75,142.75,0,0,0,546.57,487.05ZM713.22,694.32a122.66,122.66,0,1,1,17.95-172.53A122.64,122.64,0,0,1,713.22,694.32Z"/><line class="cls-1" x1="681.49" y1="586.81" x2="619.23" y2="651.97"/><line class="cls-7" x1="689.83" y1="533.55" x2="631.83" y2="594.26"/><line class="cls-7" x1="620.97" y1="607.45" x2="608.25" y2="620.77"/><line class="cls-7" x1="609.33" y1="574.18" x2="566.09" y2="619.44"/><rect class="cls-4" x="760.51" y="680.4" width="47.62" height="203.52" rx="12" ry="12" transform="translate(-317.61 669.5) rotate(-39.08)"/><rect class="cls-3" x="794.88" y="776.92" width="48.23" height="97.92" rx="12" ry="12" transform="translate(-337.41 701.15) rotate(-39.08)"/><circle class="cls-8" cx="636.36" cy="598.37" r="117.93"/></g><g id="Layer_4" data-name="Layer 4"><circle class="cls-5" cx="350.89" cy="371.12" r="61.64"/><path class="cls-1" d="M344.45,389.46c-21.19,0-40.51-4.94-55.1-13a61.64,61.64,0,0,0,123.09-4.95c0-1.34-.05-2.68-.14-4C397.45,380.75,372.6,389.46,344.45,389.46Z"/><circle class="cls-9" cx="379.85" cy="383.45" r="13.55"/><circle class="cls-10" cx="379.85" cy="383.69" r="9.41"/></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1080 1080" style="enable-background:new 0 0 1080 1080;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#FFFFFF;stroke:#6B839A;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;}
+	.st2{fill:none;stroke:#6B839A;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
+	.st3{fill:#6B839A;}
+	.st4{fill:#EDF6F7;stroke:#6B839A;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;}
+	.st5{fill:#6B839A;stroke:#6B839A;stroke-width:5;stroke-miterlimit:10;}
+	.st6{fill:#FFFFFF;stroke:#6B839A;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+	.st7{fill:none;stroke:#6B839A;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;}
+	
+		.st8{opacity:0.5;fill:#EDF6F7;stroke:#6B839A;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;enable-background:new    ;}
+	.st9{fill:#EDF6F7;stroke:#6B839A;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;}
+	.st10{fill:#FFFFFF;stroke:#6B839A;stroke-linecap:round;stroke-linejoin:round;}
+</style>
+<g id="Layer_2">
+	<path class="st0" d="M1000.7,1072.6H79.3c-39.1,0-70.8-31.7-70.8-70.8V80.3c0-39.1,31.7-70.8,70.8-70.8h921.5
+		c39.1,0,70.8,31.7,70.8,70.8v921.5C1071.6,1040.9,1039.9,1072.6,1000.7,1072.6z"/>
+</g>
+<g id="Layer_1">
+	<title>workshop_datascience</title>
+	<g id="Layer_3">
+		<path class="st1" d="M616.4,511.1l318.4,86.8c-47.6,174.7-230.5,279.2-405.2,231.6c-174.7-47.6-279.2-230.6-231.6-405.2
+			C337.2,280.2,469.6,179.9,619,181.1L616.4,511.1z"/>
+		<path class="st2" d="M874.7,330.4c-19-22.4-41.8-41.2-67.5-55.5"/>
+		<path class="st2" d="M930.4,529c10-63-4.7-127.4-41.1-179.7"/>
+		<path class="st2" d="M891.4,302.8c-11.2-11.6-23.5-22.1-36.7-31.2"/>
+		<path class="st2" d="M960.6,477.1c0.7-61.1-21.3-120.4-61.7-166.2"/>
+		<path class="st3" d="M658.7,502.9l238.2,65c29.8-109.4-18.7-225-117.6-280.4L658.7,502.9z"/>
+		<path class="st4" d="M772,184c-9.7-4.2-19.7-7.9-29.7-11.1"/>
+		<path class="st4" d="M727.9,168.7c-26.5-7.2-53.7-11.2-81.2-11.8l-8.3,339.7l162.1-298.6c-6.2-3.4-12.5-6.6-18.9-9.5"/>
+		<path class="st2" d="M704.8,146.7c35.1,4.5,89.7,25.1,97,32.3"/>
+		<line class="st2" x1="676.7" y1="145.2" x2="692" y2="145.9"/>
+	</g>
+	<g id="Layer_6">
+		<path class="st4" d="M578.6,674.1H147.3v111.8c-0.5,1.6-0.8,3.2-0.8,4.8c0,30.8,96.5,55.6,215.6,55.6
+			c116.6,0,211.7-23.9,215.5-53.8h1.1V674.1z"/>
+		<ellipse class="st3" cx="364.8" cy="672" rx="218.5" ry="55.7"/>
+		<path class="st4" d="M577.7,529.2H146.3V641c-0.5,1.6-0.8,3.2-0.8,4.8c0,30.8,96.5,55.6,215.6,55.6c116.6,0,211.7-23.9,215.5-53.8
+			h1.1L577.7,529.2z"/>
+		<ellipse class="st3" cx="363.8" cy="527.1" rx="218.5" ry="55.7"/>
+		<path class="st4" d="M578.6,385.4H147.3v111.8c-0.5,1.5-0.8,3.2-0.8,4.8c0,30.8,96.5,55.6,215.6,55.6
+			c116.6,0,211.7-23.9,215.5-53.8h1.1V385.4z"/>
+		<ellipse class="st1" cx="363.2" cy="383.3" rx="215.7" ry="55.7"/>
+	</g>
+	<g id="Layer_2_1_">
+		<circle class="st5" cx="447.3" cy="775.7" r="145.9"/>
+		<path class="st1" d="M460,820c50.1,2.9,96.4-6,132-23.2c-11.2,79.8-84.9,135.5-164.7,124.3c-75.3-10.5-130-77.2-125.5-153.1
+			c0.2-3.2,0.5-6.3,0.9-9.5C336,792,393.5,816,460,820z"/>
+		<circle class="st4" cx="377.2" cy="800.8" r="32.1"/>
+		<circle class="st6" cx="377.2" cy="801.4" r="22.3"/>
+	</g>
+	<g id="Layer_5">
+		<path class="st4" d="M529.4,464.6c-72.5,58.8-83.5,165.2-24.7,237.7c58.8,72.5,165.2,83.5,237.7,24.7s83.5-165.2,24.7-237.7
+			c0,0,0,0,0,0C708.2,416.8,601.8,405.8,529.4,464.6C529.4,464.6,529.4,464.6,529.4,464.6z M726.6,709.9
+			c-62.3,50.5-153.7,41-204.2-21.2s-41-153.7,21.2-204.2s153.7-41,204.2,21.2c0,0,0,0,0,0C798.4,567.9,788.9,659.4,726.6,709.9
+			C726.6,709.9,726.6,709.9,726.6,709.9z"/>
+		<line class="st7" x1="689" y1="582.7" x2="615.4" y2="659.8"/>
+		<line class="st7" x1="698.9" y1="519.6" x2="630.3" y2="591.5"/>
+		<line class="st7" x1="617.4" y1="607.1" x2="602.4" y2="622.8"/>
+		<line class="st7" x1="603.6" y1="567.7" x2="552.5" y2="621.3"/>
+		<path class="st4" d="M724,729.3l21.7-17.6c6.1-4.9,15-4,20,2.1l133.9,164.9c4.9,6.1,4,15-2.1,20l-21.7,17.6c-6.1,4.9-15,4-20-2.1
+			L721.9,749.2C716.9,743.1,717.9,734.2,724,729.3z"/>
+		<path class="st3" d="M804.1,829.8l22.3-18.1c6.1-4.9,15-4,20,2.1l55.2,67.9c4.9,6.1,4,15-2.1,20l-22.3,18.1c-6.1,4.9-15,4-20-2.1
+			l-55.2-67.9C797.1,843.6,798,834.7,804.1,829.8z"/>
+		<circle class="st8" cx="635.6" cy="596.3" r="139.6"/>
+	</g>
+	<g id="Layer_4">
+		<circle class="st5" cx="297.8" cy="327.4" r="73"/>
+		<path class="st1" d="M290.2,349.1c-25.1,0-47.9-5.8-65.2-15.4c3.2,40.2,38.3,70.2,78.5,67c38-3,67.3-34.7,67.2-72.9
+			c0-1.6-0.1-3.2-0.2-4.7C352.9,338.8,323.5,349.1,290.2,349.1z"/>
+		<circle class="st9" cx="332" cy="342" r="16"/>
+		<circle class="st10" cx="332" cy="342.3" r="11.1"/>
+	</g>
+</g>
+</svg>
