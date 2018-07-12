@@ -73,6 +73,8 @@ RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/defau
 # Supervisor Config
 COPY ./supervisord.conf /etc/supervisord.conf
 
+COPY ./www.conf /etc/php/7.1/fpm/pool.d/www.conf
+
 # Start Supervisord
 COPY ./cmd.sh /
 RUN chmod 755 /cmd.sh
