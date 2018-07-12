@@ -1,16 +1,16 @@
 <?php
 
     //DB params
-    define('DB_HOST', 'localhost');
+    define('DB_HOST', 'mariadb');
     define('DB_USER', 'root');
-    define('DB_PASS', 'iamsosexy1@#$');
+    define('DB_PASS', '123456');
     define('DB_NAME', 'openhouse_2018');
 
     //App root
     define('APPROOT', dirname(dirname(__FILE__)));
 
     //URL root
-    define('URLROOT', 'https://openhouse.it.kmitl.ac.th/2018');
+    define('URLROOT', 'http://localhost');
 
     //Site name
     define('SITENAME', 'IT Ladkrabang Openhouse 2018');
