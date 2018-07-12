@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-sm-12">
-                        <img src="<?php echo URLROOT; ?>/public/assets/img/logo-sym.svg">
+                        <img src="<?php echo URLROOT; ?>/assets/img/logo-sym.svg">
                         <h2>คณะเทคโนโลยีสารสนเทศ</h2>
                         <h5>สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง</h5>
                         <p>เลขที่ 1 ซอยฉลองกรุง 1 แขวงลาดกระบัง เขตลาดกระบัง กรุงเทพฯ 10520 </p>

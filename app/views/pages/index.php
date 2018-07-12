@@ -29,7 +29,7 @@
                     <article id="bebras">
                         <div class="row">
                             <div class="col-lg-6 col-sm-12 img-container">
-                                <img id="bebras-banner" src="<?php echo URLROOT; ?>/public/assets/img/bebras-banner.svg">
+                                <img id="bebras-banner" src="<?php echo URLROOT; ?>/assets/img/bebras-banner.svg">
                             </div>
                             <div class="col-lg-6 col-sm-12 info">
                                 <h2>Thai Bebras Computational Thinking Challenge 2018</h2>
@@ -52,7 +52,7 @@
                                             <a id="event<?php echo $event->id; ?>" href="#<?php echo $event->slug; ?>Modal">
                                                 <div id="<?php echo $event->slug; ?>" class="scrolling-card">
                                                     <div>
-                                                        <img src="<?php echo URLROOT; ?>/public/assets/img/<?php echo $event->logo_src;?>">
+                                                        <img src="<?php echo URLROOT; ?>/assets/img/<?php echo $event->logo_src;?>">
                                                         <h2><?php echo $event->title;?></h2>
                                                     </div>
                                                 </div>
@@ -82,7 +82,7 @@
                                             <a href="<?php echo URLROOT;?>/pages/details/<?php echo $compet->slug;?>">
                                                 <div id="<?php echo $compet->slug; ?>" class="scrolling-card">
                                                     <div>
-                                                        <img src="<?php echo URLROOT; ?>/public/assets/img/<?php echo $compet->logo_src;?>">
+                                                        <img src="<?php echo URLROOT; ?>/assets/img/<?php echo $compet->logo_src;?>">
                                                         <h2><?php echo $compet->title;?></h2>
                                                     </div>
                                                 </div>
@@ -109,7 +109,7 @@
                                         <div id="<?php echo $workshop->slug; ?>" class="row">
                                         
                                             <div class="col-lg-3 logo">
-                                                <img src="<?php echo URLROOT; ?>/public/assets/img/<?php echo $workshop->logo_src;?>">
+                                                <img src="<?php echo URLROOT; ?>/assets/img/<?php echo $workshop->logo_src;?>">
                                             </div>
                                             <div class="col-lg-9 info">
                                                 <h2><?php echo $workshop->title;?></h2>
@@ -149,7 +149,7 @@
                                 <a id="rally<?php echo $rally->id;?>" href="#<?php echo $rally->slug;?>Modal">
                                     <div id="<?php echo $rally->slug; ?>" class="scrolling-card">
                                         <div>
-                                            <img src="<?php echo URLROOT; ?>/public/assets/img/<?php echo $rally->logo_src;?>">
+                                            <img src="<?php echo URLROOT; ?>/assets/img/<?php echo $rally->logo_src;?>">
                                             <h2><?php echo $rally->title;?></h2>
                                         </div>
                                     </div>
@@ -197,7 +197,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
-    <script type="text/javascript" src="<?php echo URLROOT; ?>/public/assets/js/animatedModal.js"></script>
+    <script type="text/javascript" src="<?php echo URLROOT; ?>/assets/js/animatedModal.js"></script>
     <script>
 
         $("#workshop1").animatedModal({ modalTarget: 'multimediaModal'});

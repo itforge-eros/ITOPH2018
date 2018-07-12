@@ -1,0 +1,22 @@
+# Jetbrains IDE
+.idea
+_ide_helper.php
+
+# Node log
+npm-debug.log
+yarn-error.log
+
+# Application NodeJS dependencies
+node_modules
+
+# Application storages & caches
+bootstrap/cache
+!bootstrap/cache/.gitignore
+.env
+vendor
+
+.htaccess
+Makefile
+Dockerfile
+readme.md
+composer.lock
