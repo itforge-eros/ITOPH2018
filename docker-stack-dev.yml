@@ -19,6 +19,18 @@ services:
     depends_on:
       - mariadb
       - redis
+    environment:
+      - DB_HOST=mariadb
+      - DB_USER=root
+      - DB_PASS=123456
+      - DB_NAME=openhouse_2018
+      - URLROOT=http://localhost
+      - SITENAME=IT Ladkrabang Openhouse 2018
+      - MAIL_HOST=localhost
+      - MAIL_USER=root
+      - MAIL_PASS=iamsosexy
+      - MAIL_SENDER=openhouse@it.kmtil.ac.th
+      - MAIL_SENDER_NAME=IT Ladkrabang Openhouse 2018
     ports:
       - "80:80"
       - "443:443"
