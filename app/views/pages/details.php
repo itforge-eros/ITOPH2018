@@ -17,10 +17,9 @@
                     <article>
                         <?php echo $data['competition']->full_description; ?>
 
-                        <?php /*
                             <div class="button-wrapper">
                                 <a href="<?php echo URLROOT; ?>/pages/registration/<?php echo $data['competition']->slug; ?>" class="btn btn-primary btn-lg active">สมัครแข่งขัน</a>
-                            </div>*/ ?>
+                            </div>
                     </article>
                 </div>
             </div>

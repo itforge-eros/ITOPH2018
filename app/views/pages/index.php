@@ -19,31 +19,48 @@
                         <h2>ตั้งแต่เวลา 9.00 เป็นต้นไป</h2>
                         <p>เปิดบ้านไอทีลาดกระบัง "IT LADKRABANG OPEN HOUSE 2018" กลับมาอีกครั้งกับการเปิดบ้านสร้างมุมมองใหม่ ค้นหาคำตอบในสิ่งที่ชอบ พร้อมด้วยการสร้างโอกาสในการเตรียมตัวสู่ไอทีลาดกระบัง มาพบคำตอบได้ในงานนี้ทั้งสาระและความสนุกจากกิจกรรมมากมาย จัดโดยคณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง</p>
                         <a href="<?php echo URLROOT; ?>/pages/timetable/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">กำหนดการ</a>
-                        <a href="<?php /* echo URLROOT;/pages/registration/individual/ */?>#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ลงทะเบียนสำหรับผู้เข้าชมงาน</a>
+                        <a href="<?php echo URLROOT;?>/pages/registration/individual/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ลงทะเบียนสำหรับผู้เข้าชมงาน</a>
                     </div> 
+                </div>
+            </section>
+
+            <section id="bebras">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-12 img-container">
+                            <img id="bebras-banner" src="<?php echo URLROOT; ?>/assets/img/bebras-logo.svg">
+                        </div>
+                        <div class="col-lg-6 col-sm-12 info">
+                            <h2>Thai Bebras Computational Thinking Challenge 2018</h2>
+                            <h6>การแข่งขันทักษะการคิดทางคอมพิวเตอร์ระดับชาติประจำปี 2018</h6>
+                            <hr>
+                            <p><strong>ครั้งแรกในประเทศไทย</strong> กับการแข่งขันกระบวนการแก้ปัญหาเชิงตรรกะ (Logical problem solving) ออนไลน์ที่ถูกออกแบบสำหรับนักเรียนระดับมัธยมต้นถึงมัธยมปลาย ผู้เข้าแข่งขันไม่จำเป็นต้องมีประสบการณ์เกี่ยวกับวิทยาการคอมพิวเตอร์โดยตรง โดยมีวัตถุประสงค์เพื่อส่งเสริมการเรียน การสอน และ สร้างความตื่นตัวแก่นักเรียนที่สนใจทางด้านวิทยาการคอมพิวเตอร์ </p>
+                            <?php //<a href="" class="right" aria-pressed="true">อ่านรายละเอียดและสมัครทดสอบ ></a>?>
+                            <a href="#" class="right" aria-pressed="true">เร็ว ๆ นี้ ></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="seminartrigger" class="seminar">
+                <div>
+                    <div>
+                        <h1>เสวนา</h1>
+                    </div>
+                    <div>
+                        <article id="seminar" class="seminar-card">
+                            <h2>เรื่องราวดีๆ ที่ IT ลาดกระบัง</h2>
+                            <h3>เรื่อง TCAS กับไอทีเลือดใหม่ เรียนอย่างไรให้ “Success”</h3>
+                            <p>การใช้ชีวิตในไอที ลาดกระบัง การเรียน อยู่หอ เรื่องราวดีๆ ที่พี่อยากมาแบ่งบันน้องๆ ทุกคน</p>
+                        </article>
+                    </div>
                 </div>
             </section>
                 
             <section id="selectingsection">
                 <div class="container">
-                    <article id="bebras">
-                        <div class="row">
-                            <div class="col-lg-6 col-sm-12 img-container">
-                                <img id="bebras-banner" src="<?php echo URLROOT; ?>/assets/img/bebras-banner.svg">
-                            </div>
-                            <div class="col-lg-6 col-sm-12 info">
-                                <h2>Thai Bebras Computational Thinking Challenge 2018</h2>
-                                <h6>การแข่งขันทักษะการคิดทางคอมพิวเตอร์ระดับชาติประจำปี 2018</h6>
-                                <hr>
-                                <p><strong>ครั้งแรกในประเทศไทย</strong> กับการแข่งขันกระบวนการแก้ปัญหาเชิงตรรกะ (Logical problem solving) ออนไลน์ที่ถูกออกแบบสำหรับนักเรียนระดับมัธยมต้นถึงมัธยมปลาย ผู้เข้าแข่งขันไม่จำเป็นต้องมีประสบการณ์เกี่ยวกับวิทยาการคอมพิวเตอร์โดยตรง โดยมีวัตถุประสงค์เพื่อส่งเสริมการเรียน การสอน และ สร้างความตื่นตัวแก่นักเรียนที่สนใจทางด้านวิทยาการคอมพิวเตอร์ </p>
-                                <?php //<a href="" class="right" aria-pressed="true">อ่านรายละเอียดและสมัครทดสอบ ></a>?>
-                                <a href="#" class="right" aria-pressed="true">เร็ว ๆ นี้ ></a>
-                            </div>
-                        </div>
-                    </article>
                     <article class="featured">
                         <div class="row">
-                            <div class="col-lg-6 col-sm-12">
+                            <div class="col-lg-12 col-sm-12">
                                 <article id="events" class="events">
                                     <h2>กิจกรรม</h2>
                                     <hr>
@@ -54,6 +71,7 @@
                                                     <div>
                                                         <img src="<?php echo URLROOT; ?>/assets/img/<?php echo $event->logo_src;?>">
                                                         <h2><?php echo $event->title;?></h2>
+                                                        <p><?php echo $event->short_description;?></p>
                                                     </div>
                                                 </div>
                                             </a>
@@ -73,7 +91,9 @@
                                     <?php endforeach; ?>
                                 </article>
                             </div>
-                            <div class="col-lg-6 col-sm-12">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12">
                                 <article class="competitions">
                                     <h2>การแข่งขัน</h2>
                                     <hr>
@@ -151,6 +171,7 @@
                                         <div>
                                             <img src="<?php echo URLROOT; ?>/assets/img/<?php echo $rally->logo_src;?>">
                                             <h2><?php echo $rally->title;?></h2>
+                                            <p><?php echo $rally->short_description;?></p>
                                         </div>
                                     </div>
                                 </a>
@@ -175,21 +196,6 @@
 
             </section>
 
-
-            <section id="seminartrigger" class="seminar">
-                <div>
-                    <div>
-                        <h1>เสวนา</h1>
-                    </div>
-                    <div>
-                        <article id="seminar" class="seminar-card">
-                            <h2>เรื่องราวดีๆ ที่ IT ลาดกระบัง</h2>
-                            <h3>เรื่อง TCAS กับไอทีเลือดใหม่ เรียนอย่างไรให้ “Success”</h3>
-                            <p>การใช้ชีวิตในไอที ลาดกระบัง การเรียน อยู่หอ เรื่องราวดีๆ ที่พี่อยากมาแบ่งบันน้องๆ ทุกคน</p>
-                        </article>
-                    </div>
-                </div>
-            </section>
         </div>
 
     </div>
@@ -277,9 +283,9 @@
                 TweenMax.to("#movies", 0.25, {ease: Power4.easeOut, opacity: 1}, 0),
             ])
         
-        var bg_light_stick = new ScrollMagic.Scene({tweenChanges: true, offset: 0})
+        /*var bg_light_stick = new ScrollMagic.Scene({tweenChanges: true, offset: 0})
             .setTween(at0)
-            .addTo(controller)
+            .addTo(controller)*/
 
         var bebras = new ScrollMagic.Scene({tweenChanges: true, offset: offset300})
             .setTween("#bebras", 0.5, {transform: "scale(1)", ease: Back.easeOut})
@@ -294,7 +300,7 @@
             .addTo(controller)
 
         var seminar = new ScrollMagic.Scene({tweenChanges: true, triggerElement: "#seminartrigger"})
-            .setTween("#seminar", 0.75, {transform: "scale(1.15)", ease: Back.easeOut})
+            .setTween("#seminar", 0.75, {transform: "scale(1.3)", ease: Back.easeOut})
             .addTo(controller)
         
         $("#biglogo").mousemove(function(e) {
