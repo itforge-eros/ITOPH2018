@@ -84,9 +84,12 @@ COPY . /usr/share/nginx/html
 
 RUN chown -Rf www-data.www-data /usr/share/nginx/html/
 
+
 WORKDIR /usr/share/nginx/html
 
 RUN composer install
+
+RUN chmod 777 /usr/share/nginx/html/vendor
 
 # Expose Ports
 EXPOSE 80
