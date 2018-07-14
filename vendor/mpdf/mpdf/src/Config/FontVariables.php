@@ -15,7 +15,7 @@ class FontVariables
 			// - 'winTypo uses sTypoAscender etc from the OS/2 table and is the one usually recommended - BUT
 			// - 'win' use WinAscent etc from OS/2 and inpractice seems to be used more commonly in Windows environment
 			// - 'mac' uses Ascender etc from hhea table, and is used on Mac/OSX environment
-			'fontDescriptor' => 'win',
+			'fontDescriptor' => 'mac',
 
 			// For custom fonts data folder set config key 'fontDir'. It can also be an array of directories,
 			// first found file will then be returned
@@ -25,7 +25,7 @@ class FontVariables
 			// only works using subsets (otherwise would add very large file)
 			// More than 1 font can be specified but each will add to the processing time of the script
 
-			'backupSubsFont' => ['dejavusanscondensed', 'freesans', 'sun-exta'],
+			'backupSubsFont' => ['Garuda-Oblique'],
 
 			// Optionally set a font (name as defined below in 'fontdata') to use for CJK characters
 			// in Plane 2 Unicode (> U+20000) when using useSubstitutions.
@@ -213,6 +213,7 @@ class FontVariables
 					'I' => "Garuda-Oblique.ttf",
 					'BI' => "Garuda-BoldOblique.ttf",
 					'useOTL' => 0xFF,
+					'useKashida' => -175,
 				],
 				"khmeros" => [/* Khmer */
 					'R' => "KhmerOS.ttf",

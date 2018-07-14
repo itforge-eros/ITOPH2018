@@ -53,18 +53,21 @@
                 case 'datascience':
                     $registrationType = "workshop";
                     $pdfH2Text = "ใบสมัคร Workshop";
+                    $mailText = "เข้าร่วมกิจกรรม Workshop";
                     $registrationDataModel = $this->workshopModel->getWorkshopBySlug($slug);
                     break;
 
                 case 'bebras':
                     $registrationType = "bebras";
                     $pdfH2Text = "สมัครเข้าทดสอบการแข่งขันทักษะการคิดทางคอมพิวเตอร์ระดับชาติประจำปี 2018 (BEBRAS)";
+                    $mailText = "เข้าทดสอบการแข่งขันทักษะการคิดทางคอมพิวเตอร์ระดับชาติประจำปี 2018 (BEBRAS)";
                     $registrationDataModel = null;
                     break;
 
                 case 'individual':
                     $registrationType = "individual";
-                    $pdfH2Text = "ใบสมัครเข้าชมงาน IT Openhouse 2018";
+                    $pdfH2Text = "ใบสมัครเข้าชมงาน IT Ladkrabang Openhouse 2018";
+                    $mailText = "เข้าชมงาน IT Ladkrabang Openhouse 2018";
                     $registrationDataModel = null;
                     break;
                 
@@ -148,32 +151,12 @@
                     }
                     $data['registration_date'] = date("Y-m-d H:i:s");
                     $data['pdf_filename'] = $filename;
-                    for($i=1; $i<=6; $i++){
-                        $data['candidate0'.$i.'_id'] = id_crypt($data['candidate0'.$i.'_id'], 'e');
-                    }
                     
                     if($this->competitionModel->addRegistration($data)){
 
                         if($registrationType == "competition"):
                             //PDF HERE
-                            $defaultConfig = (new Mpdf\Config\ConfigVariables())->getDefaults();
-                            $fontDirs = $defaultConfig['fontDir'];
-
-                            $defaultFontConfig = (new Mpdf\Config\FontVariables())->getDefaults();
-                            $fontData = $defaultFontConfig['fontdata'];
-
-                            $mpdf = new \Mpdf\Mpdf([
-                                'fontDir' => array_merge($fontDirs, [
-                                    dirname(__FILE__)."/../../public/assets/font",
-                                ]),
-                                'fontdata' => $fontData + [
-                                    'THSarabunNew' => [
-                                        'R' => 'THSarabunNew.ttf',
-                                        'B' => 'THSarabunNew-Bold.ttf',
-                                    ]
-                                ],
-                                'default_font' => 'THSarabunNew'
-                            ]);
+                            $mpdf = new \Mpdf\Mpdf();
 
                             $content = '
                             <head>
@@ -278,14 +261,17 @@
                             $mailer = new Swift_Mailer($transport);
 
                             // Create a message
-                            $message = (new Swift_Message('IT Openhouse 2018: ใบสมัครการแข่งขัน'))
+                            $message = (new Swift_Message('WELCOME TO IT KMITL OPENHOUSE 2018. ยินดีต้อนรับเข้าสู่งาน “เปิดบ้านไอทีลาดกระบัง2018”'))
                                 ->setFrom([MAIL_SENDER => MAIL_SENDER_NAME])
                                 ->setTo([$data['teacher_email'] => $data['teacher_name']])
                                 ->setBody(
                                     '<html>
                                         <body>
                                             <img src="'.URLROOT.'/public/assets/img/openhouse-2018-logo.svg">
-                                            <h1> ขอบคุณที่ร่วมเป็นส่วนหนึ่งในงาน IT Openhouse 2018 นี่คือใบสมัคร ' . $registrationDataModel->title . ' ของคุณ </h1>
+                                            <h1>ยินดีต้อนรับเข้าสู่งาน “เปิดบ้านไอทีลาดกระบัง”</h1>
+                                            <p> สวัสดีครับ '.$data['teacher_name'].'</p>
+                                            <p> ขอบคุณที่นำนักเรียนในความปกครองของท่านมาร่วมเป็นส่วนหนึ่งในงาน IT Openhouse 2018 ทีมของคุณได้ลงทะเบียนในรายการ ' . $registrationDataModel->title . ' </p>
+                                            <p> เราจะประผลการลงทะเบียน ในวันที่ 15 สิงหาคม พ.ศ. 2561 ติดตามผลการลงทะเบียนได้ที่ https://openhouse.it.kmitl.ac.th/</p>
                                         </body>
                                     </html>'
                                 ,'text/html')
@@ -356,8 +342,7 @@
                     $filename = $tmpt_filename.".pdf";
                     $data['registration_date'] = date("Y-m-d H:i:s");
                     $data['pdf_filename'] = $filename;
-                    $data['candidate01_id'] = id_crypt($data['candidate01_id'], 'e');
-
+                    
                     if($this->competitionModel->addRegistration($data)){
 
                         //PDF HERE
@@ -428,14 +413,16 @@
                         $mailer = new Swift_Mailer($transport);
 
                         // Create a message
-                        $message = (new Swift_Message('IT Openhouse 2018: ใบสมัคร'))
+                        $message = (new Swift_Message('WELCOME TO IT KMITL OPENHOUSE 2018. ยินดีต้อนรับเข้าสู่งาน “เปิดบ้านไอทีลาดกระบัง2018”'))
                             ->setFrom([MAIL_SENDER => MAIL_SENDER_NAME])
                             ->setTo([$data['candidate01_email'] => $data['candidate01_name']])
                             ->setBody(
                                 '<html>
                                     <body>
                                         <img src="'.URLROOT.'/public/assets/img/openhouse-2018-logo.svg">
-                                        <h1> ขอบคุณที่ร่วมเป็นส่วนหนึ่งในงาน IT Openhouse 2018 นี่คือใบสมัครของคุณ </h1>
+                                        <h1> ยินดีต้อนรับเข้าสู่งาน “เปิดบ้านไอทีลาดกระบัง” </h1>
+                                        <p> สวัสดีครับ '.$data['candidate01_name'].'</p>
+                                        <p> ขอบคุณที่ร่วมเป็นส่วนหนึ่งในงาน IT Openhouse 2018 คุณได้ลงทะเบียน'.$mailText.'</p>
                                     </body>
                                 </html>'
                             ,'text/html')
@@ -506,24 +493,9 @@
             $this->view('pages/complete', $data);
         }
 
-        public function contact(){
-            $data = ['title' => 'IT OPENHOUSE 2018 - Contact'];
-            $this->view('pages/contact');
-        }
-
-        public function route(){
-            $data = ['title' => 'IT OPENHOUSE 2018 - Route'];
-            $this->view('pages/route');
-        }
-
         public function timetable(){
             $data = ['title' => 'IT OPENHOUSE 2018 - Timetable'];
             $this->view('pages/timetable');
-        }
-
-        public function pdftest(){
-            $data = ['title' => 'pdftest'];
-            $this->view('pages/pdftest');
         }
 
         public function development(){
@@ -543,4 +515,6 @@
             
             $this->view('pages/index', $data);
         }
+
+        
     }

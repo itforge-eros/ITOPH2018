@@ -138,7 +138,7 @@ switch($registrationType){
                                         <td><?php echo sprintf("%'.05d", $item->id); ?></td>
                                         <td><?php echo $item->registration_date; ?></td>
                                         <td><?php echo $item->candidate01_name; ?></td>
-                                        <td><?php echo id_crypt($item->candidate01_id, 'd'); ?></td>
+                                        <td><?php echo $item->candidate01_id; ?></td>
                                         <td><?php echo $item->candidate01_age; ?></td>
                                         <td><?php echo $item->candidate01_grade; ?></td>
                                         <td><?php echo $item->candidate01_school; ?></td>

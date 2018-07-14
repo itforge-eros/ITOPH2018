@@ -48,6 +48,19 @@
         <script>
            new ScrollHint('.scrolling-wrapper', { i18n: { scrollable: 'เลื่อน' } });
            new ScrollHint('.table-responsive', { i18n: { scrollable: 'เลื่อน' } });
+           var map;
+            function initMap() {
+                var myLatLng = {lat: 13.7310664, lng: 100.7809616};
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: myLatLng,
+                    zoom: 15
+                });
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map,
+                    title: 'KMITL'
+                });
+            }
         </script>
     </body>
 </html>
