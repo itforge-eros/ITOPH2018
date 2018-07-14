@@ -89,7 +89,7 @@ WORKDIR /usr/share/nginx/html
 
 RUN composer install
 
-RUN chmod 777 /usr/share/nginx/html/vendor
+RUN chmod -R 777 /usr/share/nginx/html/vendor
 
 # Expose Ports
 EXPOSE 80
