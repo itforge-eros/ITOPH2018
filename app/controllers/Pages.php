@@ -155,6 +155,18 @@
                     if($this->competitionModel->addRegistration($data)){
 
                         if($registrationType == "competition"):
+
+                            $s3 = new Aws\S3\S3Client([
+                                'version' => 'latest',
+                                'region'  => 'us-east-1',
+                                'endpoint' => 'https://s3.itforge.io',
+                                'use_path_style_endpoint' => true,
+                                'credentials' => [
+                                        'key'    => 'X3GA2MY4MIOYGCPG5FLX',
+                                        'secret' => 'TZ3ozryPNTypUu5EBzXPwulNx4kmvz5MtoAhJCsU',
+                                    ],
+                            ]);
+
                             //PDF HERE
                             $mpdf = new \Mpdf\Mpdf();
 
@@ -250,7 +262,22 @@
                             
                             $content = mb_convert_encoding($content, 'UTF-8', 'UTF-8');
                             $mpdf->WriteHTML($content);
-                            $mpdf->Output(dirname(__FILE__)."/../../public/registration/".$filename, \Mpdf\Output\Destination::FILE);
+                            $pdfdata = $mpdf->Output(\Mpdf\Output\Destination::STRING_RETURN);
+
+                            // Send a PutObject request and get the result object.
+                            $insert = $s3->putObject([
+                                'Bucket' => 'itopenhouse2018',
+                                'Key'    => $tmpt_filename,
+                                'Body'   => $pdfdata
+                            ]);
+                            
+                            
+                            // Download the contents of the object.
+                            $retrive = $s3->getObject([
+                                'Bucket' => 'itopenhouse2018',
+                                'Key'    => $tmpt_filename,
+                                'SaveAs' => $filename
+                            ]);
 
                             // Create the Transport
                             $transport = (new Swift_SmtpTransport(MAIL_HOST, 25))
@@ -259,6 +286,7 @@
 
                             // Create the Mailer using your created Transport
                             $mailer = new Swift_Mailer($transport);
+                            $attachment = new Swift_Attachment($pdfdata, $filename, 'application/pdf');
 
                             // Create a message
                             $message = (new Swift_Message('WELCOME TO IT KMITL OPENHOUSE 2018. ยินดีต้อนรับเข้าสู่งาน “เปิดบ้านไอทีลาดกระบัง2018”'))
@@ -275,7 +303,7 @@
                                         </body>
                                     </html>'
                                 ,'text/html')
-                                ->attach(Swift_Attachment::fromPath(dirname(__FILE__)."/../../public/registration/".$filename));
+                                ->attach($attachment);
 
                             // Send the message
                             $result = $mailer->send($message);
@@ -345,6 +373,17 @@
                     
                     if($this->competitionModel->addRegistration($data)){
 
+                        $s3 = new Aws\S3\S3Client([
+                            'version' => 'latest',
+                            'region'  => 'us-east-1',
+                            'endpoint' => 'https://s3.itforge.io',
+                            'use_path_style_endpoint' => true,
+                            'credentials' => [
+                                    'key'    => 'X3GA2MY4MIOYGCPG5FLX',
+                                    'secret' => 'TZ3ozryPNTypUu5EBzXPwulNx4kmvz5MtoAhJCsU',
+                                ],
+                        ]);
+
                         //PDF HERE
                         $mpdf = new \Mpdf\Mpdf();
 
@@ -402,7 +441,22 @@
                         
                         $content = mb_convert_encoding($content, 'UTF-8', 'UTF-8');
                         $mpdf->WriteHTML($content);
-                        $mpdf->Output(dirname(__FILE__)."/../../public/registration/".$filename, \Mpdf\Output\Destination::FILE);
+                        $pdfdata = $mpdf->Output(\Mpdf\Output\Destination::STRING_RETURN);
+
+                        // Send a PutObject request and get the result object.
+                        $insert = $s3->putObject([
+                            'Bucket' => 'itopenhouse2018',
+                            'Key'    => $tmpt_filename,
+                            'Body'   => $pdfdata
+                        ]);
+                        
+                        
+                        // Download the contents of the object.
+                        $retrive = $s3->getObject([
+                            'Bucket' => 'itopenhouse2018',
+                            'Key'    => $tmpt_filename,
+                            'SaveAs' => $filename
+                        ]);
 
                         // Create the Transport
                         $transport = (new Swift_SmtpTransport(MAIL_HOST, 25))
@@ -411,7 +465,8 @@
 
                         // Create the Mailer using your created Transport
                         $mailer = new Swift_Mailer($transport);
-
+                        $attachment = new Swift_Attachment($pdfdata, $filename, 'application/pdf');
+                        
                         // Create a message
                         $message = (new Swift_Message('WELCOME TO IT KMITL OPENHOUSE 2018. ยินดีต้อนรับเข้าสู่งาน “เปิดบ้านไอทีลาดกระบัง2018”'))
                             ->setFrom([MAIL_SENDER => MAIL_SENDER_NAME])
@@ -426,7 +481,7 @@
                                     </body>
                                 </html>'
                             ,'text/html')
-                            ->attach(Swift_Attachment::fromPath(dirname(__FILE__)."/../../public/registration/".$filename));
+                            ->attach($attachment);
 
                         // Send the message
                         $result = $mailer->send($message);
@@ -477,18 +532,66 @@
 
         //สำหรับแข่งขัน
         public function success($filename){
+
+            $s3 = new Aws\S3\S3Client([
+                'version' => 'latest',
+                'region'  => 'us-east-1',
+                'endpoint' => 'https://s3.itforge.io',
+                'use_path_style_endpoint' => true,
+                'credentials' => [
+                        'key'    => 'X3GA2MY4MIOYGCPG5FLX',
+                        'secret' => 'TZ3ozryPNTypUu5EBzXPwulNx4kmvz5MtoAhJCsU',
+                    ],
+            ]);
+
+            // Get a command object from the client
+            $command = $s3->getCommand('GetObject', [
+                'Bucket' => 'itopenhouse2018',
+                'Key'    => $filename
+            ]);
+
+            // Create a pre-signed URL for a request with duration of 10 miniutes
+            $presignedRequest = $s3->createPresignedRequest($command, '+10 minutes');
+            // Get the actual presigned-url
+            $presignedUrl =  (string)  $presignedRequest->getUri();
+            
             $data = [
                 'title' => 'การสมัครแข่งขันเสร็จสิ้น',
-                'filename' => $filename
+                'filename' => $filename,
+                'url' => $presignedUrl
             ];
             $this->view('pages/success', $data);
         }
 
         //สำหรับอย่างอื่นที่ไม่ใช่แข่งขัน
         public function complete($filename){
+
+            $s3 = new Aws\S3\S3Client([
+                'version' => 'latest',
+                'region'  => 'us-east-1',
+                'endpoint' => 'https://s3.itforge.io',
+                'use_path_style_endpoint' => true,
+                'credentials' => [
+                        'key'    => 'X3GA2MY4MIOYGCPG5FLX',
+                        'secret' => 'TZ3ozryPNTypUu5EBzXPwulNx4kmvz5MtoAhJCsU',
+                    ],
+            ]);
+
+            // Get a command object from the client
+            $command = $s3->getCommand('GetObject', [
+                'Bucket' => 'itopenhouse2018',
+                'Key'    => $filename
+            ]);
+
+            // Create a pre-signed URL for a request with duration of 10 miniutes
+            $presignedRequest = $s3->createPresignedRequest($command, '+10 minutes');
+            // Get the actual presigned-url
+            $presignedUrl =  (string)  $presignedRequest->getUri();
+
             $data = [
                 'title' => 'การสมัครเสร็จสิ้น',
-                'filename' => $filename
+                'filename' => $filename,
+                'url' => $presignedUrl
             ];
             $this->view('pages/complete', $data);
         }

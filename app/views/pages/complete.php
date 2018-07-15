@@ -11,7 +11,7 @@ require APPROOT . '/views/inc/header.php';
                     <article>
                         <h1>ลงทะเบียนเสร็จสิ้น</h1>
                         <div class="button-wrapper">
-                            <a href="<?php echo URLROOT; ?>/registration/<?php echo $data['filename']; ?>.pdf" class="btn btn-primary btn-lg active">ดาวน์โหลด PDF</a>
+                            <a href="<?php echo $data['url']; ?>" class="btn btn-primary btn-lg active">ดาวน์โหลด PDF</a>
                         </div>
                     </article>
                 </div>

@@ -41,14 +41,8 @@
                 </div>
             </div>
         </footer>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpm6EyB8FfCsb_btqZAeLtueLtGHk8YSg&callback=initMap" async defer></script>
-        <script src="https://unpkg.com/scroll-hint@latest/js/scroll-hint.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
         <script>
-           new ScrollHint('.scrolling-wrapper', { i18n: { scrollable: 'เลื่อน' } });
-           new ScrollHint('.table-responsive', { i18n: { scrollable: 'เลื่อน' } });
-           var map;
+            var map;
             function initMap() {
                 var myLatLng = {lat: 13.7310664, lng: 100.7809616};
                 var map = new google.maps.Map(document.getElementById('map'), {
@@ -61,6 +55,14 @@
                     title: 'KMITL'
                 });
             }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpm6EyB8FfCsb_btqZAeLtueLtGHk8YSg&callback=initMap" async defer></script>
+        <script src="https://unpkg.com/scroll-hint@latest/js/scroll-hint.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+        <script>
+           new ScrollHint('.scrolling-wrapper', { i18n: { scrollable: 'เลื่อน' } });
+           new ScrollHint('.table-responsive', { i18n: { scrollable: 'เลื่อน' } });
         </script>
     </body>
 </html>
