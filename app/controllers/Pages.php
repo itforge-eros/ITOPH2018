@@ -288,7 +288,7 @@
                             // ]);
 
                             // Create the Transport
-                            $transport = (new Swift_SmtpTransport(MAIL_HOST, 465, 'ssl'))
+                            $transport = (new Swift_SmtpTransport(MAIL_HOST, 25))
                                 ->setUsername(MAIL_USER)
                                 ->setPassword(MAIL_PASS);
 
@@ -469,7 +469,7 @@
                         // ]);
 
                         // Create the Transport
-                        $transport = (new Swift_SmtpTransport(MAIL_HOST, 465, 'ssl'))
+                        $transport = (new Swift_SmtpTransport(MAIL_HOST, 25))
                             ->setUsername(MAIL_USER)
                             ->setPassword(MAIL_PASS);
 
