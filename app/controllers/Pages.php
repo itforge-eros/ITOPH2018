@@ -92,7 +92,8 @@
 
                 //Team name & School is always required.
                 if(empty($data['team_name'])){$data['team_name_err'] = 'กรุณากรอกชื่อทีม';}
-                if(empty($data['school_name'])){$data['school_name_err'] = 'กรุณากรอกชื่อโรงเรียน';}
+                if($slug != 'game'){if(empty($data['school_name'])){$data['school_name_err'] = 'กรุณากรอกชื่อโรงเรียน';}}
+                
 
                 //Candidate01 is always required.
                 for($i=1; $i<=6; $i++):
@@ -105,6 +106,8 @@
 
                     if(empty($data['candidate0'.$i.'_age'])){$data['candidate0'.$i.'_age_err'] = 'กรุณากรอกอายุสมาชิกคนที่ '.$i;}
                     else if($data['candidate0'.$i.'_age'] < 10 || $data['candidate0'.$i.'_age'] > 30){$data['candidate0'.$i.'_age_err'] = 'อายุสมาชิกคนที่ '.$i. ' ไม่ถูกต้อง';}
+
+                    if($slug == 'game'){if(empty($data['candidate0'.$i.'_school'])){$data['candidate0'.$i.'_school_err'] = 'กรุณากรอกชื่อโรงเรียน';}}
             
                     if(empty($data['candidate0'.$i.'_email'])){$data['candidate0'.$i.'_email_err'] = 'กรุณากรอกอีเมลสมาชิกคนที่ '.$i;}
                     else{$email = filter_var($_POST['candidate0'.$i.'_email'], FILTER_VALIDATE_EMAIL); if(!$email){$data['candidate0'.$i.'_email_err'] = 'อีเมลสมาชิกคนที่ '.$i.' ไม่ถูกต้อง';}}
@@ -131,6 +134,7 @@
                     $error_array[] = 'candidate0'.$i.'_name_err';
                     $error_array[] = 'candidate0'.$i.'_age_err';
                     $error_array[] = 'candidate0'.$i.'_id_err';
+                    if($slug == 'game'){$error_array[] = 'candidate0'.$i.'_school_err';}
                     $error_array[] = 'candidate0'.$i.'_phone_err';
                     $error_array[] = 'candidate0'.$i.'_email_err';
                 }
@@ -206,6 +210,7 @@
                                     </tr>
                                 </table>';
                                 for($i=1; $i<=6 ;$i++):
+                                    if(empty($data['candidate0'.$i.'_name'])){break;}
                                     $content .= '
                                         <h3>สมาชิกคนที่ '.$i.'</h3>
                                         <hr>
@@ -229,7 +234,6 @@
                                                 <td>'.$data['candidate0'.$i.'_phone'].'</td>
                                             </tr>
                                         </table>';
-                                    if(empty($data['candidate0'.$i.'_name'])){break;}
                                 endfor;
                             
                             $content .= '
