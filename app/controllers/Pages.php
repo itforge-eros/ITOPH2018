@@ -182,8 +182,9 @@
                                     h1, h2{font-weight: bold; margin-top: 0.75em; margin-bottom: 0.25em;}
                                     h2 {text-align: center;}
                                     h3 {text-align: left; font-weight: bold; margin-top: 1em; margin-bottom: -0.25em;}
-                                    p {font-weight: normal; font-size: 16pt;}
+                                    p {font-weight: normal; font-size: 14pt;}
                                     strong {font-weight: bold; font-size: 14pt;}
+                                    td {padding: 4px 10px;}
                                     .img-wrapper {width: 100%; text-align: center;}
                                     img {width: 360px;}
                                     .right {width: 50%; float: right; text-align: center;}
@@ -201,14 +202,16 @@
                                         <td>'.$data['team_name'].'</td>
                                         <td></td>
                                         <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>สถานศึกษา</strong></td>
-                                        <td>'.$data['school_name'].'</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </table>';
+                                    </tr>';
+                            if($slug != 'game'){
+                                $content .= '<tr>
+                                    <td><strong>สถานศึกษา</strong></td>
+                                    <td>'.$data['school_name'].'</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>';
+                            }
+                            $content .= '</table>';
                                 for($i=1; $i<=6 ;$i++):
                                     if(empty($data['candidate0'.$i.'_name'])){break;}
                                     $content .= '
@@ -259,29 +262,30 @@
                                     <p>ลงชื่ออาจารย์ผู้ควบคุมทีม</p>
                                     <p>.......................................</p>
                                     <p>(.....................................)</p>
-                                    <p>วันที่..........เดือน...................พ.ศ.......</p>
+                                    <p>วันที่........เดือน................พ.ศ......</p>
                                 </div>                             
                             </div>
                             </body>';
                             
                             $content = mb_convert_encoding($content, 'UTF-8', 'UTF-8');
                             $mpdf->WriteHTML($content);
-                            $pdfdata = $mpdf->Output(\Mpdf\Output\Destination::STRING_RETURN);
+                            $pdfdata = $mpdf->Output('', \Mpdf\Output\Destination::STRING_RETURN);
 
                             // Send a PutObject request and get the result object.
                             $insert = $s3->putObject([
                                 'Bucket' => 'itopenhouse2018',
-                                'Key'    => $tmpt_filename,
-                                'Body'   => $pdfdata
+                                'Key'    => $filename,
+                                'Body' => $pdfdata,
+                                'ACL'        => 'private',
                             ]);
                             
                             
                             // Download the contents of the object.
-                            $retrive = $s3->getObject([
-                                'Bucket' => 'itopenhouse2018',
-                                'Key'    => $tmpt_filename,
-                                'SaveAs' => $filename
-                            ]);
+                            // $retrive = $s3->getObject([
+                            //     'Bucket' => 'itopenhouse2018',
+                            //     'Key'    => $tmpt_filename,
+                            //     'SaveAs' => fopen($filename, 'r')
+                            // ]);
 
                             // Create the Transport
                             $transport = (new Swift_SmtpTransport(MAIL_HOST, 25))
@@ -400,6 +404,7 @@
                                 h2 {text-align: center;}
                                 h3 {text-align: left; font-weight: bold; margin-top: 1em; margin-bottom: -0.25em;}
                                 p {font-weight: normal; font-size: 16pt;}
+                                td {padding: 4px 10px;}
                                 strong {font-weight: bold; font-size: 14pt;}
                                 .img-wrapper {width: 100%; text-align: center;}
                                 img {width: 360px;}
@@ -445,22 +450,23 @@
                         
                         $content = mb_convert_encoding($content, 'UTF-8', 'UTF-8');
                         $mpdf->WriteHTML($content);
-                        $pdfdata = $mpdf->Output(\Mpdf\Output\Destination::STRING_RETURN);
+                        $pdfdata = $mpdf->Output('', \Mpdf\Output\Destination::STRING_RETURN);
 
                         // Send a PutObject request and get the result object.
                         $insert = $s3->putObject([
                             'Bucket' => 'itopenhouse2018',
-                            'Key'    => $tmpt_filename,
-                            'Body'   => $pdfdata
+                            'Key'    => $filename,
+                            'Body' => $pdfdata,
+                            'ACL'        => 'private',
                         ]);
                         
                         
                         // Download the contents of the object.
-                        $retrive = $s3->getObject([
-                            'Bucket' => 'itopenhouse2018',
-                            'Key'    => $tmpt_filename,
-                            'SaveAs' => $filename
-                        ]);
+                        // $retrive = $s3->getObject([
+                        //     'Bucket' => 'itopenhouse2018',
+                        //     'Key'    => $tmpt_filename,
+                        //     'SaveAs' => fopen($filename, 'r')
+                        // ]);
 
                         // Create the Transport
                         $transport = (new Swift_SmtpTransport(MAIL_HOST, 25))
@@ -551,7 +557,7 @@
             // Get a command object from the client
             $command = $s3->getCommand('GetObject', [
                 'Bucket' => 'itopenhouse2018',
-                'Key'    => $filename
+                'Key'    => $filename.'.pdf'
             ]);
 
             // Create a pre-signed URL for a request with duration of 10 miniutes
@@ -584,7 +590,7 @@
             // Get a command object from the client
             $command = $s3->getCommand('GetObject', [
                 'Bucket' => 'itopenhouse2018',
-                'Key'    => $filename
+                'Key'    => $filename.'.pdf'
             ]);
 
             // Create a pre-signed URL for a request with duration of 10 miniutes
