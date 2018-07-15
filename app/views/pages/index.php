@@ -28,7 +28,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 col-sm-12 img-container">
-                            <img id="bebras-banner" src="<?php echo URLROOT; ?>/assets/img/bebras-logo.svg">
+                            <img id="bebras-banner" src="<?php echo URLROOT; ?>/assets/img/bebras-logo.png">
                         </div>
                         <div class="col-lg-6 col-sm-12 info">
                             <h2>Thai Bebras Computational Thinking Challenge 2018</h2>
