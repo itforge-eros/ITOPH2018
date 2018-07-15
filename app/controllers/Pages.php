@@ -193,7 +193,7 @@
                             <body>
                             <div class="container">
                                 <div class="img-wrapper">
-                                    <img src="'.URLROOT.'/public/assets/img/openhouse-2018-logo.svg">
+                                    <img src="'.URLROOT.'/assets/img/openhouse-2018-logo.svg">
                                 </div>
                                 <h2>ใบสมัครการแข่งขัน'.$registrationDataModel->title.'</h2>
                                 <table>
@@ -288,7 +288,7 @@
                             // ]);
 
                             // Create the Transport
-                            $transport = (new Swift_SmtpTransport(MAIL_HOST, 465, 'ssl'))
+                            $transport = (new Swift_SmtpTransport(MAIL_HOST, 25))
                                 ->setUsername(MAIL_USER)
                                 ->setPassword(MAIL_PASS);
 
@@ -303,7 +303,7 @@
                                 ->setBody(
                                     '<html>
                                         <body>
-                                            <img src="'.URLROOT.'/public/assets/img/openhouse-2018-logo.svg">
+                                            <img src="'.URLROOT.'/assets/img/openhouse-2018-logo.svg">
                                             <h1>ยินดีต้อนรับเข้าสู่งาน “เปิดบ้านไอทีลาดกระบัง”</h1>
                                             <p> สวัสดีครับ '.$data['teacher_name'].'</p>
                                             <p> ขอบคุณที่นำนักเรียนในความปกครองของท่านมาร่วมเป็นส่วนหนึ่งในงาน IT Openhouse 2018 ทีมของคุณได้ลงทะเบียนในรายการ ' . $registrationDataModel->title . ' </p>
@@ -414,7 +414,7 @@
                         <body>
                         <div class="container">
                             <div class="img-wrapper">
-                                <img src="'.URLROOT.'/public/assets/img/openhouse-2018-logo.svg">
+                                <img src="'.URLROOT.'/assets/img/openhouse-2018-logo.svg">
                             </div>
                             <h2>'.$pdfH2Text;
                         if($registrationType == "workshop"){
@@ -469,7 +469,7 @@
                         // ]);
 
                         // Create the Transport
-                        $transport = (new Swift_SmtpTransport(MAIL_HOST, 465, 'ssl'))
+                        $transport = (new Swift_SmtpTransport(MAIL_HOST, 25))
                             ->setUsername(MAIL_USER)
                             ->setPassword(MAIL_PASS);
 
@@ -484,7 +484,7 @@
                             ->setBody(
                                 '<html>
                                     <body>
-                                        <img src="'.URLROOT.'/public/assets/img/openhouse-2018-logo.svg">
+                                        <img src="'.URLROOT.'/assets/img/openhouse-2018-logo.svg">
                                         <h1> ยินดีต้อนรับเข้าสู่งาน “เปิดบ้านไอทีลาดกระบัง” </h1>
                                         <p> สวัสดีครับ '.$data['candidate01_name'].'</p>
                                         <p> ขอบคุณที่ร่วมเป็นส่วนหนึ่งในงาน IT Openhouse 2018 คุณได้ลงทะเบียน'.$mailText.'</p>

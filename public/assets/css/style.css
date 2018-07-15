@@ -250,8 +250,8 @@ Accent: #fdb127
             padding: 4em 0;
             transform: scale(0);
         }
-            #bebras .img-container {display: flex;}
-            #bebras-banner {width: 80%;margin: -50px auto}
+            #bebras .img-container {display: flex; justify-content: space-around; align-items: center}
+            #bebras-banner {margin: -50px auto}
             #bebras .info {text-align: left; color: #FFF; padding-right: 2em;}
             #bebras .info h2 {font-size: 1.3rem;}
             #bebras .info h6 {font-weight: 200;}
@@ -298,7 +298,7 @@ Accent: #fdb127
         .workshops hr {margin-bottom: 4em;}
         .workshops .row {text-align: left; margin: 0.5em 0;}
         .workshops .logo {width: fit-content; padding: 0;}
-            .workshops .row img {width: 100px;}
+        .workshops .row img {width: 100px;}
         
         .workshops .row .info {padding: 0.25em; width: 69%;}
             .workshops .row h2 {margin-top: unset; margin-bottom: -0.15em; font-size: 1.5em;}
@@ -347,7 +347,7 @@ Accent: #fdb127
             #bg-animate {display: none;}
             .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {margin-bottom: 1em;}
 
-            #bebras .img-container {min-height: 100px;}
+            /*#bebras .img-container {min-height: 100px;}*/
             #bebras .info {text-align: center;}
 
             .workshops .row .info {padding: 0.1em 1em 0;}
@@ -377,6 +377,8 @@ Accent: #fdb127
                 width: 155%;
                 max-width: 155%;
             }
+
+            #bebras-banner {width: 60%;}
         
             .events .modal-content .properties {text-align: center; margin-bottom: 0.5em;}
             .events .modal-content .description {
