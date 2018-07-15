@@ -26,10 +26,10 @@ services:
       - DB_NAME=openhouse_2018
       - URLROOT=http://localhost
       - SITENAME=IT Ladkrabang Openhouse 2018
-      - MAIL_HOST=localhost
-      - MAIL_USER=root
-      - MAIL_PASS=iamsosexy
-      - MAIL_SENDER=openhouse@it.kmtil.ac.th
+      - MAIL_HOST=smtp.google.com
+      - MAIL_USER=wiput.pootong@gmail.com
+      - MAIL_PASS=JoeyW1999
+      - MAIL_SENDER=wiput.pootong@gmail.com
       - MAIL_SENDER_NAME=IT Ladkrabang Openhouse 2018
     ports:
       - "80:80"
