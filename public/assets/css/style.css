@@ -400,6 +400,10 @@ Accent: #fdb127
         
         }
 
+        @media only screen and (-webkit-min-device-pixel-ratio: 1) {
+            ::i-block-chrome, #bebras-banner {width: 80%;margin: -85vh auto}
+        }
+
         @media screen and (max-width: 568px){
 
             ul, menu, dir {-webkit-padding-start: 1.5em;}
