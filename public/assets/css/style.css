@@ -981,10 +981,6 @@ header.page-header {
         width: 80px;
     }
 
-    .scrolling-card img:hover {
-        width: 80px;
-    }
-
     .scrolling-card h2 {
         font-size: 1em;
     }
