@@ -8,17 +8,19 @@
 
         // Regsiter user
         public function register($data){
-            $this->db->query('INSERT INTO users (username, email, password) VALUES(:username, :email, :password)');
+            $this->db->query('INSERT INTO users (username, email, password, created_at) VALUES(:username, :email, :password, :created_at)');
+            $this->db->query("SET time_zone = '+7:00'");
             // Bind values
             $this->db->bind(':username', $data['username']);
             $this->db->bind(':email', $data['email']);
             $this->db->bind(':password', $data['password']);
+            $this->db->bind(':created_at', date("Y-m-d H:i:s"));
     
             // Execute
             if($this->db->execute()){
-            return true;
+                return true;
             } else {
-            return false;
+                return false;
             }
         }
 

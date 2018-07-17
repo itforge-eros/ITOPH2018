@@ -37,17 +37,14 @@
               }
       
               // Validate Name
-              if(empty($data['username'])){
-                $data['username_err'] = 'Pleae enter username';
-              }
-      
+              if(empty($data['username'])){$data['username_err'] = 'Pleae enter username';}
               // Validate Password
               if(empty($data['password'])){
                 $data['password_err'] = 'Pleae enter password';
               } elseif(strlen($data['password']) < 6){
                 $data['password_err'] = 'Password must be at least 6 characters';
               }
-      
+    
               // Validate Confirm Password
               if(empty($data['confirm_password'])){
                 $data['confirm_password_err'] = 'Pleae confirm password';
@@ -65,10 +62,10 @@
               // Make sure errors are empty
               if(empty($data['email_err']) && empty($data['username_err']) && empty($data['password_err']) && empty($data['confirm_password_err']) && empty($data['verification_code_err'])){
                 // Validated
-                
+
                 // Hash Password
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-      
+
                 // Register User
                 if($this->userModel->register($data)){
                   flash('register_success', 'You are registered.');
@@ -162,6 +159,7 @@
             $_SESSION['user_id'] = $user->id;
             $_SESSION['user_email'] = $user->email;
             $_SESSION['user_username'] = $user->username;
+            $_SESSION['privilege'] = $user->privilege;
             redirect('admin/index');
         }
 
@@ -169,6 +167,7 @@
             unset($_SESSION['user_id']);
             unset($_SESSION['user_email']);
             unset($_SESSION['user_username']);
+            unset($_SESSION['privilege']);
             session_destroy();
             redirect('');
         }

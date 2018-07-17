@@ -6,7 +6,7 @@
             $this->workshopModel = $this->model('Workshop');
             $this->rallyModel = $this->model('Rally');
             $this->pageModel = $this->model('Page');
-
+            $this->registrationModel = $this->model('Registration');
         }
 
         public function index(){
@@ -75,14 +75,17 @@
                     redirect('');
             }
 
+            date_default_timezone_set('Asia/Bangkok');
+
             /*
              *   Handle COMPETITION registration form after submitting
              */
 
             if($_SERVER['REQUEST_METHOD'] == 'POST' && $registrationType == "competition"){
+                
                 //SANITIZE POST ARRAY
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-                $registrations = $this->competitionModel->getRegistrations();
+                $registrations = $this->registrationModel->getRegistrations();
                 $data = array_map('trim', $_POST);
                 $data['category'] = $slug;
                 $data['registrationType'] = $registrationType;
@@ -119,15 +122,25 @@
                     else if($slug == 'skill' && $i==3){break;}
                 endfor;
 
-                if(empty($data['teacher_name'])){$data['teacher_name_err'] = 'กรุณากรอกชื่อ-สกุลอาจารย์';}
-                else if (!strpos($data['teacher_name'], ' ')){$data['teacher_name_err'] = 'กรุณากรอกทั้งชื่อและนามสกุล';}
-                if(empty($data['teacher_email'])){$data['teacher_email_err'] = 'กรุณากรอกอีเมลอาจารย์';}
+                function teacherValidation(){
+                    if(empty($data['teacher_name'])){$data['teacher_name_err'] = 'กรุณากรอกชื่อ-สกุลอาจารย์';}
+                    else if (!strpos($data['teacher_name'], ' ')){$data['teacher_name_err'] = 'กรุณากรอกทั้งชื่อและนามสกุล';}
 
-                if(empty($data['teacher_email'])){$data['teacher_email_err'] = 'กรุณากรอกอีเมลสมาชิกคนที่ '.$i;}
-                else{$email = filter_var($_POST['teacher_email'], FILTER_VALIDATE_EMAIL); if(!$email){$data['teacher_email_err'] = 'อีเมลอาจารย์ไม่ถูกต้อง';}}
+                    if(empty($data['teacher_email'])){$data['teacher_email_err'] = 'กรุณากรอกอีเมลอาจารย์';}
+                    else{$email = filter_var($_POST['teacher_email'], FILTER_VALIDATE_EMAIL); if(!$email){$data['teacher_email_err'] = 'อีเมลอาจารย์ไม่ถูกต้อง';}}
 
-                if(empty($data['teacher_phone'])){$data['teacher_phone_err'] = 'กรุณากรอกเบอร์โทรศัพท์อาจารย์';}
-                else if(strlen($data['teacher_phone'])!=10){$data['teacher_phone_err'] = 'เบอร์โทรศัพท์อาจารย์ไม่ถูกต้อง';}
+                    if(empty($data['teacher_phone'])){$data['teacher_phone_err'] = 'กรุณากรอกเบอร์โทรศัพท์อาจารย์';}
+                    else if(strlen($data['teacher_phone'])!=10){$data['teacher_phone_err'] = 'เบอร์โทรศัพท์อาจารย์ไม่ถูกต้อง';}
+                }
+
+                if($slug == "game" && isset($data['teamtype'])){
+                    if($data['teamtype'] == "school"){
+                        teacherValidation();
+                    }
+                } else {
+                    teacherValidation();
+                }
+                
 
                 $error_array = ['team_name_err', 'school_name_err', 'teacher_name_err', 'teacher_email_err', 'teacher_phone_err'];
                 for($i=1; $i<=6; $i++){
@@ -156,7 +169,7 @@
                     $data['registration_date'] = date("Y-m-d H:i:s");
                     $data['pdf_filename'] = $filename;
                     
-                    if($this->competitionModel->addRegistration($data)){
+                    if($this->registrationModel->addRegistration($data)){
 
                         if($registrationType == "competition"):
 
@@ -238,8 +251,7 @@
                                             </tr>
                                         </table>';
                                 endfor;
-                            
-                            $content .= '
+                            $teacherContent = '
                                 <h3>ข้อมูลอาจารย์ที่ปรึกษา</h3>
                                 <hr>
                                 <table>
@@ -263,9 +275,19 @@
                                     <p>.......................................</p>
                                     <p>(.....................................)</p>
                                     <p>วันที่........เดือน................พ.ศ......</p>
-                                </div>                             
-                            </div>
-                            </body>';
+                                </div>';
+                            if(!$competition){
+                                if(isset($data['teamtype'])){
+                                    if($data['teamtype'] == "school"){
+                                        $content .= $teacherContent;
+                                    }
+                                } else {
+                                    $content .= $teacherContent;
+                                }
+                            }
+                            $content .= '
+                                </div>
+                                </body>';
                             
                             $content = mb_convert_encoding($content, 'UTF-8', 'UTF-8');
                             $mpdf->WriteHTML($content);
@@ -296,17 +318,19 @@
                             $mailer = new Swift_Mailer($transport);
                             $attachment = new Swift_Attachment($pdfdata, $filename, 'application/pdf');
 
+                            if($slug == "game"){$sendTo = [$data['candidate01_email'], $data['candidate02_email'], $data['candidate03_email'], $data['candidate04_email'], $data['candidate05_email'], $data['candidate06_email'] => $data['team_name']];}
+                            else {$sendTo = [$data['teacher_email'] => $data['teacher_name']];}
                             // Create a message
                             $message = (new Swift_Message('WELCOME TO IT KMITL OPENHOUSE 2018. ยินดีต้อนรับเข้าสู่งาน “เปิดบ้านไอทีลาดกระบัง2018”'))
                                 ->setFrom([MAIL_SENDER => MAIL_SENDER_NAME])
-                                ->setTo([$data['teacher_email'] => $data['teacher_name']])
+                                ->setTo($sendTo)
                                 ->setBody(
                                     '<html>
                                         <body>
                                             <img src="'.URLROOT.'/assets/img/openhouse-2018-logo.svg">
                                             <h1>ยินดีต้อนรับเข้าสู่งาน “เปิดบ้านไอทีลาดกระบัง”</h1>
                                             <p> สวัสดีครับ '.$data['teacher_name'].'</p>
-                                            <p> ขอบคุณที่นำนักเรียนในความปกครองของท่านมาร่วมเป็นส่วนหนึ่งในงาน IT Openhouse 2018 ทีมของคุณได้ลงทะเบียนในรายการ ' . $registrationDataModel->title . ' </p>
+                                            <p> ขอบคุณที่มาร่วมเป็นส่วนหนึ่งในงาน IT Ladkrabang Openhouse 2018 ทีมของคุณได้ลงทะเบียนในรายการ ' . $registrationDataModel->title . ' </p>
                                             <p> เราจะประผลการลงทะเบียน ในวันที่ 15 สิงหาคม พ.ศ. 2561 ติดตามผลการลงทะเบียนได้ที่ https://openhouse.it.kmitl.ac.th/</p>
                                         </body>
                                     </html>'
@@ -379,7 +403,7 @@
                     $data['registration_date'] = date("Y-m-d H:i:s");
                     $data['pdf_filename'] = $filename;
                     
-                    if($this->competitionModel->addRegistration($data)){
+                    if($this->registrationModel->addRegistration($data)){
 
                         $s3 = new Aws\S3\S3Client([
                             'version' => 'latest',

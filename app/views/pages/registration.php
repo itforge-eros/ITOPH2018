@@ -86,6 +86,33 @@ if(!isset($data['registrationDataModel'])){
                                     <span class="invalid-feedback"><?php echo $data['school_name_err']; ?></span>
                                 </div>
                             <?php endif; ?>
+                            <?php if($competition && $slug == 'game'):?>
+                                <div class="team-type">
+                                    <h3>ประเภทการสมัคร</h3>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="teamtype" id="teamtype_school" value="school" checked="checked">
+                                        <label class="form-check-label" for="teamtype_school">สมัครในนามโรงเรียน</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="teamtype" id="teamtype_freestyle" value="freestyle">
+                                        <label class="form-check-label" for="teamtype_freestyle">สมัครแบบทีมอิสระ</label>
+                                    </div>
+                                </div>
+                                
+                                <script>
+                                    $("#teacher-info-group").hide('slow');
+                                    $('input[type="radio"]').click(function(){
+                                            if($(this).attr("value")=="school"){
+                                                $("#teacher-info-group").show('slow');
+                                            }
+                                            else{
+                                                $("#teacher-info-group").hide('slow');
+
+                                            }        
+                                        });
+                                    $('input[type="radio"]').trigger('click');
+                                </script>
+                            <?php endif; ?>
 
                             <div class="info-wrapper">
                             
@@ -106,7 +133,7 @@ if(!isset($data['registrationDataModel'])){
                                         <span class="invalid-feedback"><?php echo $data['candidate0'.$i.'_name_err']; ?></span>
                                     </div>
                                     <div class="form-group">
-                                        <label for="candidate0<?php echo $i; ?>_id">หมายเลขบัตรประจำตัวประชาชน<?php if($slug == "skill"  && $i == 3): ?><?php else: ?><sup>*</sup></label><?php endif; ?></label>
+                                        <label for="candidate0<?php echo $i; ?>_id">หมายเลขประจำตัวประชาชน<?php if($slug == "skill"  && $i == 3): ?><?php else: ?><sup>*</sup></label><?php endif; ?></label>
                                         <input type="number" name="candidate0<?php echo $i; ?>_id" class="form-control form-control-lg <?php echo (!empty($data['candidate0'.$i.'_id_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['candidate0'.$i.'_id']; ?>">
                                         <span class="invalid-feedback"><?php echo $data['candidate0'.$i.'_id_err']; ?></span>
                                     </div>
@@ -155,35 +182,33 @@ if(!isset($data['registrationDataModel'])){
                             <?php 
                             if($competition):?>
                                 <!-- Teacher -->
-                                <h3>ข้อมูลอาจารย์ที่ปรึกษา</h3>
-                                <div class="info-group" id="teacher">
-                                    <div class="form-group">
-                                        <label for="teacher_name">ชื่อ-นามสกุล อาจารย์ที่ปรึกษา<sup>*</sup></label>
-                                        <input type="text" name="teacher_name" class="form-control form-control-lg <?php echo (!empty($data['teacher_name_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['teacher_name']; ?>">
-                                        <span class="invalid-feedback"><?php echo $data['teacher_name_err']; ?></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <label for="teacher_email">อีเมล<sup>*</sup></label>
-                                                <input type="text" name="teacher_email" class="form-control form-control-lg <?php echo (!empty($data['teacher_email_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['teacher_email']; ?>">
-                                                <span class="invalid-feedback"><?php echo $data['teacher_email_err']; ?></span>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label for="teacher_phone">เบอร์โทรศัพท์<sup>*</sup></label>
-                                                <input type="text" name="teacher_phone" class="form-control form-control-lg <?php echo (!empty($data['teacher_phone_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['teacher_phone']; ?>">
-                                                <span class="invalid-feedback"><?php echo $data['teacher_phone_err']; ?></span>
+                                <div id="teacher-info-group">
+                                    <h3>ข้อมูลอาจารย์ที่ปรึกษา</h3>
+                                    <div class="info-group" id="teacher">
+                                        <div class="form-group">
+                                            <label for="teacher_name">ชื่อ-นามสกุล อาจารย์ที่ปรึกษา<sup>*</sup></label>
+                                            <input type="text" name="teacher_name" class="form-control form-control-lg <?php echo (!empty($data['teacher_name_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['teacher_name']; ?>">
+                                            <span class="invalid-feedback"><?php echo $data['teacher_name_err']; ?></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <label for="teacher_email">อีเมล<sup>*</sup></label>
+                                                    <input type="text" name="teacher_email" class="form-control form-control-lg <?php echo (!empty($data['teacher_email_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['teacher_email']; ?>">
+                                                    <span class="invalid-feedback"><?php echo $data['teacher_email_err']; ?></span>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <label for="teacher_phone">เบอร์โทรศัพท์<sup>*</sup></label>
+                                                    <input type="text" name="teacher_phone" class="form-control form-control-lg <?php echo (!empty($data['teacher_phone_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['teacher_phone']; ?>">
+                                                    <span class="invalid-feedback"><?php echo $data['teacher_phone_err']; ?></span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             <?php endif;?>
 
-                            <?php if($competition){
-                                    $btnText = "ลงทะเบียนแข่งขัน";
-                                } else {
-                                    $btnText = "ลงทะเบียน";
-                                } ?>
+                            <?php if($competition){$btnText = "ลงทะเบียนแข่งขัน";} else {$btnText = "ลงทะเบียน";} ?>
 
                             <div class="row">
                                 <input type="submit" value="<?php echo $btnText; ?>" class="btn btn-registration btn-block">
@@ -196,7 +221,5 @@ if(!isset($data['registrationDataModel'])){
         </section>
     </div>
 </section>
-
-
 
 <?php require APPROOT . '/views/inc/footer.php'; ?>

@@ -73,6 +73,11 @@
             return $this->stmt->fetch(PDO::FETCH_OBJ);
         }
 
+        //Get single result as object
+        public function columnNames(){
+            return $this->stmt->fetchAll(PDO::FETCH_COLUMN);
+        }
+
         //Get row count
         public function rowCount(){
             return $this->stmt->rowCount();

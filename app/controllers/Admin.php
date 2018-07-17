@@ -9,7 +9,7 @@
             $this->competitionModel = $this->model('Competition');
             $this->individualModel = $this->model('Individual');
             $this->workshopModel = $this->model('Workshop');
-            $this->bebrasModel = $this->model('Bebras');
+            $this->registrationModel = $this->model('Registration');
         }
 
         public function index(){
@@ -28,19 +28,27 @@
 
             switch($registrationType){
                 case "individual":
-                    $registrationDataModel = $this->individualModel->getIndividualRegistrators();
+
+                case "security":
+                case "game":
+                case "skill":
+                case "website":
+
+                case "multimedia":
+                case "se":
+                case "networks":
+                case "datascience":
+
+                case "bebras":
+                    $registrationDataModel = $this->registrationModel->getRegistratorsBySlug($registrationType);
                     break;
 
                 case "competition":
-                    $registrationDataModel = $this->competitionModel->getCompetitionRegistrators();
+                    $registrationDataModel = $this->registrationModel->getCompetitionRegistrators();
                     break;
 
                 case "workshop":
-                    $registrationDataModel = $this->workshopModel->getWorkshopRegistrators();
-                    break;
-
-                case "bebras":
-                    $registrationDataModel = $this->bebrasModel->getBebrasRegistrators();
+                    $registrationDataModel = $this->registrationModel->getWorkshopRegistrators();
                     break;
 
                 default:
@@ -175,12 +183,88 @@
 
         public function delete($id){
             
-            if($this->individualModel->deleteIndividualRegistrators($id)){
-                flash('page_message', 'Record deleted');
-                redirect('admin');
-            } else {
-                die("Something went wrong");
+            $query = $this->competitionModel->getRegistrationById($id);
+            $category = $query->category;
+
+            if(!isset($_SESSION['privilege'])) {die("คุณไม่มีสิทธิ์ลบ Record นี้");}
+            else {
+                if($this->competitionModel->deleteRegistrationById($id)){
+                    flash('page_message', "ลบการลงทะเบียน #$id แล้ว");
+                    redirect("admin/details/$category");
+                } else {
+                    die("Something went wrong");
+                }
             }
+
+        }
+
+        public function export($slug){
+
+            $individualSheetTitles = ['ID', 'ชื่อ-นามสกุล', 'รหัสประจำตัวประชาชน', 'อายุ', 'ระดับชั้นมัธยมศึกษาปีที่', 'โรงเรียน', 'อีเมล', 'เบอร์โทรศัพท์'];
+            $generalSheetTitles = ['ID', 'ประเภท', 'ชื่อ-นามสกุล', 'รหัสประจำตัวประชาชน', 'อายุ', 'ระดับชั้นมัธยมศึกษาปีที่', 'โรงเรียน', 'อีเมล', 'เบอร์โทรศัพท์'];
+
+            switch($slug){
+                case "individual":
+                    $filename = "ITOPH18-Vistors.xlsx";
+                    $registrationDataModel = $this->registrationModel->getRegistratorsBySlugWithoutCategory($registrationType);
+                    $sheet_titles = $individualSheetTitles;
+                    break;
+
+                case "competition":
+                    $filename = "ITOPH18-Competition-Registrators.xlsx";
+                    $registrationDataModel = $this->registrationModel->getCompetitionRegistrators();
+                    $sheet_titles = $generalSheetTitles;
+                    break;
+
+                case "workshop":
+                    $filename = "ITOPH18-Workshop-Registrators.xlsx";
+                    $registrationDataModel = $this->registrationModel->getWorkshopRegistrators();
+                    $sheet_titles = $generalSheetTitles;
+                    break;
+
+                case "bebras":
+                    $filename = "ITOPH18-Bebras-Registrators.xlsx";
+                    $registrationDataModel = $this->registrationModel->getRegistratorsBySlugWithoutCategory($registrationType);
+                    $sheet_titles = $individualSheetTitles;
+                    break;
+                
+                case "security":
+                case "game":
+                case "skill":
+                case "website":
+                $filename = "ITOPH18-Competition-$slug-Registrators.xlsx";
+                    $registrationDataModel = $this->registrationModel->getRegistratorsBySlug($registrationType);
+                    $sheet_titles = $this->registrationModel->getColumnNamesBySlug($registrationType);
+                    break;
+                
+                case "multimedia":
+                case "se":
+                case "networks":
+                case "datascience":
+                    $filename = "ITOPH18-Workshop-$slug-Registrators.xlsx";
+                    $registrationDataModel = $this->registrationModel->getRegistratorsBySlug($registrationType);
+                    $sheet_titles = $this->registrationModel->getColumnNamesBySlug($registrationType);
+                    break;
+
+                default:
+                    redirect();
+            }
+
+            $array = json_decode(json_encode($registrationDataModel), True);
+            $data = array_merge(array(), $array);
+            array_unshift($data , $sheet_titles);
+            
+            $writer = new XLSXWriter();
+            $writer->writeSheet($data);
+            $writer->writeToFile($filename);
+
+            header('Content-disposition: attachment; filename="'.XLSXWriter::sanitize_filename($filename).'"');
+            header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            header('Content-Transfer-Encoding: binary');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            readfile($filename);
+            exit(0);
 
         }
 

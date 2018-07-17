@@ -18,4 +18,5 @@
 
     //Addon libraries
     require_once "../vendor/autoload.php";
+    require_once "libraries/xlsxwriter.class.php";
     

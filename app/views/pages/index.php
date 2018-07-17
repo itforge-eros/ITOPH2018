@@ -211,7 +211,7 @@
                 </div>
                 <div class="container">
                     <div class="row">
-                        <div class="d-flex flex-row mt-2">
+                        <div class="d-flex flex-row">
                             <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left" role="navigation">
                                 <li class="nav-item">
                                     <a href="#metro" class="nav-link active" data-toggle="tab" role="tab" aria-controls="metro"><i class="fas fa-subway"></i></a>

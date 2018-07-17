@@ -8,10 +8,18 @@ $bebras = false;
 
 switch($registrationType){
     case "competition":
+    case "security":
+    case "game":
+    case "skill":
+    case "website":
         $h2Text = "รายชื่อผู้ลงทะเบียนแข่งขัน";
         $competition = true;
         break;
     case "workshop":
+    case "multimedia":
+    case "se":
+    case "networks":
+    case "datascience":
         $h2Text = "รายชื่อผู้ลงทะเบียนเวิร์คชอป";
         $workshop = true;
         break;
@@ -29,56 +37,65 @@ switch($registrationType){
 <section class="admin-details standard-section">
     <div class="container">
         <div class="col-lg-12">
+            <a href="<?php echo URLROOT; ?>/admin" class="btn btn--export disabled"><i class="fas fa-angle-left"></i> หน้าหลัก Admin</a> <a href="<?php echo URLROOT; ?>/admin/export/<?php echo $registrationType; ?>" class="btn btn--export"><i class="fas fa-file-export"></i> Export ตารางนี้</a>
+            <hr>
             <h2><?php echo $h2Text; ?></h2>
-            <a href="#" class="btn btn--export"><i class="fas fa-file-export"></i> Export</a>
                 <?php if($competition || $workshop): ?>
                     <?php if($competition): ?>
                         <div class="card-columns">
-                            <a href="<?php echo URLROOT; ?>/admin/details/individual">
+                            <a href="<?php echo URLROOT; ?>/admin/details/security">
                                 <div id="" class="card card--blue p-3">
                                     <p>ความปลอดภัยของระบบคอมพิวเตอร์</p>
                                 </div>
                             </a>
-                            <a href="<?php echo URLROOT; ?>/admin/details/competition">
+                            <a href="<?php echo URLROOT; ?>/admin/details/game">
                                 <div id="" class="card card--blue p-3">
                                     <p>กีฬาอิเล็กทรอนิกส์</p>
                                 </div>
                             </a>
-                            <a href="<?php echo URLROOT; ?>/admin/details/workshop">
+                            <a href="<?php echo URLROOT; ?>/admin/details/skill">
                                 <div id="" class="card card--blue p-3">
                                     <p>แก้ปัญหาเชิงวิเคราะห์</p>
                                 </div>
                             </a>
-                            <a href="<?php echo URLROOT; ?>/admin/details/bebras">
+                            <a href="<?php echo URLROOT; ?>/admin/details/website">
                                 <div id="" class="card card--blue p-3">
                                     <p>พัฒนาเว็บไซต์</p>
                                 </div>
                             </a>
                         </div>
-                <?php else: ?>
+                    <?php else: ?>
+                        <div class="card-columns">
+                            <a href="<?php echo URLROOT; ?>/admin/details/multimedia">
+                                <div id="" class="card card--blue p-3">
+                                    <p>สายลับจับผิดภาพ</p>
+                                </div>
+                            </a>
+                            <a href="<?php echo URLROOT; ?>/admin/details/networks">
+                                <div id="" class="card card--blue p-3">
+                                    <p>เชื่อมต่อทุกสิ่งด้วย IoT</p>
+                                </div>
+                            </a>
+                            <a href="<?php echo URLROOT; ?>/admin/details/se">
+                                <div id="" class="card card--blue p-3">
+                                    <p>สร้างหุ่นยนต์ให้อัจฉริยะ</p>
+                                </div>
+                            </a>
+                            <a href="<?php echo URLROOT; ?>/admin/details/datascience">
+                                <div id="" class="card card--blue p-3">
+                                    <p>แกะรอยโปเกม่อน</p>
+                                </div>
+                            </a>
+                        </div>
                 <?php endif; ?>
                     <div class="table-responsive">
                         <table id="competition-table" class="table">
                             <thead>
                                 <tr>
-                                    <td>
-                                        #
-                                        <div class="sort-table-arrows">
-                                            <a href="javascript:sort(true, 'id', 'competition-table');"><button class="table__button"><i class="fa fa-chevron-down"></i></button></a>
-                                            <a href="javascript:sort(false, 'id', 'competition-table');"><button class="table__button"><i class="fa fa-chevron-up"></i></button></a>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        ประเภทการแข่งขัน
-                                        <div class="sort-table-arrows">
-                                            <a href="javascript:sort(true, 'category', 'competition-table');"><button class="table__button"><i class="fa fa-chevron-down"></i></button></a>
-                                            <a href="javascript:sort(false, 'category', 'competition-table');"><button class="table__button"><i class="fa fa-chevron-up"></i></button></a>
-                                        </div>
-                                    </td>
-                                    <td>เวลาที่สมัคร</td>
-                                    <td>ชื่อทีม</td>
-                                    <td>โรงเรียน</td>
-                                    <td>Actions</td>
+                                    <th>#</th>
+                                    <th>เวลาที่สมัคร</th>
+                                    <th>ประเภทการแข่งขัน</th>
+                                    <th>รายละเอียด</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -98,17 +115,38 @@ switch($registrationType){
                                             case "website":
                                                 $type = "พัฒนาเว็บไซต์";
                                                 break;
-                                        }
-                                ?>
+                                            case "multimedia":
+                                                $type = "สายลับจับผิดภาพ";
+                                                break;
+                                            case "networks":
+                                                $type = "เชื่อมต่อทุกสิ่งด้วย IoT";
+                                                break;
+                                            case "se":
+                                                $type = "สร้างหุ่นยนต์ให้อัจฉริยะ";
+                                                break;
+                                            case "datascience":
+                                                $type = "แกะรอยโปเกม่อน";
+                                                break;
+                                        } ?>
                                     <tr>
-                                        <td data-label="id"><?php echo sprintf("%'.05d", $item->id); ?></td>
+                                        <td data-label="id"><a href="<?php echo URLROOT; ?>/admin/delete/<?php echo $item->id; ?>" onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i></a> <?php echo sprintf("%'.05d", $item->id); ?></td>
+                                        <td data-label="date"><?php echo date_format(date_create($item->registration_date), 'y/m/d H:i:s'); ?></td>
                                         <td data-label="category"><?php echo $type; ?></td>
-                                        <td data-label="date"><?php echo $item->registration_date; ?></td>
-                                        <td data-label="team-name"><?php echo $item->team_name; ?></td>
-                                        <td data-label="school"><?php echo $item->candidate01_school; ?></td>
-                                        <td>
-                                            <a href="<?php echo URLROOT; ?>/admin/delete/<?php echo $item->id; ?>" onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i></a>
-                                            <a href="#"><i class="far fa-eye"></i></a>
+                                        <td data-label="details">
+                                        ​<?php if(isset($item->team_name)){
+                                            echo "<strong>ชื่อทีม: $item->team_name </strong><br>";
+                                            echo "<strong>สมาชิก</strong><br>";
+                                        } ?>
+                                            <?php 
+                                                for($i=1; $i<=6; $i++){
+                                                    $namefield = "candidate0".$i."_name";
+                                                    $idfield = "candidate0".$i."_id";
+                                                    $schoolfield = "candidate0".$i."_school";
+                                                    if(!empty($item->$namefield)){echo "$i. ".$item->$namefield." <span class='citizenid' id='id-".$item->id."000".$i."'>".$item->$idfield.'</span><a class="id-viewer-btn" onclick="idToggle('.$item->id.'000'.$i.')"><i class="fas fa-eye"></i></a><br>';}
+                                                    if($item->category == 'game'){echo $item->$schoolfield."<br>";}
+                                                }
+                                                if($item->category != 'game'){echo $item->candidate01_school; }
+                                            ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -120,14 +158,13 @@ switch($registrationType){
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <td>#</td>
-                                    <td>เวลาที่สมัคร</td>
-                                    <td>ชื่อ-นามสกุล</td>
-                                    <td>เลขประจำตัวประชาชน</td>
-                                    <td>อายุ</td>
-                                    <td>ชั้น</td>
-                                    <td>โรงเรียน</td>
-                                    <td>Actions</td>
+                                    <th>#</th>
+                                    <th>เวลาที่สมัคร</th>
+                                    <th>ชื่อ-นามสกุล</th>
+                                    <th class="center">เลขประจำตัวประชาชน</th>
+                                    <th class="center">อายุ</th>
+                                    <th class="center">ม.</th>
+                                    <th>โรงเรียน</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -135,50 +172,32 @@ switch($registrationType){
                                     foreach($data['registrationDataModel'] as $item): 
                                 ?>
                                     <tr>
-                                        <td><?php echo sprintf("%'.05d", $item->id); ?></td>
-                                        <td><?php echo $item->registration_date; ?></td>
+                                        <td data-label="id"><a href="<?php echo URLROOT; ?>/admin/delete/<?php echo $item->id; ?>" onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i></a> <?php echo sprintf("%'.05d", $item->id); ?></td>
+                                        <td data-label="date"><?php echo date_format(date_create($item->registration_date), 'y/m/d H:i:s'); ?></td>
                                         <td><?php echo $item->candidate01_name; ?></td>
-                                        <td><?php echo $item->candidate01_id; ?></td>
-                                        <td><?php echo $item->candidate01_age; ?></td>
-                                        <td><?php echo $item->candidate01_grade; ?></td>
-                                        <td><?php echo $item->candidate01_school; ?></td>
-                                        <td><a href="<?php echo URLROOT; ?>/admin/delete/<?php echo $item->id; ?>" onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i></a></td>
+                                        <td class="center" data-label="citizen-id"><span class="citizenid" id="id-<?php echo $item->id; ?>"><?php echo $item->candidate01_id; ?></span> <a class="id-viewer-btn" onclick="idToggle(<?php echo $item->id; ?>)"><i class="fas fa-eye"></i></a></td>
+                                        <td class="center" data-label="age"><?php echo $item->candidate01_age; ?></td>
+                                        <td class="center" data-label="grade"><?php echo $item->candidate01_grade; ?></td>
+                                        <td data-label="school"><?php echo $item->candidate01_school; ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
                 <?php endif; ?>
-
         </div>
     </div>
 </section>
 
 <script>
-	function sort(ascending, columnClassName, tableId) {
-		var tbody = document.getElementById(tableId).getElementsByTagName(
-				"tbody")[0];
-		var rows = tbody.getElementsByTagName("tr");
-		var unsorted = true;
-		while (unsorted) {
-			unsorted = false
-			for (var r = 0; r < rows.length - 1; r++) {
-				var row = rows[r];
-				var nextRow = rows[r + 1];
-				var value = row.getElementsByClassName(columnClassName)[0].innerHTML;
-				var nextValue = nextRow.getElementsByClassName(columnClassName)[0].innerHTML;
-				value = value.replace(',', ''); // in case a comma is used in float number
-				nextValue = nextValue.replace(',', '');
-				if (!isNaN(value)) {
-					value = parseFloat(value);
-					nextValue = parseFloat(nextValue);
-				}
-				if (ascending ? value > nextValue : value < nextValue) {
-					tbody.insertBefore(nextRow, row);
-					unsorted = true;
-				}
-			}
-		}
-	};
+	function idToggle(id) {
+        var elementID = "id-"+id;
+        var userId = document.getElementById(elementID);
+        if (!userId.style.display || userId.style.display == "none") {
+            userId.style.display = "inline";
+        } else {
+            userId.style.display = "none";
+        }
+    }
 </script>
 <?php require APPROOT . '/views/inc/footer.php'; ?>
