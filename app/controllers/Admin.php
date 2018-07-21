@@ -16,10 +16,29 @@
             //Get pages
             //$pages = $this->pageModel->getPages();
             $competitions = $this->competitionModel->getCompetitions();
+            $individualCount = $this->registrationModel->countRegistratorsBySlug('individual');
+            
+            $competitionCount = 0;
+            $competitionCount += $this->registrationModel->countRegistratorsBySlug('skill');
+            $competitionCount += $this->registrationModel->countRegistratorsBySlug('game');
+            $competitionCount += $this->registrationModel->countRegistratorsBySlug('website');
+            $competitionCount += $this->registrationModel->countRegistratorsBySlug('security');
+
+            $workshopCount = 0;
+            $workshopCount += $this->registrationModel->countRegistratorsBySlug('multimedia');
+            $workshopCount += $this->registrationModel->countRegistratorsBySlug('se');
+            $workshopCount += $this->registrationModel->countRegistratorsBySlug('datascience');
+            $workshopCount += $this->registrationModel->countRegistratorsBySlug('networks');
+
+            $bebrasCount = $this->registrationModel->countRegistratorsBySlug('bebras');
 
             $data = [
                 //'pages' => $pages
-                'competitions' => $competitions
+                'competitions' => $competitions,
+                'individualCount' => $individualCount,
+                'competitionCount' => $competitionCount,
+                'workshopCount' => $workshopCount,
+                'bebrasCount' => $bebrasCount
             ];
             $this->view('admin/index', $data);
         }
@@ -183,12 +202,12 @@
 
         public function delete($id){
             
-            $query = $this->competitionModel->getRegistrationById($id);
+            $query = $this->registrationModel->getRegistrationById($id);
             $category = $query->category;
 
-            if(!isset($_SESSION['privilege'])) {die("คุณไม่มีสิทธิ์ลบ Record นี้");}
+            if(!isset($_SESSION['privilege'])) {$yourname = $_SESSION['user_username']; die("คุณ $yourname ไม่มีสิทธิ์ลบ Record นี้");}
             else {
-                if($this->competitionModel->deleteRegistrationById($id)){
+                if($this->registrationModel->deleteRegistrationById($id)){
                     flash('page_message', "ลบการลงทะเบียน #$id แล้ว");
                     redirect("admin/details/$category");
                 } else {
@@ -201,30 +220,31 @@
         public function export($slug){
 
             $individualSheetTitles = ['ID', 'ชื่อ-นามสกุล', 'รหัสประจำตัวประชาชน', 'อายุ', 'ระดับชั้นมัธยมศึกษาปีที่', 'โรงเรียน', 'อีเมล', 'เบอร์โทรศัพท์'];
-            $generalSheetTitles = ['ID', 'ประเภท', 'ชื่อ-นามสกุล', 'รหัสประจำตัวประชาชน', 'อายุ', 'ระดับชั้นมัธยมศึกษาปีที่', 'โรงเรียน', 'อีเมล', 'เบอร์โทรศัพท์'];
+            $workshopSheetTitles = ['ID', 'ประเภท', 'ชื่อ-นามสกุล', 'รหัสประจำตัวประชาชน', 'อายุ', 'ระดับชั้นมัธยมศึกษาปีที่', 'โรงเรียน', 'อีเมล', 'เบอร์โทรศัพท์'];
+            $competitionSheetTitles = ['ID', 'ประเภท', 'ชื่อทีม', 'ชื่อ-นามสกุล สมาชิกคนที่ 1', 'รหัสประจำตัวประชาชน', 'อายุ', 'ระดับชั้นมัธยมศึกษาปีที่', 'โรงเรียน', 'อีเมล', 'เบอร์โทรศัพท์', 'ชื่อ-นามสกุล สมาชิกคนที่ 2', 'รหัสประจำตัวประชาชน', 'อายุ', 'ระดับชั้นมัธยมศึกษาปีที่', 'โรงเรียน', 'อีเมล', 'เบอร์โทรศัพท์', 'ชื่อ-นามสกุล สมาชิกคนที่ 3', 'รหัสประจำตัวประชาชน', 'อายุ', 'ระดับชั้นมัธยมศึกษาปีที่', 'โรงเรียน', 'อีเมล', 'เบอร์โทรศัพท์', 'ชื่อ-นามสกุล สมาชิกคนที่ 4', 'รหัสประจำตัวประชาชน', 'อายุ', 'ระดับชั้นมัธยมศึกษาปีที่', 'โรงเรียน', 'อีเมล', 'เบอร์โทรศัพท์', 'ชื่อ-นามสกุล สมาชิกคนที่ 5', 'รหัสประจำตัวประชาชน', 'อายุ', 'ระดับชั้นมัธยมศึกษาปีที่', 'โรงเรียน', 'อีเมล', 'เบอร์โทรศัพท์', 'ชื่อ-นามสกุล สมาชิกคนที่ 6', 'รหัสประจำตัวประชาชน', 'อายุ', 'ระดับชั้นมัธยมศึกษาปีที่', 'โรงเรียน', 'อีเมล', 'เบอร์โทรศัพท์'];
 
             switch($slug){
                 case "individual":
                     $filename = "ITOPH18-Vistors.xlsx";
-                    $registrationDataModel = $this->registrationModel->getRegistratorsBySlugWithoutCategory($registrationType);
+                    $registrationDataModel = $this->registrationModel->getRegistratorsBySlugWithoutCategory($slug);
                     $sheet_titles = $individualSheetTitles;
                     break;
 
                 case "competition":
                     $filename = "ITOPH18-Competition-Registrators.xlsx";
                     $registrationDataModel = $this->registrationModel->getCompetitionRegistrators();
-                    $sheet_titles = $generalSheetTitles;
+                    $sheet_titles = $competitionSheetTitles;
                     break;
 
                 case "workshop":
                     $filename = "ITOPH18-Workshop-Registrators.xlsx";
                     $registrationDataModel = $this->registrationModel->getWorkshopRegistrators();
-                    $sheet_titles = $generalSheetTitles;
+                    $sheet_titles = $workshopSheetTitles;
                     break;
 
                 case "bebras":
                     $filename = "ITOPH18-Bebras-Registrators.xlsx";
-                    $registrationDataModel = $this->registrationModel->getRegistratorsBySlugWithoutCategory($registrationType);
+                    $registrationDataModel = $this->registrationModel->getRegistratorsBySlugWithoutCategory($slug);
                     $sheet_titles = $individualSheetTitles;
                     break;
                 
@@ -233,8 +253,8 @@
                 case "skill":
                 case "website":
                 $filename = "ITOPH18-Competition-$slug-Registrators.xlsx";
-                    $registrationDataModel = $this->registrationModel->getRegistratorsBySlug($registrationType);
-                    $sheet_titles = $this->registrationModel->getColumnNamesBySlug($registrationType);
+                    $registrationDataModel = $this->registrationModel->getRegistratorsBySlug($slug);
+                    $sheet_titles = $competitionSheetTitles;
                     break;
                 
                 case "multimedia":
@@ -242,8 +262,8 @@
                 case "networks":
                 case "datascience":
                     $filename = "ITOPH18-Workshop-$slug-Registrators.xlsx";
-                    $registrationDataModel = $this->registrationModel->getRegistratorsBySlug($registrationType);
-                    $sheet_titles = $this->registrationModel->getColumnNamesBySlug($registrationType);
+                    $registrationDataModel = $this->registrationModel->getRegistratorsBySlug($slug);
+                    $sheet_titles = $workshopSheetTitles;
                     break;
 
                 default:
@@ -251,7 +271,19 @@
             }
 
             $array = json_decode(json_encode($registrationDataModel), True);
-            $data = array_merge(array(), $array);
+            $newarray = [];
+            //I DO THIS BECAUSE ID AND PHONE WILL BE STORED AS EXPONENTIAION IN XLSX!
+            foreach($array as $item) {
+                for($i=1; $i<=6; $i++){
+                    if (!is_null($item['candidate0'.$i.'_id'])) {
+                        $item['candidate0'.$i.'_id'] = "='".$item['candidate0'.$i.'_id'];
+                        $item['candidate0'.$i.'_phone'] = "='".$item['candidate0'.$i.'_phone'];
+                    }
+                }
+                $newarray[] = $item;
+            }
+            
+            $data = array_merge(array(), $newarray);
             array_unshift($data , $sheet_titles);
             
             $writer = new XLSXWriter();
@@ -265,7 +297,6 @@
             header('Pragma: public');
             readfile($filename);
             exit(0);
-
         }
 
     }

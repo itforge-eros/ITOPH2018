@@ -37,7 +37,7 @@ switch($registrationType){
 <section class="admin-details standard-section">
     <div class="container">
         <div class="col-lg-12">
-            <a href="<?php echo URLROOT; ?>/admin" class="btn btn--export disabled"><i class="fas fa-angle-left"></i> หน้าหลัก Admin</a> <a href="<?php echo URLROOT; ?>/admin/export/<?php echo $registrationType; ?>" class="btn btn--export"><i class="fas fa-file-export"></i> Export ตารางนี้</a>
+            <a href="<?php echo URLROOT; ?>/admin" class="btn btn--export"><i class="fas fa-angle-left"></i> หน้าหลัก Admin</a> <a href="<?php echo URLROOT; ?>/admin/export/<?php echo $registrationType; ?>" class="btn btn--export"><i class="fas fa-file-export"></i> Export ตารางนี้</a>
             <hr>
             <h2><?php echo $h2Text; ?></h2>
                 <?php if($competition || $workshop): ?>
@@ -140,12 +140,17 @@ switch($registrationType){
                                             <?php 
                                                 for($i=1; $i<=6; $i++){
                                                     $namefield = "candidate0".$i."_name";
+                                                    if(!isset($item->$namefield)){break;}
                                                     $idfield = "candidate0".$i."_id";
                                                     $schoolfield = "candidate0".$i."_school";
+                                                    $phonefield = "candidate0".$i."_phone";
+                                                    $emailfield = "candidate0".$i."_email";
                                                     if(!empty($item->$namefield)){echo "$i. ".$item->$namefield." <span class='citizenid' id='id-".$item->id."000".$i."'>".$item->$idfield.'</span><a class="id-viewer-btn" onclick="idToggle('.$item->id.'000'.$i.')"><i class="fas fa-eye"></i></a><br>';}
                                                     if($item->category == 'game'){echo $item->$schoolfield."<br>";}
+                                                    echo "<i class='fas fa-envelope'></i> ".$item->$emailfield.", <i class='fas fa-phone'></i> ".$item->$phonefield."<br>";
                                                 }
-                                                if($item->category != 'game'){echo $item->candidate01_school; }
+                                                if($item->category != 'game'){echo $item->candidate01_school."<br>"; }
+                                                if(isset($item->teacher_name)){echo "<hr><strong>อาจารย์ผู้ดูแล:</strong> <br>".$item->teacher_name."<br><i class='fas fa-envelope'></i> ".$item->teacher_email.", <i class='fas fa-phone'></i> ".$item->teacher_phone;}
                                             ?>
                                         </td>
                                     </tr>

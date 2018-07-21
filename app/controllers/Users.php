@@ -82,14 +82,16 @@
             } else {
               // Init data
               $data =[
-                'name' => '',
+                'username' => '',
                 'email' => '',
                 'password' => '',
                 'confirm_password' => '',
-                'name_err' => '',
+                'verification_code' => '',
+                'username_err' => '',
                 'email_err' => '',
                 'password_err' => '',
-                'confirm_password_err' => ''
+                'confirm_password_err' => '',
+                'verification_code_err' => ''
               ];
       
               // Load view

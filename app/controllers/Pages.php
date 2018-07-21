@@ -200,7 +200,7 @@
                                     td {padding: 4px 10px;}
                                     .img-wrapper {width: 100%; text-align: center;}
                                     img {width: 360px;}
-                                    .right {width: 50%; float: right; text-align: center;}
+                                    .right {width: 50%; float: right; text-align: center; margin-top: 4em;}
                                 </style>
                             </head>
                             <body>
@@ -532,9 +532,12 @@
                 }
             }else{
 
+                $registratorsCount = $this->registrationModel->countRegistratorsBySlug($slug);
+
                 $data = [
                     'registrationDataModel' => $registrationDataModel,
                     'registrationType' => $registrationType, //for bebras and individual
+                    'registratorsCount' => $registratorsCount,
                     'team_name' => '',
                     'school_name' => '',
                     'teacher_name' => '',

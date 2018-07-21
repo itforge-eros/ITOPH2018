@@ -35,8 +35,10 @@
                             <h6>การแข่งขันทักษะการคิดทางคอมพิวเตอร์ระดับชาติประจำปี 2018</h6>
                             <hr>
                             <p><strong>ครั้งแรกในประเทศไทย</strong> กับการแข่งขันกระบวนการแก้ปัญหาเชิงตรรกะ (Logical problem solving) ออนไลน์ที่ถูกออกแบบสำหรับนักเรียนระดับมัธยมต้นถึงมัธยมปลาย ผู้เข้าแข่งขันไม่จำเป็นต้องมีประสบการณ์เกี่ยวกับวิทยาการคอมพิวเตอร์โดยตรง โดยมีวัตถุประสงค์เพื่อส่งเสริมการเรียน การสอน และ สร้างความตื่นตัวแก่นักเรียนที่สนใจทางด้านวิทยาการคอมพิวเตอร์ </p>
-                            <?php //<a href="" class="right" aria-pressed="true">อ่านรายละเอียดและสมัครทดสอบ ></a>?>
-                            <a href="#" class="right" aria-pressed="true">เร็ว ๆ นี้ ></a>
+                            <div class="action">
+                                <a href="https://www.bebrasthailand.org/" class="btn" aria-pressed="true">อ่านรายละเอียด</a>
+                                <a href="<?php echo URLROOT; ?>/pages/registration/bebras" class="btn" aria-pressed="true">สมัครเข้าทดสอบ</a>
+                            </div>
                         </div>
                     </div>
                 </div>

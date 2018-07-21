@@ -29,6 +29,12 @@
             return $this->db->resultSet();
         }
 
+        public function countRegistratorsBySlug($slug){
+            $this->db->query('SELECT * FROM registrations WHERE category = :category');
+            $this->db->bind(":category", $slug);
+            return count($this->db->resultSet());
+        }
+
         public function deleteRegistrationById($id){
             $this->db->query('DELETE FROM registrations WHERE id = :id');
             $this->db->bind(":id", $id);

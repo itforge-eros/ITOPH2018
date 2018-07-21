@@ -9,7 +9,6 @@
         // Regsiter user
         public function register($data){
             $this->db->query('INSERT INTO users (username, email, password, created_at) VALUES(:username, :email, :password, :created_at)');
-            $this->db->query("SET time_zone = '+7:00'");
             // Bind values
             $this->db->bind(':username', $data['username']);
             $this->db->bind(':email', $data['email']);

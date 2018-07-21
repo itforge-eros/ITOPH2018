@@ -447,10 +447,10 @@ class XLSXWriter
 		$file->write('</numFmts>');
 
 		$file->write('<fonts count="'.(count($fonts)).'">');
-		$file->write(		'<font><name val="Arial"/><charset val="1"/><family val="2"/><sz val="10"/></font>');
-		$file->write(		'<font><name val="Arial"/><family val="0"/><sz val="10"/></font>');
-		$file->write(		'<font><name val="Arial"/><family val="0"/><sz val="10"/></font>');
-		$file->write(		'<font><name val="Arial"/><family val="0"/><sz val="10"/></font>');
+		$file->write(		'<font><name val="THSarabun New"/><charset val="1"/><family val="2"/><sz val="16"/></font>');
+		$file->write(		'<font><name val="THSarabun New"/><family val="0"/><sz val="16"/></font>');
+		$file->write(		'<font><name val="THSarabun New"/><family val="0"/><sz val="16"/></font>');
+		$file->write(		'<font><name val="THSarabun New"/><family val="0"/><sz val="16"/></font>');
 
 		foreach($fonts as $font) {
 			if (!empty($font)) { //fonts have 4 empty placeholders in array to offset the 4 static xml entries above

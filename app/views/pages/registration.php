@@ -54,7 +54,32 @@ if(!isset($data['registrationDataModel'])){
     }
 }
 
+if($workshop):
+    if($data['registratorsCount'] > 20 && $data['registratorsCount'] <= 25){
+        $pageTitle = "สมัครเข้าร่วม Workshop (สำรอง)";
+    }
+    if($data['registratorsCount'] > 25){ ?>
+        <section class="standard-section">
+            <div class="container">
+                <section class="page-container registration">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <header class="page-header">
+                                <div>
+                                    <h1><?php echo "ขออภัย ขณะนี้มีผู้สมัครเข้าร่วม Workshop รายการ ".$registrationTitle." ครบจำนวนแล้ว"; ?></h1>
+                                </div>
+                            </header>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+<?php
+    exit(0);
+    }
+endif;
 ?>
+
 <section class="standard-section">
     <div class="container">
         <section class="page-container registration">
@@ -90,12 +115,12 @@ if(!isset($data['registrationDataModel'])){
                                 <div class="team-type">
                                     <h3>ประเภทการสมัคร</h3>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="teamtype" id="teamtype_school" value="school" checked="checked">
-                                        <label class="form-check-label" for="teamtype_school">สมัครในนามโรงเรียน</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="teamtype" id="teamtype_freestyle" value="freestyle">
                                         <label class="form-check-label" for="teamtype_freestyle">สมัครแบบทีมอิสระ</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="teamtype" id="teamtype_school" value="school" checked="checked">
+                                        <label class="form-check-label" for="teamtype_school">สมัครในนามโรงเรียน</label>
                                     </div>
                                 </div>
                                 

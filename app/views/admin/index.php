@@ -28,22 +28,34 @@
                         <div class="card-columns">
                             <a href="<?php echo URLROOT; ?>/admin/details/individual">
                                 <div id="" class="card card--yellow p-3">
-                                    <p>ดูรายชื่อผู้สมัครเข้าชม</p>
+                                    <div>
+                                        <h2><?php echo $data['individualCount']; ?></h2>
+                                        <p>ผู้สมัครเข้าชมงาน</p>
+                                    </div>
                                 </div>
                             </a>
                             <a href="<?php echo URLROOT; ?>/admin/details/competition">
                                 <div id="" class="card card--blue p-3">
-                                    <p>ดูรายชื่อผู้สมัครแข่งขัน</p>
+                                    <div>
+                                        <h2><?php echo $data['competitionCount']; ?></h2>
+                                        <p>ผู้สมัครแข่งขัน</p>
+                                    </div>
                                 </div>
                             </a>
                             <a href="<?php echo URLROOT; ?>/admin/details/workshop">
                                 <div id="" class="card card--blue p-3">
-                                    <p>ดูรายชื่อผู้สมัครเวิร์คชอป</p>
+                                    <div>
+                                        <h2><?php echo $data['workshopCount']; ?></h2>
+                                        <p>ผู้สมัครเวิร์คชอป</p>
+                                    </div>
                                 </div>
                             </a>
                             <a href="<?php echo URLROOT; ?>/admin/details/bebras">
                                 <div id="" class="card card--blue p-3">
-                                    <p>ดูรายชื่อผู้สมัครเข้าทดสอบ BEBRAS</p>
+                                    <div>
+                                        <h2><?php echo $data['bebrasCount']; ?></h2>
+                                        <p>ผู้สมัครเข้าทดสอบ BEBRAS</p>
+                                    </div>
                                 </div>
                             </a>
                         </div>

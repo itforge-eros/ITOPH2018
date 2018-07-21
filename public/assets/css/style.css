@@ -20,6 +20,8 @@ Accent: #fdb127
         body {font-family: 'Mitr', sans-serif; margin: 0; padding: 0;}
         a {text-decoration: none;}
         a:hover {color: inherit; text-decoration: none;}
+        .btn:focus {outline: none;}
+        .btn:active:focus {outline: none;}
 
         .card {border: unset;}
         .clear {width: auto;}
@@ -30,6 +32,7 @@ Accent: #fdb127
         h1, h2, .navbar-brand {font-family: 'Cloud';}
 
         h1 {font-size: 2.4em; letter-spacing: 2px;}
+        h6 {font-size: 1.2em;}
         a {color: #FFF;}
         p, a {font-size: 1.25em;}
         p, ul > ul > li {font-weight: 300;}
@@ -68,7 +71,8 @@ Accent: #fdb127
             font-weight: 200;
         }
         input[type="submit"] {text-transform: uppercase;}
-        .team-type {background: #fdb127; padding: 0.1em 1em 1em;}
+        .team-type {background: #fdb127; padding: 0.1em 1em 1em; text-align: center}
+        .team-type .form-check.form-check-inline {font-size: 1.35em;}
         
     
     /* Displays */
@@ -261,11 +265,22 @@ Accent: #fdb127
             #bebras .info h2 {font-size: 1.3rem;}
             #bebras .info h6 {font-weight: 200;}
             #bebras .info hr {border-top: 1px solid rgba(255,255,255,.3);}
-            #bebras .info a {
-                float: right;
-                color: #FFF;
-                font-weight: 200;
+            #bebras .action {
+                width: 100%;
+                border: 1px solid rgba(255,255,255,.5);
+                border-radius: 16px;
+                padding: 0 2em;
             }
+            #bebras .action a {font-size: 1.25em;}
+            #bebras .action a:first-child {
+                padding: 0.5em 3.2em 0.5em 2em;
+                border-right: 1px solid rgba(255,255,255,.5);
+                border-radius: 0;
+            }
+            #bebras .action a:last-child {
+                padding: 0.5em 1em 0.5em 2.5em;
+            }
+            
         
         /* Events */
         .events {position: relative;}
@@ -347,12 +362,21 @@ Accent: #fdb127
             margin-top: 4em;
         }
 
-        @media screen and (max-width: 989px) {
+        @media screen and (max-width: 1200px) {
+            #bebras .action {text-align: center}
+            #bebras .action a:first-child {
+                padding: 1em;
+                border-right: unset;
+            }
+            #bebras .action a:last-child {
+                padding: 1em;
+            }
+        }
+        @media screen and (max-width: 991px) {
             .main {margin: -40px auto 0;}
             #bg-animate {display: none;}
             .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {margin-bottom: 1em;}
 
-            /*#bebras .img-container {min-height: 100px;}*/
             #bebras .info {text-align: center;}
 
             .workshops .row .info {padding: 0.1em 1em 0;}
@@ -361,6 +385,8 @@ Accent: #fdb127
         @media screen and (max-width: 768px) {
 
             p, a, li, .btn-group-lg>.btn, .btn-lg {font-size: 1em;}
+
+            .standard-section {padding: 0;}
 
             .workshops {padding: 2em 0;}
             .workshops hr {margin-bottom: 2em;}
@@ -396,6 +422,8 @@ Accent: #fdb127
             .rallys .scrolling-card {width: fit-content;}
             .rallys .scrolling-card img {width: 160px;} 
 
+            form .col-lg-6 {padding-top: 1em;}
+
             footer img {float: none; margin-bottom: 2em;}
             .contact-bar {
                 -webkit-box-orient: vertical;
@@ -407,19 +435,25 @@ Accent: #fdb127
         
         }
 
-        /*@media only screen and (-webkit-min-device-pixel-ratio: 1) {
-            ::i-block-chrome, #bebras-banner {width: 80%;margin: -85vh auto}
-        }*/
-
         @media screen and (max-width: 568px){
-
             ul, menu, dir {-webkit-padding-start: 1.5em;}
             .workshops .row img {width: 80px;}
-            .workshops .row .info {padding: 0.25em 0 0 0.85em; width: 61%;}
+            .workshops .row .info {padding: 0.25em 0 0 0.85em; width: 70%;}
             .rallys .scrolling-card img {width: 134px;}
             .modal-content {margin-top: 0;}
             .heading-group h1 {font-size: 1.2em; letter-spacing: 0;}
             .heading-group h5 {font-size: 0.9em; letter-spacing: 0;}
+        }
+
+        @media screen and (max-width: 503px){
+            #bebras .action a:first-child {
+                border-bottom: 1px solid rgba(255,255,255,.5);
+                border-right: unset;
+            }
+        }
+
+        @media screen and (max-width: 419px){
+            .workshops .row .info {width: 61%;}
         }
 
     /* Third section: Seminar section */
@@ -1072,14 +1106,19 @@ header.page-header {
         column-count: 4;
 }
 
-.admin-tools .card h2 {
+.admin-tools .card > div {
     margin-bottom: 0;
-    text-align: center;
+    width: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     border-radius: 16px;
+    text-align: center;
+}
+
+.admin-tools .card h2 {
+    margin: 0.2em 0 0 0;
 }
 
 .citizenid {display: none;}
