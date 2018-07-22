@@ -198,6 +198,33 @@
 
             </section>
 
+            <section class="gallery">
+                <div id="oph17gallery" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#oph17gallery" data-slide-to="0" class="active"></li>
+                        <?php for($i=1; $i<10; $i++) {echo "<li data-target='#oph17gallery' data-slide-to='$i'></li>";} ?>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="<?php echo URLROOT;?>/assets/img/gallery/01.jpg">
+                        </div>
+                        <?php for($i=2; $i<=10; $i++) { ?>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="<?php echo URLROOT;?>/assets/img/gallery/<?php echo sprintf("%'.02d", $i)?>.jpg">
+                            </div>
+                        <?php } ?>
+                    </div>
+                    <a class="carousel-control-prev" href="#oph17gallery" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#oph17gallery" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </section>
+
             <section class="route-container">
                 <div class="row">
                     <div class="col-lg-12">

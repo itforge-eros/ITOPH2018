@@ -135,7 +135,6 @@ Accent: #fdb127
         flex-direction: column;
         justify-content: center;
         overflow: hidden;
-        padding: 1em 0;
     }
 
     .scrolling-wrapper {
@@ -358,9 +357,8 @@ Accent: #fdb127
             border-radius: 16px;
         }
 
-        .seminar {
-            margin-top: 4em;
-        }
+        .seminar {margin-top: 4em;}
+        .route-container {padding: 4em 0;}
 
         @media screen and (max-width: 1200px) {
             #bebras .action {text-align: center}
@@ -385,8 +383,6 @@ Accent: #fdb127
         @media screen and (max-width: 768px) {
 
             p, a, li, .btn-group-lg>.btn, .btn-lg {font-size: 1em;}
-
-            .standard-section {padding: 0;}
 
             .workshops {padding: 2em 0;}
             .workshops hr {margin-bottom: 2em;}
@@ -1037,6 +1033,8 @@ header.page-header {
     .scroll-hint-icon {
         top: calc(50% - 70px) !important;
     }
+
+    .gallery {height: unset;}
 
 }
 
