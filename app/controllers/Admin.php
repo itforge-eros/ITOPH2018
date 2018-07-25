@@ -1,5 +1,6 @@
 <?php
     class Admin extends Controller {
+
         public function __construct(){
             if(!isLoggedIn()){
                 redirect('');
@@ -10,26 +11,30 @@
             $this->individualModel = $this->model('Individual');
             $this->workshopModel = $this->model('Workshop');
             $this->registrationModel = $this->model('Registration');
+
         }
 
         public function index(){
             //Get pages
             //$pages = $this->pageModel->getPages();
+
             $competitions = $this->competitionModel->getCompetitions();
             $individualCount = $this->registrationModel->countRegistratorsBySlug('individual');
+
+            $securityCount = $this->registrationModel->countRegistratorsBySlug('security');
+            $gameCount = $this->registrationModel->countRegistratorsBySlug('game');
+            $skillCount = $this->registrationModel->countRegistratorsBySlug('skill');
+            $websiteCount = $this->registrationModel->countRegistratorsBySlug('website');
             
-            $competitionCount = 0;
-            $competitionCount += $this->registrationModel->countRegistratorsBySlug('skill');
-            $competitionCount += $this->registrationModel->countRegistratorsBySlug('game');
-            $competitionCount += $this->registrationModel->countRegistratorsBySlug('website');
-            $competitionCount += $this->registrationModel->countRegistratorsBySlug('security');
+            $competitionCount = $securityCount + $gameCount + $skillCount + $websiteCount;
 
-            $workshopCount = 0;
-            $workshopCount += $this->registrationModel->countRegistratorsBySlug('multimedia');
-            $workshopCount += $this->registrationModel->countRegistratorsBySlug('se');
-            $workshopCount += $this->registrationModel->countRegistratorsBySlug('datascience');
-            $workshopCount += $this->registrationModel->countRegistratorsBySlug('networks');
+            $multimediaCount = $this->registrationModel->countRegistratorsBySlug('multimedia');
+            $networksCount = $this->registrationModel->countRegistratorsBySlug('networks');
+            $seCount = $this->registrationModel->countRegistratorsBySlug('se');
+            $datascienceCount = $this->registrationModel->countRegistratorsBySlug('datascience');
 
+            $workshopCount = $multimediaCount + $networksCount + $seCount + $datascienceCount;
+            
             $bebrasCount = $this->registrationModel->countRegistratorsBySlug('bebras');
 
             $data = [
@@ -74,9 +79,27 @@
                     redirect();
             }
 
+            $securityCount = $this->registrationModel->countRegistratorsBySlug('security');
+            $gameCount = $this->registrationModel->countRegistratorsBySlug('game');
+            $skillCount = $this->registrationModel->countRegistratorsBySlug('skill');
+            $websiteCount = $this->registrationModel->countRegistratorsBySlug('website');
+
+            $multimediaCount = $this->registrationModel->countRegistratorsBySlug('multimedia');
+            $networksCount = $this->registrationModel->countRegistratorsBySlug('networks');
+            $seCount = $this->registrationModel->countRegistratorsBySlug('se');
+            $datascienceCount = $this->registrationModel->countRegistratorsBySlug('datascience');
+
             $data = [
                 'registrationType' => $registrationType,
-                'registrationDataModel' => $registrationDataModel
+                'registrationDataModel' => $registrationDataModel,
+                'multiCount' => $multimediaCount,
+                'seCount' => $seCount,
+                'networksCount' => $networksCount,
+                'datascienceCount' => $datascienceCount,
+                'skillCount' => $skillCount,
+                'gameCount' => $gameCount,
+                'websiteCount' => $websiteCount,
+                'securityCount' => $securityCount
             ];
             $this->view('admin/details', $data);
         }

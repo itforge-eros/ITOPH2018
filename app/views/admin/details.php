@@ -45,21 +45,25 @@ switch($registrationType){
                         <div class="card-columns">
                             <a href="<?php echo URLROOT; ?>/admin/details/security">
                                 <div id="" class="card card--blue p-3">
+                                    <h2><?php echo $data['securityCount']; ?></h2>
                                     <p>ความปลอดภัยของระบบคอมพิวเตอร์</p>
                                 </div>
                             </a>
                             <a href="<?php echo URLROOT; ?>/admin/details/game">
                                 <div id="" class="card card--blue p-3">
+                                    <h2><?php echo $data['gameCount']; ?></h2>
                                     <p>กีฬาอิเล็กทรอนิกส์</p>
                                 </div>
                             </a>
                             <a href="<?php echo URLROOT; ?>/admin/details/skill">
                                 <div id="" class="card card--blue p-3">
+                                    <h2><?php echo $data['skillCount']; ?></h2>
                                     <p>แก้ปัญหาเชิงวิเคราะห์</p>
                                 </div>
                             </a>
                             <a href="<?php echo URLROOT; ?>/admin/details/website">
                                 <div id="" class="card card--blue p-3">
+                                    <h2><?php echo $data['websiteCount']; ?></h2>
                                     <p>พัฒนาเว็บไซต์</p>
                                 </div>
                             </a>
@@ -68,21 +72,25 @@ switch($registrationType){
                         <div class="card-columns">
                             <a href="<?php echo URLROOT; ?>/admin/details/multimedia">
                                 <div id="" class="card card--blue p-3">
+                                    <h2><?php echo $data['multiCount']; ?></h2>
                                     <p>สายลับจับผิดภาพ</p>
                                 </div>
                             </a>
                             <a href="<?php echo URLROOT; ?>/admin/details/networks">
                                 <div id="" class="card card--blue p-3">
+                                    <h2><?php echo $data['networksCount']; ?></h2>
                                     <p>เชื่อมต่อทุกสิ่งด้วย IoT</p>
                                 </div>
                             </a>
                             <a href="<?php echo URLROOT; ?>/admin/details/se">
                                 <div id="" class="card card--blue p-3">
+                                    <h2><?php echo $data['seCount']; ?></h2>
                                     <p>สร้างหุ่นยนต์ให้อัจฉริยะ</p>
                                 </div>
                             </a>
                             <a href="<?php echo URLROOT; ?>/admin/details/datascience">
                                 <div id="" class="card card--blue p-3">
+                                    <h2><?php echo $data['datascienceCount']; ?></h2>
                                     <p>แกะรอยโปเกม่อน</p>
                                 </div>
                             </a>

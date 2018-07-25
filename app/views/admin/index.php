@@ -38,7 +38,7 @@
                                 <div id="" class="card card--blue p-3">
                                     <div>
                                         <h2><?php echo $data['competitionCount']; ?></h2>
-                                        <p>ผู้สมัครแข่งขัน</p>
+                                        <p>ทีมสมัครแข่งขัน</p>
                                     </div>
                                 </div>
                             </a>

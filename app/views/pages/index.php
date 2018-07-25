@@ -53,6 +53,11 @@
                             <h2>เรื่องราวดีๆ ที่ IT ลาดกระบัง</h2>
                             <h3>เรื่อง TCAS กับไอทีเลือดใหม่ เรียนอย่างไรให้ “Success”</h3>
                             <p>การใช้ชีวิตในไอที ลาดกระบัง การเรียน อยู่หอ เรื่องราวดีๆ ที่พี่อยากมาแบ่งบันน้องๆ ทุกคน</p>
+                            <div class="container">
+                            <hr>
+                            <p>สถานที่ ห้องประชุมใหญ่ (Auditorium) | วันที่ 23-24 สิงหาคม 2561 | เวลา 09.00 – 10.00 น.</p>
+                            <p>เชิญพบปะพูดคุยกับนักศึกษาของคณะเทคโนโลยีสารสนเทศ เรียนยังไงให้ประสบความสำเร็จ การวางแผนการเรียน ชีวิตในมหาลัย การอยู่หอ การแนะนำด้านอาชีพเมื่อจบไปแล้วทำงานอะไร พร้อมทั้งเปิดโอกาสให้ผู้ร่วมงานสอบถามข้อมูลต่างๆ ของหลักสูตรในคณะเทคโนโลยีสารสนเทศ</p>
+                            </div>
                         </article>
                     </div>
                 </div>
@@ -461,9 +466,9 @@
         var events_slide = new ScrollMagic.Scene({tweenChanges: true, triggerElement: "#selectingsection"})
             .setTween(atevents)
             .addTo(controller)
-
+                
         var seminar = new ScrollMagic.Scene({tweenChanges: true, triggerElement: "#seminartrigger"})
-            .setTween("#seminar", 0.75, {transform: "scale(1.3)", ease: Back.easeOut})
+            .setTween("#seminar", 0.75, {padding: "6em 1em", ease: Back.easeOut})
             .addTo(controller)
         
         $("#biglogo").mousemove(function(e) {

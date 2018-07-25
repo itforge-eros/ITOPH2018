@@ -54,6 +54,10 @@ Accent: #fdb127
             border-radius: 50px;
             margin-bottom: 2em;
         }
+        a.btn:hover {
+            transform: scale(1.1);
+            transition: all 0.2s ease;
+        }
 
         .btn-register:hover {cursor: pointer;}
         .btn-group-lg>.btn, .btn-lg {font-size: 1.25em;}
@@ -152,6 +156,11 @@ Accent: #fdb127
     .scrolling-card img {
         width: 100px;
         transition: all 0.1s cubic-bezier(0.23, 1, 0.320, 1);
+    }
+    .scrolling-card img:hover {
+        width: 120px;
+        border: 4px solid #2da9dd;
+        border-radius: 13px;
     }
 
     .scrolling-card h2 {
@@ -264,20 +273,23 @@ Accent: #fdb127
             #bebras .info h2 {font-size: 1.3rem;}
             #bebras .info h6 {font-weight: 200;}
             #bebras .info hr {border-top: 1px solid rgba(255,255,255,.3);}
-            #bebras .action {
-                width: 100%;
-                border: 1px solid rgba(255,255,255,.5);
-                border-radius: 16px;
-                padding: 0 2em;
-            }
+            #bebras .action {width: 100%;}
             #bebras .action a {font-size: 1.25em;}
             #bebras .action a:first-child {
-                padding: 0.5em 3.2em 0.5em 2em;
-                border-right: 1px solid rgba(255,255,255,.5);
-                border-radius: 0;
+                border: 1px solid rgba(255,255,255,.5);
+                border-radius: 16px 0 0 16px;
+                padding: 0.5em 3em;
+                margin-right: -8px;
             }
             #bebras .action a:last-child {
-                padding: 0.5em 1em 0.5em 2.5em;
+                border: 1px solid rgba(255,255,255,.5);
+                border-radius: 0 16px 16px 0;
+                padding: 0.5em 3em;
+            }
+            #bebras .action a:hover {
+                transform: scale(1);
+                color: #fdb127;
+                background: #FFF;
             }
             
         
@@ -357,25 +369,53 @@ Accent: #fdb127
             border-radius: 16px;
         }
 
+        .carousel-control-next, .carousel-control-prev {opacity: 0.8;}
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+        height: 40px;
+        width: 40px;
+        border: none;
+        background-image: none;
+        }
+
+        .carousel-control-next-icon:after
+        {
+            font-family: FontAwesome;
+            content: '\f138';
+            font-size: 32px;
+            color: #fdb127;
+            line-height: 36px;
+        }
+
+        .carousel-control-prev-icon:after {
+            font-family: FontAwesome;
+            content: '\f137';
+            font-size: 32px;
+            color: #fdb127;
+            line-height: 36px;
+        }
+
         .seminar {margin-top: 4em;}
         .route-container {padding: 4em 0;}
 
         @media screen and (max-width: 1200px) {
             #bebras .action {text-align: center}
             #bebras .action a:first-child {
-                padding: 1em;
+                padding: 0.5em 1em;
                 border-right: unset;
             }
             #bebras .action a:last-child {
-                padding: 1em;
+                padding: 0.5em 1em;
             }
         }
         @media screen and (max-width: 991px) {
+            
             .main {margin: -40px auto 0;}
             #bg-animate {display: none;}
             .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {margin-bottom: 1em;}
 
             #bebras .info {text-align: center;}
+            .scrolling-card img:hover {width: initial;}
 
             .workshops .row .info {padding: 0.1em 1em 0;}
         }
@@ -450,15 +490,15 @@ Accent: #fdb127
 
         @media screen and (max-width: 419px){
             .workshops .row .info {width: 61%;}
+            #bebras .action a:first-child, #bebras .action a:last-child {border: unset;}
         }
 
     /* Third section: Seminar section */
         .seminar-card {
-            margin: auto;
             width: fit-content;
             border-radius: 16px;
-            padding: 4em;
-            margin: 3em auto 0;
+            padding: 3em 1em;
+            margin: 2em auto 3em;
             background: #2da9dd;
         }
         .seminar-card h2 {
