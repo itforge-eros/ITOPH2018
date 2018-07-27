@@ -297,10 +297,37 @@
             $newarray = [];
             //I DO THIS BECAUSE ID AND PHONE WILL BE STORED AS EXPONENTIAION IN XLSX!
             foreach($array as $item) {
+                switch($item['category']) {
+                    case "security":
+                        $item['category'] = "ความปลอดภัยของระบบคอมพิวเตอร์";
+                        break;
+                    case "game":
+                        $item['category'] = "กีฬาอิเล็กทรอนิกส์";
+                        break;
+                    case "skill":
+                        $item['category'] = "แก้ปัญหาเชิงวิเคราะห์";
+                        break;
+                    case "website":
+                        $item['category'] = "พัฒนาเว็บไซต์";
+                        break;
+                    case "multimedia":
+                        $item['category'] = "สายลับจับผิดภาพ";
+                        break;
+                    case "networks":
+                        $item['category'] = "เชื่อมต่อทุกสิ่งด้วย IoT";
+                        break;
+                    case "se":
+                        $item['category'] = "สร้างหุ่นยนต์ให้อัจฉริยะ";
+                        break;
+                    case "datascience":
+                        $item['category'] = "แกะรอยโปเกม่อน";
+                        break;
+                }
+                
                 for($i=1; $i<=6; $i++){
                     if (!is_null($item['candidate0'.$i.'_id'])) {
-                        $item['candidate0'.$i.'_id'] = "='".$item['candidate0'.$i.'_id'];
-                        $item['candidate0'.$i.'_phone'] = "='".$item['candidate0'.$i.'_phone'];
+                        $item['candidate0'.$i.'_id'] = "'".$item['candidate0'.$i.'_id'];
+                        $item['candidate0'.$i.'_phone'] = "'".$item['candidate0'.$i.'_phone'];
                     }
                 }
                 $newarray[] = $item;

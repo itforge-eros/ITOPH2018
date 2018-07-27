@@ -102,7 +102,7 @@ switch($registrationType){
                                 <tr>
                                     <th>#</th>
                                     <th>เวลาที่สมัคร</th>
-                                    <th>ประเภทการแข่งขัน</th>
+                                    <th>ประเภท</th>
                                     <th>รายละเอียด</th>
                                 </tr>
                             </thead>
@@ -142,8 +142,9 @@ switch($registrationType){
                                         <td data-label="category"><?php echo $type; ?></td>
                                         <td data-label="details">
                                         ​<?php if(isset($item->team_name)){
-                                            echo "<strong>ชื่อทีม: $item->team_name </strong><br>";
-                                            echo "<strong>สมาชิก</strong><br>";
+                                            echo "<h2>ชื่อทีม: $item->team_name </h2>";
+                                            if($item->category != 'game'){echo "<strong>".$item->candidate01_school."</strong>"; }
+                                            echo "<strong>สมาชิก</strong>";
                                         } ?>
                                             <?php 
                                                 for($i=1; $i<=6; $i++){
@@ -153,11 +154,10 @@ switch($registrationType){
                                                     $schoolfield = "candidate0".$i."_school";
                                                     $phonefield = "candidate0".$i."_phone";
                                                     $emailfield = "candidate0".$i."_email";
-                                                    if(!empty($item->$namefield)){echo "$i. ".$item->$namefield." <span class='citizenid' id='id-".$item->id."000".$i."'>".$item->$idfield.'</span><a class="id-viewer-btn" onclick="idToggle('.$item->id.'000'.$i.')"><i class="fas fa-eye"></i></a><br>';}
+                                                    if(!empty($item->$namefield)){echo "<p><strong>$i. ".$item->$namefield."</strong><span class='citizenid' id='id-".$item->id."000".$i."'>".$item->$idfield.'</span> <a class="id-viewer-btn" onclick="idToggle('.$item->id.'000'.$i.')"><i class="fas fa-eye"></i></a></p>';}
                                                     if($item->category == 'game'){echo $item->$schoolfield."<br>";}
                                                     echo "<i class='fas fa-envelope'></i> ".$item->$emailfield.", <i class='fas fa-phone'></i> ".$item->$phonefield."<br>";
                                                 }
-                                                if($item->category != 'game'){echo $item->candidate01_school."<br>"; }
                                                 if(isset($item->teacher_name)){echo "<hr><strong>อาจารย์ผู้ดูแล:</strong> <br>".$item->teacher_name."<br><i class='fas fa-envelope'></i> ".$item->teacher_email.", <i class='fas fa-phone'></i> ".$item->teacher_phone;}
                                             ?>
                                         </td>

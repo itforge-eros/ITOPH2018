@@ -22,7 +22,7 @@
                                 <div class="ico-tab"><i class="fas fa-envelope"></i></div>
                                 <div class="text-tab">
                                     <h5>อีเมล</h5>
-                                    <p><a href="mailto:openhouse@it.kmtil.ac.th">openhouse@it.kmitl.ac.th</a></p>
+                                    <p><a href="mailto:openhouse@it.kmitl.ac.th">openhouse@it.kmitl.ac.th</a></p>
                                 </div>
                             </div>
                             <div class="social">

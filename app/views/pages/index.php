@@ -27,14 +27,30 @@
             <section id="bebras">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-6 col-sm-12 img-container">
-                            <img id="bebras-banner" src="<?php echo URLROOT; ?>/assets/img/bebras-logo.png">
-                        </div>
-                        <div class="col-lg-6 col-sm-12 info">
+                        <div class="col-lg-12 intro">
+                            <img id="bebras-banner" src="<?php echo URLROOT; ?>/assets/img/bebras-banner-new.png">
                             <h2>Thai Bebras Computational Thinking Challenge 2018</h2>
                             <h6>การแข่งขันทักษะการคิดทางคอมพิวเตอร์ระดับชาติประจำปี 2018</h6>
                             <hr>
-                            <p><strong>ครั้งแรกในประเทศไทย</strong> กับการแข่งขันกระบวนการแก้ปัญหาเชิงตรรกะ (Logical problem solving) ออนไลน์ที่ถูกออกแบบสำหรับนักเรียนระดับมัธยมต้นถึงมัธยมปลาย ผู้เข้าแข่งขันไม่จำเป็นต้องมีประสบการณ์เกี่ยวกับวิทยาการคอมพิวเตอร์โดยตรง โดยมีวัตถุประสงค์เพื่อส่งเสริมการเรียน การสอน และ สร้างความตื่นตัวแก่นักเรียนที่สนใจทางด้านวิทยาการคอมพิวเตอร์ </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-12 img-container">
+                            <img src="<?php echo URLROOT; ?>/assets/img/bebras-logo-new.png">
+                        </div>
+                        <div class="col-lg-8 col-sm-12 info">
+                            <p><strong>ครั้งแรกในประเทศไทย</strong> กับการแข่งขันกระบวนการแก้ปัญหาเชิงการคำนวณแห่งประเทศไทย (ช่วงเวลาจัดการแข่งขัน: 12-16 พ.ย. 2561)
+                            ซึ่งจัดขึ้นสำหรับน้องๆ ในระดับมัธยมศึกษา (ทั้งม. ต้น และม. ปลาย) โดยคณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง
+                            มีวัตถุประสงค์เพื่อส่งเสริมการเรียน การสอน และ สร้างความตื่นตัวแก่นักเรียนที่สนใจทางด้านวิทยาการคอมพิวเตอร์ 
+                            โดยน้องๆ ผู้เข้าแข่งขันไม่จำเป็นต้องมีประสบการณ์เกี่ยวกับวิทยาการคอมพิวเตอร์โดยตรง
+                            </p>
+                            <div class="box">
+                            <p>ซึ่งในงาน เปิดบ้านไอทีลาดกระบัง "IT LADKRABANG OPEN HOUSE 2018" ในครั้งนี้จะมีการเปิดให้น้องๆ ได้มาทดลองทำข้อสอบเก่าที่ใช้ในการแข่งขันในปี 2016-2017</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
                             <div class="action">
                                 <a href="https://www.bebrasthailand.org/" class="btn" aria-pressed="true">อ่านรายละเอียด</a>
                                 <a href="<?php echo URLROOT; ?>/pages/registration/bebras" class="btn" aria-pressed="true">สมัครเข้าทดสอบ</a>
@@ -468,7 +484,7 @@
             .addTo(controller)
                 
         var seminar = new ScrollMagic.Scene({tweenChanges: true, triggerElement: "#seminartrigger"})
-            .setTween("#seminar", 0.75, {padding: "6em 1em", ease: Back.easeOut})
+            .setTween("#seminar", 0.75, {padding: "7em 1em", ease: Back.easeOut})
             .addTo(controller)
         
         $("#biglogo").mousemove(function(e) {

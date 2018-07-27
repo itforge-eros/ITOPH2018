@@ -267,24 +267,33 @@ Accent: #fdb127
             padding: 4em 0;
             transform: scale(0);
         }
+            #bebras h2 {font-size: 1.3rem; letter-spacing: 2px;}
+            #bebras h6 {font-weight: 200; letter-spacing: 1px;}
+            #bebras hr {border-top: 1px solid rgba(255,255,255,.3);}
             #bebras .img-container {display: flex; justify-content: space-around; align-items: center}
-            #bebras-banner {margin: -50px auto}
-            #bebras .info {text-align: left; color: #FFF; padding-right: 2em;}
-            #bebras .info h2 {font-size: 1.3rem;}
-            #bebras .info h6 {font-weight: 200;}
-            #bebras .info hr {border-top: 1px solid rgba(255,255,255,.3);}
+            #bebras .img-container img {margin-top: -24px;}
+            #bebras-banner {margin-bottom: 2em;}
+            #bebras .intro {color: #FFF;}
+            #bebras .info {
+                text-align: justify;
+                color: #FFF;
+                padding-right: 2em;
+            }
+            #bebras .info p {text-indent: 3em;}
+            #bebras .box {padding: 1em 2em; margin-bottom: 2em; text-align: center; background: #FFF;}
+            #bebras .box p {color: #fdb127; margin: 0;}
             #bebras .action {width: 100%;}
             #bebras .action a {font-size: 1.25em;}
             #bebras .action a:first-child {
                 border: 1px solid rgba(255,255,255,.5);
                 border-radius: 16px 0 0 16px;
-                padding: 0.5em 3em;
+                padding: 0.5em 6em;
                 margin-right: -8px;
             }
             #bebras .action a:last-child {
                 border: 1px solid rgba(255,255,255,.5);
                 border-radius: 0 16px 16px 0;
-                padding: 0.5em 3em;
+                padding: 0.5em 6em;
             }
             #bebras .action a:hover {
                 transform: scale(1);
@@ -316,7 +325,7 @@ Accent: #fdb127
         .events .modal-content h2 {margin-bottom: 0;}
         .events .modal-content small {font-weight: 200;}
         .events .modal-content p {margin-bottom: 0.35em;}
-        .events .modal-content .properties {ext-align: left; padding-left: 4em;}
+        .events .modal-content .properties {text-align: left; padding-left: 4em;}
         .events .modal-content .description {text-align: left; padding: 1em 4em 2em 2em; border-left: 1px solid rgba(255, 255, 255, 0.3);}
         .events .animated {border-radius: 16px;}
 
@@ -326,7 +335,8 @@ Accent: #fdb127
             padding: 6em 0;
             margin-top: 1em;
         }
-        .workshops hr {margin-bottom: 4em;}
+        .workshops hr {margin: 1em 0 4em !important; border-top: 1px solid rgba(255,255,255,.3);}
+        .rallys hr {margin: 1em 0 4em !important;}
         .workshops .row {text-align: left; margin: 0.5em 0;}
         .workshops .logo {width: fit-content; padding: 0;}
         .workshops .row img {width: 100px;}
@@ -401,11 +411,11 @@ Accent: #fdb127
         @media screen and (max-width: 1200px) {
             #bebras .action {text-align: center}
             #bebras .action a:first-child {
-                padding: 0.5em 1em;
+                padding: 0.5em 3em;
                 border-right: unset;
             }
             #bebras .action a:last-child {
-                padding: 0.5em 1em;
+                padding: 0.5em 3em;
             }
         }
         @media screen and (max-width: 991px) {
@@ -415,6 +425,7 @@ Accent: #fdb127
             .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {margin-bottom: 1em;}
 
             #bebras .info {text-align: center;}
+            #bebras .info p:first-child, #bebras .info p:last-child {text-indent: unset; letter-spacing: unset;}
             .scrolling-card img:hover {width: initial;}
 
             .workshops .row .info {padding: 0.1em 1em 0;}
@@ -445,7 +456,8 @@ Accent: #fdb127
                 max-width: 155%;
             }
 
-            #bebras-banner {width: 60%;}
+            #bebras .action a:first-child {padding: 0.5em 1em;}
+            #bebras .action a:last-child {padding: 0.5em 1em;}
         
             .events .modal-content .properties {text-align: center; margin-bottom: 0.5em;}
             .events .modal-content .description {
@@ -503,10 +515,12 @@ Accent: #fdb127
         }
         .seminar-card h2 {
             margin-bottom: 0.5em;
+            letter-spacing: 2px;
             color: #FFF;
         }
         .seminar-card h3, .seminar-card p {
             font-weight: 200;
+            letter-spacing: 1px;
             color: #FFF;
         }
     
@@ -1082,7 +1096,7 @@ header.page-header {
  Admin 
  *****************************/
 .admin {padding: 3em 0;}
-.admin p, .admin-details p {font-size: 1em; font-weight: 200;}
+.admin p, .admin-details p {font-size: 1em; font-weight: 200; margin: 0;}
 .admin-competitions div {padding: 0.5em;}
 
 .admin-login {
