@@ -21,3 +21,7 @@
     define('MAIL_PASS', getenv('MAIL_PASS'));
     define('MAIL_SENDER', getenv('MAIL_SENDER'));
     define('MAIL_SENDER_NAME', getenv('MAIL_SENDER_NAME'));
+
+    //S3 params
+    define('S3_KEY', getenv('S3_KEY'));
+    define('S3_SECRET', getenv('S3_SECRET'));

@@ -85,7 +85,7 @@ Accent: #fdb127
     
     /* Nav */
         nav {background: #FFF; z-index: 20000;}
-        .navbar-brand img {width: 120px;}
+        .navbar-brand img {width: 90px;}
     
     /* Footer */
         
@@ -379,27 +379,31 @@ Accent: #fdb127
             border-radius: 16px;
         }
 
-        .carousel-control-next, .carousel-control-prev {opacity: 0.8;}
+        .carousel-control-next, .carousel-control-prev {opacity: 0.8; transition: all 0.15s ease-out;}
         .carousel-control-prev-icon,
         .carousel-control-next-icon {
-        height: 40px;
-        width: 40px;
-        border: none;
-        background-image: none;
+            height: 40px;
+            width: 40px;
+            border: none;
+            background-image: unset;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transition: all 0.15s ease-out;
         }
+        .carousel-control-next:hover, .carousel-control-prev:hover {opacity: 1;}
+        .carousel-control-next:hover .carousel-control-next-icon, .carousel-control-prev:hover .carousel-control-prev-icon {background: rgba(255,255,255,0.8);}
 
-        .carousel-control-next-icon:after
-        {
-            font-family: FontAwesome;
-            content: '\f138';
+        .carousel-control-next-icon:after {
+            content: '>';
+            margin-right: -4px;
             font-size: 32px;
             color: #fdb127;
             line-height: 36px;
         }
 
         .carousel-control-prev-icon:after {
-            font-family: FontAwesome;
-            content: '\f137';
+            content: '<';
+            margin-left: -4px;
             font-size: 32px;
             color: #fdb127;
             line-height: 36px;
@@ -420,7 +424,7 @@ Accent: #fdb127
         }
         @media screen and (max-width: 991px) {
             
-            .main {margin: -40px auto 0;}
+            .main {margin: auto;}
             #bg-animate {display: none;}
             .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {margin-bottom: 1em;}
 
@@ -429,6 +433,7 @@ Accent: #fdb127
             .scrolling-card img:hover {width: initial;}
 
             .workshops .row .info {padding: 0.1em 1em 0;}
+            #bebras .info {padding-right: 0;}
         }
         
         @media screen and (max-width: 768px) {
@@ -466,6 +471,9 @@ Accent: #fdb127
                 padding: 1em 0;
                 border-top: 1px solid rgba(255, 255, 255, 0.3);
             }
+
+            .workshops hr {margin: 1em 0 !important;}
+            .rallys hr {margin: 1em 0 !important;}
 
             .rallys .scrolling-card {width: fit-content;}
             .rallys .scrolling-card img {width: 160px;} 
@@ -776,6 +784,16 @@ header {
 .btn-registration {
     margin-top: 1em;
 }
+
+.is-expired {
+    background: #fdb127;
+    width: 100%;
+    text-align: center;
+    padding: 2em;
+    margin-top: 3em;
+}
+
+.is-expired h2 { color: #FFF; margin: 0; }
 
 /* ======= PAGE: Route ======== */
 
@@ -1184,9 +1202,14 @@ header.page-header {
 @media screen and (max-width: 768px) {
     .timetable-wrapper {height: 100vh;}
     .admin-details .card-columns {
-        -webkit-column-count: 1;
-        -moz-column-count: 1;
-        column-count: 1;
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
+    .admin-tools .card-columns {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
     }
     .admin-tools .card {
         height: 100px;
@@ -1194,11 +1217,6 @@ header.page-header {
 }
 
 @media (min-width: 576px) {
-    .admin .card-columns {
-        -webkit-column-count: 2;
-        -moz-column-count: 2;
-        column-count: 2;
-    }
     .admin-details .container {max-width: 98vw;}
 }
 

@@ -30,8 +30,19 @@
 
         public function details($slug){
             $competition = $this->competitionModel->getCompetitionBySlug($slug);
+
+            $now = new Datetime();
+            $now->setTimezone(new DateTimeZone('Asia/Bangkok'));
+            $year = (int)$now->format('Y');
+            $month = (int)$now->format('m');
+            $day = (int)$now->format('d');
+            $isExpired = false;
+            if($slug == "game" && ($year >= 2018 && $month >= 7)){$isExpired = true;}
+            else if($slug != "game" && ($year >= 2018 && $month >= 8 && $day > 10)){$isExpired = true;}
+
             $data = [
-                'competition' => $competition
+                'competition' => $competition,
+                'isExpired' => $isExpired
             ];
             $this->view('pages/details', $data);
         }
@@ -534,6 +545,17 @@
 
                 $registratorsCount = $this->registrationModel->countRegistratorsBySlug($slug);
 
+                $now = new Datetime();
+                $now->setTimezone(new DateTimeZone('Asia/Bangkok'));
+                $year = (int)$now->format('Y');
+                $month = (int)$now->format('m');
+                $day = (int)$now->format('d');
+                $isExpired = false;
+                if($slug == "game" && ($year >= 2018 && $month > 7)){$isExpired = true;}
+                else if($slug != "game" && ($year >= 2018 && $month >= 8 && $day > 10)){$isExpired = true;}
+
+                if($isExpired){redirect('');}
+
                 $data = [
                     'registrationDataModel' => $registrationDataModel,
                     'registrationType' => $registrationType, //for bebras and individual
@@ -545,7 +567,9 @@
                     'teacher_phone' => ''
                 ];
 
-                for($i=1; $i<=6; $i++){
+                if($slug == "game" && $isExpired){$maxCandidate=3;}else{$maxCandidate=6;}
+
+                for($i=1; $i<=$maxCandidate; $i++){
                     $data['candidate0'.$i.'_name'] = '';
                     $data['candidate0'.$i.'_age'] = '';
                     $data['candidate0'.$i.'_id'] = '';
@@ -576,9 +600,9 @@
                 'endpoint' => 'https://s3.itforge.io',
                 'use_path_style_endpoint' => true,
                 'credentials' => [
-                        'key'    => 'X3GA2MY4MIOYGCPG5FLX',
-                        'secret' => 'TZ3ozryPNTypUu5EBzXPwulNx4kmvz5MtoAhJCsU',
-                    ],
+                    'key'    => S3_KEY,
+                    'secret' => S3_SECRET,
+                ],
             ]);
 
             // Get a command object from the client
@@ -609,9 +633,9 @@
                 'endpoint' => 'https://s3.itforge.io',
                 'use_path_style_endpoint' => true,
                 'credentials' => [
-                        'key'    => 'X3GA2MY4MIOYGCPG5FLX',
-                        'secret' => 'TZ3ozryPNTypUu5EBzXPwulNx4kmvz5MtoAhJCsU',
-                    ],
+                    'key'    => S3_KEY,
+                    'secret' => S3_SECRET,
+                ],
             ]);
 
             // Get a command object from the client

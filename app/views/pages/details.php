@@ -13,9 +13,14 @@
                     <article>
                         <?php echo $data['competition']->full_description; ?>
 
+                        <?php if($data['isExpired']) {
+                            echo "<div class='is-expired'><h2>หมดเวลาลงทะเบียนแล้ว</h2></div>";
+                        } else { ?>
                             <div class="button-wrapper">
                                 <a href="<?php echo URLROOT; ?>/pages/registration/<?php echo $data['competition']->slug; ?>" class="btn btn-primary btn-lg active">สมัครแข่งขัน</a>
                             </div>
+                        <?php } ?>
+                            
                     </article>
                 </div>
             </div>
