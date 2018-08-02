@@ -172,9 +172,16 @@ endif;
                                             <div class="col-lg-6">
                                                 <label for="candidate0<?php echo $i; ?>_grade">ระดับชั้น<?php if($slug == "skill" && $i == 3): ?><?php else: ?><sup>*</sup></label><?php endif; ?></label>
                                                 <select class="form-control form-control-lg" name="candidate0<?php echo $i; ?>_grade">
+                                                    <?php if($bebras): ?>
+                                                    <option value="1">มัธยมศึกษาปีที่ 1</option>
+                                                    <option value="2">มัธยมศึกษาปีที่ 2</option>
+                                                    <option value="3">มัธยมศึกษาปีที่ 3</option>
+                                                    <?php endif; ?>
                                                     <option value="4">มัธยมศึกษาปีที่ 4</option>
                                                     <option value="5">มัธยมศึกษาปีที่ 5</option>
                                                     <option value="6">มัธยมศึกษาปีที่ 6</option>
+                                                    <option value="98">ปวช.</option>
+                                                    <option value="99">ปวส.</option>
                                                 </select>
                                             </div>
                                         </div>

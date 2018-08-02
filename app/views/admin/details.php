@@ -143,7 +143,7 @@ switch($registrationType){
                                         <td data-label="details">
                                         ​<?php if(isset($item->team_name)){
                                             echo "<h2>ชื่อทีม: $item->team_name </h2>";
-                                            if($item->category != 'game'){echo "<strong>".$item->candidate01_school."</strong>"; }
+                                            if($item->category != 'game'){echo "<p><strong>".$item->candidate01_school."</strong></p>"; }
                                             echo "<strong>สมาชิก</strong>";
                                         } ?>
                                             <?php 
@@ -152,13 +152,21 @@ switch($registrationType){
                                                     if(!isset($item->$namefield)){break;}
                                                     $idfield = "candidate0".$i."_id";
                                                     $schoolfield = "candidate0".$i."_school";
+                                                    $gradefield = "candidate0".$i."_grade";
                                                     $phonefield = "candidate0".$i."_phone";
                                                     $emailfield = "candidate0".$i."_email";
+
+                                                    if($item->$gradefield == 98){$grade = "ระดับชั้น ปวช.";}
+                                                    else if($item->$gradefield == 99){$grade = "ระดับชั้น ปวส.";}
+                                                    else {$grade = "ระดับชั้นมัธยมศึกษาปีที่ ".$item->$gradefield;}
+
                                                     if(!empty($item->$namefield)){echo "<p><strong>$i. ".$item->$namefield."</strong><span class='citizenid' id='id-".$item->id."000".$i."'>".$item->$idfield.'</span> <a class="id-viewer-btn" onclick="idToggle('.$item->id.'000'.$i.')"><i class="fas fa-eye"></i></a></p>';}
-                                                    if($item->category == 'game'){echo $item->$schoolfield."<br>";}
+                                                    if($item->category == 'game'){echo "<p>".$item->$schoolfield."<br>".$grade."</p>";}
+                                                    else{echo "<p>".$grade."</p>";}
                                                     echo "<i class='fas fa-envelope'></i> ".$item->$emailfield.", <i class='fas fa-phone'></i> ".$item->$phonefield."<br>";
                                                 }
                                                 if(isset($item->teacher_name)){echo "<hr><strong>อาจารย์ผู้ดูแล:</strong> <br>".$item->teacher_name."<br><i class='fas fa-envelope'></i> ".$item->teacher_email.", <i class='fas fa-phone'></i> ".$item->teacher_phone;}
+                                                if(isset($item->additional_note)){echo "หมายเหตุ: ".$item->additional_note;}
                                             ?>
                                         </td>
                                     </tr>
@@ -176,7 +184,7 @@ switch($registrationType){
                                     <th>ชื่อ-นามสกุล</th>
                                     <th class="center">เลขประจำตัวประชาชน</th>
                                     <th class="center">อายุ</th>
-                                    <th class="center">ม.</th>
+                                    <th class="center">ระดับชั้น</th>
                                     <th>โรงเรียน</th>
                                 </tr>
                             </thead>
@@ -189,6 +197,16 @@ switch($registrationType){
                                         <td data-label="date"><?php echo date_format(date_create($item->registration_date), 'y/m/d H:i:s'); ?></td>
                                         <td><?php echo $item->candidate01_name; ?></td>
                                         <td class="center" data-label="citizen-id"><span class="citizenid" id="id-<?php echo $item->id; ?>"><?php echo $item->candidate01_id; ?></span> <a class="id-viewer-btn" onclick="idToggle(<?php echo $item->id; ?>)"><i class="fas fa-eye"></i></a></td>
+                                        <?php
+                                            if($item->candidate01_grade==98){
+                                                $item->candidate01_grade = "ปวช.";
+                                            } else if($item->candidate01_grade==99){
+                                                $item->candidate01_grade = "ปวส.";
+                                            }
+                                            else {
+                                                $item->candidate01_grade = "ม. $item->candidate01_grade";
+                                            }
+                                        ?>
                                         <td class="center" data-label="age"><?php echo $item->candidate01_age; ?></td>
                                         <td class="center" data-label="grade"><?php echo $item->candidate01_grade; ?></td>
                                         <td data-label="school"><?php echo $item->candidate01_school; ?></td>

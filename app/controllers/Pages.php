@@ -250,8 +250,18 @@
                                             </tr>
                                             <tr>
                                                 <td><strong>อายุ</strong></td>
-                                                <td>'.$data['candidate0'.$i.'_age'].'</td>
-                                                <td><strong>ชั้นมัธยมศึกษาปีที่</strong></td>
+                                                <td>'.$data['candidate0'.$i.'_age'].'</td>';
+                                    if($data['candidate0'.$i.'_grade']==98){
+                                        $gradeTitle = "ระดับการศึกษา";
+                                        $data['candidate0'.$i.'_grade'] = "ปวช.";
+                                    } else if($data['candidate0'.$i.'_grade']==99){
+                                        $gradeTitle = "ระดับการศึกษา";
+                                        $data['candidate0'.$i.'_grade'] = "ปวส.";
+                                    } else {
+                                        $gradeTitle = "ชั้นมัธยมศึกษาปีที่";
+                                    }
+                                    $content .= '
+                                                <td><strong>'.$gradeTitle.'</strong></td>
                                                 <td>'.$data['candidate0'.$i.'_grade'].'</td>
                                             </tr>
                                             <tr>
@@ -467,8 +477,18 @@
                                 </tr>
                                 <tr>
                                     <td><strong>อายุ</strong></td>
-                                    <td>'.$data['candidate01_age'].'</td>
-                                    <td><strong>ชั้นมัธยมศึกษาปีที่</strong></td>
+                                    <td>'.$data['candidate01_age'].'</td>';
+                        if($data['candidate01_grade']==98){
+                            $gradeTitle = "ระดับการศึกษา";
+                            $data['candidate01_grade'] = "ปวช.";
+                        } else if($data['candidate01_grade']==99){
+                            $gradeTitle = "ระดับการศึกษา";
+                            $data['candidate01_grade'] = "ปวส.";
+                        } else {
+                            $gradeTitle = "ชั้นมัธยมศึกษาปีที่";
+                        }
+                        $content .= '
+                                    <td><strong>'.$gradeTitle.'</strong></td>
                                     <td>'.$data['candidate01_grade'].'</td>
                                 </tr>
                                 <tr>
@@ -553,8 +573,13 @@
                 $isExpired = false;
                 if($slug == "game" && ($year >= 2018 && $month > 7)){$isExpired = true;}
                 else if($slug != "game" && ($year >= 2018 && $month >= 8 && $day > 10)){$isExpired = true;}
+                else if($slug == "bebras" && $registratorsCount > 240){$isExpired = true;}
 
-                if($isExpired){redirect('');}
+
+                if($isExpired){
+                    echo "<script type='text/javascript'>alert('มีผู้ลงทะเบียนเต็มจำนวนแล้ว');</script>";
+                    redirect('');
+                }
 
                 $data = [
                     'registrationDataModel' => $registrationDataModel,

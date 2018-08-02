@@ -1124,6 +1124,11 @@ header.page-header {
 }
 .login-card h2 {margin-bottom: 1em;}
 .admin-tools {margin-top: 3em;}
+.admin-tools .card-columns {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+}
 .login-card {
     width: 450px;
     height: fit-content;
