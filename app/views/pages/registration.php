@@ -55,10 +55,10 @@ if(!isset($data['registrationDataModel'])){
 }
 
 if($workshop):
-    if($data['registratorsCount'] > 20 && $data['registratorsCount'] <= 25){
+    if($data['registratorsCount'] > 40 && $data['registratorsCount'] <= 50){
         $pageTitle = "สมัครเข้าร่วม Workshop (สำรอง)";
     }
-    if($data['registratorsCount'] > 25){ ?>
+    if($data['registratorsCount'] > 50){ ?>
         <section class="standard-section">
             <div class="container">
                 <section class="page-container registration">
@@ -66,7 +66,7 @@ if($workshop):
                         <div class="col-lg-12">
                             <header class="page-header">
                                 <div>
-                                    <h1><?php echo "ขออภัย ขณะนี้มีผู้สมัครเข้าร่วม Workshop รายการ ".$registrationTitle." ครบจำนวนแล้ว"; ?></h1>
+                                    <h1><?php echo "ขออภัย ขณะนี้มีผู้สมัครเข้าร่วม Workshop รายการ ".$registrationTitle." ครบจำนวนแล้้้ว โปรดทำการสมัครหน้างานในวัน IT Ladkrabang Openhouse 2018 จะสามารถเข้าร่วม Workshop ได้ในช่วงบ่าย"; ?></h1>
                                 </div>
                             </header>
                         </div>
