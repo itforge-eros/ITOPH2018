@@ -21,7 +21,7 @@ add-apt-repository ppa:nginx/$nginx && \
 LANG=C.UTF-8 add-apt-repository ppa:ondrej/php && \
 apt-get update && \
 apt-get upgrade -y && \
-BUILD_PACKAGES="supervisor nginx php${IMAGE_PHP_VERSION}-fpm git php${IMAGE_PHP_VERSION}-mysql php-apcu php${IMAGE_PHP_VERSION}-curl php${IMAGE_PHP_VERSION}-gd php${IMAGE_PHP_VERSION}-intl php${IMAGE_PHP_VERSION}-mcrypt php${IMAGE_PHP_VERSION}-memcache php${IMAGE_PHP_VERSION}-sqlite php${IMAGE_PHP_VERSION}-tidy php${IMAGE_PHP_VERSION}-xmlrpc php${IMAGE_PHP_VERSION}-xsl php${IMAGE_PHP_VERSION}-pgsql php${IMAGE_PHP_VERSION}-mongo php${IMAGE_PHP_VERSION}-ldap pwgen php${IMAGE_PHP_VERSION}-cli php${IMAGE_PHP_VERSION}-mbstring curl zip unzip php${IMAGE_PHP_VERSION}-zip" && \
+BUILD_PACKAGES="supervisor nginx php${IMAGE_PHP_VERSION}-fpm git php${IMAGE_PHP_VERSION}-mysql php-apcu php${IMAGE_PHP_VERSION}-curl php${IMAGE_PHP_VERSION}-gd php${IMAGE_PHP_VERSION}-intl php${IMAGE_PHP_VERSION}-mcrypt php${IMAGE_PHP_VERSION}-memcache php${IMAGE_PHP_VERSION}-sqlite php${IMAGE_PHP_VERSION}-tidy php${IMAGE_PHP_VERSION}-xmlrpc php${IMAGE_PHP_VERSION}-xsl php${IMAGE_PHP_VERSION}-pgsql php${IMAGE_PHP_VERSION}-mongo php${IMAGE_PHP_VERSION}-redis php${IMAGE_PHP_VERSION}-ldap pwgen php${IMAGE_PHP_VERSION}-cli php${IMAGE_PHP_VERSION}-mbstring curl zip unzip php${IMAGE_PHP_VERSION}-zip" && \
 apt-get -y install $BUILD_PACKAGES && \
 apt-get remove --purge -y software-properties-common && \
 apt-get autoremove -y && \
@@ -74,6 +74,9 @@ RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/defau
 COPY ./supervisord.conf /etc/supervisord.conf
 
 COPY ./www.conf /etc/php/7.1/fpm/pool.d/www.conf
+
+# Copy php.ini
+COPY ./php.ini /etc/php/7.1/fpm/php.ini
 
 # Start Supervisord
 COPY ./cmd.sh /
