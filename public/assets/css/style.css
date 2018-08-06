@@ -22,6 +22,14 @@ Accent: #fdb127
         a:hover {color: inherit; text-decoration: none;}
         .btn:focus {outline: none;}
         .btn:active:focus {outline: none;}
+        input[type='number'] {
+            -moz-appearance:textfield;
+        }
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+        }
 
         .card {border: unset;}
         .clear {width: auto;}
@@ -433,7 +441,7 @@ Accent: #fdb127
             .scrolling-card img:hover {width: initial;}
 
             .workshops .row .info {padding: 0.1em 1em 0;}
-            #bebras .info {padding-right: 0;}
+            #bebras .info {padding-right: 1em;}
         }
         
         @media screen and (max-width: 768px) {
@@ -446,7 +454,7 @@ Accent: #fdb127
             .table-responsive td {font-size: 0.9em; padding: 0.25em;}
 
             .table-responsive {    
-                width: 100%;
+                width: 112%;
                 height: 70vh;
                 margin-bottom: 15px;
                 overflow-x: auto;
@@ -511,6 +519,7 @@ Accent: #fdb127
         @media screen and (max-width: 419px){
             .workshops .row .info {width: 61%;}
             #bebras .action a:first-child, #bebras .action a:last-child {border: unset;}
+            #bebras .action a:first-child, #bebras .action a:last-child {border-radius: 50px}
         }
 
     /* Third section: Seminar section */
@@ -1195,7 +1204,7 @@ header.page-header {
 .admin-tools .card h2 {
     margin: 0.2em 0 0 0;
 }
-
+.admin-details .container, .admin-details .col-lg-12 {padding-right: 0}
 .citizenid {display: none;}
 .id-viewer-btn {cursor: pointer; color: #323643;}
 @media (min-width: 1200px){

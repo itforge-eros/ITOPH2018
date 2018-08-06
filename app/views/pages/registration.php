@@ -66,7 +66,7 @@ if($workshop):
                         <div class="col-lg-12">
                             <header class="page-header">
                                 <div>
-                                    <h1><?php echo "ขออภัย ขณะนี้มีผู้สมัครเข้าร่วม Workshop รายการ ".$registrationTitle." ครบจำนวนแล้้้ว โปรดทำการสมัครหน้างานในวัน IT Ladkrabang Openhouse 2018 จะสามารถเข้าร่วม Workshop ได้ในช่วงบ่าย"; ?></h1>
+                                    <h1><?php echo "ขออภัย ขณะนี้มีผู้สมัครเข้าร่วม Workshop รายการ ".$registrationTitle." ครบจำนวนแล้ว โปรดทำการสมัครหน้างานในวัน IT Ladkrabang Openhouse 2018 จะสามารถเข้าร่วม Workshop ได้ในช่วงบ่าย"; ?></h1>
                                 </div>
                             </header>
                         </div>
