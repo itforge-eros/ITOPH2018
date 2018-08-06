@@ -94,7 +94,7 @@ endif;
                 </div>
                 <div class="col-lg-12">
                     <article>
-                        <form action="<?php echo URLROOT; ?>/pages/registration/<?php echo $slug; ?>" method="post">
+                        <form action="<?php echo URLROOT; ?>/pages/registration/<?php echo $slug; ?>" id="registration-form" method="post">
                             <!-- TEAM INFO -->
                             <?php if($competition):?>
                                 <div class="form-group">
@@ -253,5 +253,12 @@ endif;
         </section>
     </div>
 </section>
-
+<script>
+$('#registration-form').one('submit', function() {
+    $(this).find('input[type="submit"]').attr('disabled','disabled');
+    setTimeout(function(){
+        $(this).find('input[type="submit"]').prop('disabled', false);
+    }, 5000);
+});
+</script>
 <?php require APPROOT . '/views/inc/footer.php'; ?>
