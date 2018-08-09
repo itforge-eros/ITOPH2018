@@ -438,7 +438,6 @@ Accent: #fdb127
 
             #bebras .info {text-align: center;}
             #bebras .info p:first-child, #bebras .info p:last-child {text-indent: unset; letter-spacing: unset;}
-            .scrolling-card img:hover {width: initial;}
 
             .workshops .row .info {padding: 0.1em 1em 0;}
             #bebras .info {padding-right: 1em;}

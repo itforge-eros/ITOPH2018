@@ -29,8 +29,8 @@
                     <div class="row">
                         <div class="col-lg-12 intro">
                             <img id="bebras-banner" src="<?php echo URLROOT; ?>/assets/img/bebras-banner-new.png">
-                            <h2>Thai Bebras Computational Thinking Challenge 2018</h2>
-                            <h6>การแข่งขันทักษะการคิดทางคอมพิวเตอร์ระดับชาติประจำปี 2018</h6>
+                            <h2>Bebras Thailand 2018: A Computational Thinking Skill Challenge</h2>
+                            <h6>บีบลาสไทยแลนด์ 2018: การทดสอบทักษะการคิดเชิงคำนวณ</h6>
                             <hr>
                         </div>
                     </div>
