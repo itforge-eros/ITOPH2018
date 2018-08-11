@@ -9,8 +9,8 @@ if(!isset($data['registrationDataModel'])){
     $registrationType = $data['registrationType'];
     if($registrationType == "bebras"){
         $bebras = true;
-        $pageTitle = "สมัครเข้าทดสอบการแข่งขันทักษะการคิดทางคอมพิวเตอร์ระดับชาติประจำปี 2018";
-        $registrationTitle = "(BEBRAS)";
+        $pageTitle = "สมัครเข้าทดสอบบีบลาสไทยแลนด์ 2018: การทดสอบทักษะการคิดเชิงคำนวณ";
+        $registrationTitle = "(Bebras Thailand 2018: A Computational Thinking Skill Challenge)";
         $maxCandidate = 1;
         $slug = 'bebras';
     }else{
