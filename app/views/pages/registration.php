@@ -92,6 +92,10 @@ endif;
                         </div>
                     </header>
                 </div>
+                <?php if($data['isExpired']) {
+                    echo "<div class='is-expired'><h2>หมดเวลาลงทะเบียนแล้ว</h2></div>";
+                    exit(0);
+                }?>
                 <div class="col-lg-12">
                     <article>
                         <form action="<?php echo URLROOT; ?>/pages/registration/<?php echo $slug; ?>" id="registration-form" method="post">

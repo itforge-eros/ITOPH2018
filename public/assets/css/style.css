@@ -479,6 +479,8 @@ Accent: #fdb127
                 border-top: 1px solid rgba(255, 255, 255, 0.3);
             }
 
+            .events .modal-content .properties {padding-left: 15px}
+
             .workshops hr {margin: 1em 0 !important;}
             .rallys hr {margin: 1em 0 !important;}
 
@@ -515,7 +517,7 @@ Accent: #fdb127
             }
         }
 
-        @media screen and (max-width: 419px){
+        @media only screen and (max-width: 419px){
             .workshops .row .info {width: 61%;}
             #bebras .action a:first-child, #bebras .action a:last-child {border: unset;}
             #bebras .action a:first-child, #bebras .action a:last-child {border-radius: 50px}

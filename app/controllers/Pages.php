@@ -70,8 +70,8 @@
 
                 case 'bebras':
                     $registrationType = "bebras";
-                    $pdfH2Text = "สมัครเข้าทดสอบการแข่งขันทักษะการคิดทางคอมพิวเตอร์ระดับชาติประจำปี 2018 (BEBRAS)";
-                    $mailText = "เข้าทดสอบการแข่งขันทักษะการคิดทางคอมพิวเตอร์ระดับชาติประจำปี 2018 (BEBRAS)";
+                    $pdfH2Text = "สมัครเข้าทดสอบบีบลาสไทยแลนด์ 2018: การทดสอบทักษะการคิดเชิงคำนวณ";
+                    $mailText = "เข้าทดสอบบีบลาสไทยแลนด์ 2018: การทดสอบทักษะการคิดเชิงคำนวณ";
                     $registrationDataModel = null;
                     break;
 
@@ -572,19 +572,15 @@
                 $day = (int)$now->format('d');
                 $isExpired = false;
                 if($slug == "game" && ($year >= 2018 && $month > 7)){$isExpired = true;}
-                else if($slug != "game" && ($year >= 2018 && $month >= 8 && $day > 10)){$isExpired = true;}
+                else if($slug == "individual" && ($year >= 2018 && $month >= 8 && $day > 24)){$isExpired = true;}
+                else if($slug == "security" || $slug == "website" || $slug == "skill" && ($year >= 2018 && $month >= 8 && $day > 10)){$isExpired = true;}
                 else if($slug == "bebras" && $registratorsCount > 240){$isExpired = true;}
-
-
-                if($isExpired){
-                    echo "<script type='text/javascript'>alert('มีผู้ลงทะเบียนเต็มจำนวนแล้ว');</script>";
-                    redirect('');
-                }
 
                 $data = [
                     'registrationDataModel' => $registrationDataModel,
                     'registrationType' => $registrationType, //for bebras and individual
                     'registratorsCount' => $registratorsCount,
+                    'isExpired' => $isExpired,
                     'team_name' => '',
                     'school_name' => '',
                     'teacher_name' => '',
