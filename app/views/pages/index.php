@@ -20,6 +20,9 @@
                         <p>เปิดบ้านไอทีลาดกระบัง "IT LADKRABANG OPEN HOUSE 2018" กลับมาอีกครั้งกับการเปิดบ้านสร้างมุมมองใหม่ ค้นหาคำตอบในสิ่งที่ชอบ พร้อมด้วยการสร้างโอกาสในการเตรียมตัวสู่ไอทีลาดกระบัง มาพบคำตอบได้ในงานนี้ทั้งสาระและความสนุกจากกิจกรรมมากมาย จัดโดยคณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง</p>
                         <a href="<?php echo URLROOT; ?>/pages/timetable/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">กำหนดการ</a>
                         <a href="<?php echo URLROOT;?>/pages/registration/individual/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ลงทะเบียนสำหรับผู้เข้าชมงาน</a>
+                    </div>
+                    <div>
+                        <a href="#events" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">รายชื่อทีมที่มีสิทธิ์เข้าร่วมการแข่งขัน</a>
                     </div> 
                 </div>
             </section>

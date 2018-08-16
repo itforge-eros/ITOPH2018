@@ -678,28 +678,17 @@
             $this->view('pages/complete', $data);
         }
 
+        public function result($slug){
+            $competition = $this->competitionModel->getCompetitionBySlug($slug);
+            $data = [
+                'competition' => $competition
+            ];
+            $this->view('pages/result', $data);
+        }
+
         public function timetable(){
             $data = ['title' => 'IT OPENHOUSE 2018 - Timetable'];
             $this->view('pages/timetable');
         }
-
-        public function development(){
-            $events = $this->eventModel->getEvents();
-            $compets = $this->competitionModel->getCompetitions();
-            $workshops = $this->workshopModel->getWorkshops();
-            $rallys = $this->rallyModel->getRallys();
-
-            $data = [
-                'title' => 'IT OPENHOUSE 2018',
-                'events' => $events,
-                'competitions' => $compets,
-                'workshops' => $workshops,
-                'rallys' => $rallys
-            ];
-            
-            
-            $this->view('pages/index', $data);
-        }
-
         
     }

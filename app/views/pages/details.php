@@ -13,13 +13,13 @@
                     <article>
                         <?php echo $data['competition']->full_description; ?>
 
+                        <div class="button-wrapper">
                         <?php if($data['isExpired']) {
-                            echo "<div class='is-expired'><h2>หมดเวลาลงทะเบียนแล้ว</h2></div>";
+                            echo '<a href="'.URLROOT.'/pages/result/'.$data['competition']->slug.'" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">รายชื่อทีมที่มีสิทธิ์เข้าร่วมการแข่งขัน</a>';
                         } else { ?>
-                            <div class="button-wrapper">
                                 <a href="<?php echo URLROOT; ?>/pages/registration/<?php echo $data['competition']->slug; ?>" class="btn btn-primary btn-lg active">สมัครแข่งขัน</a>
-                            </div>
                         <?php } ?>
+                        </div>
                             
                     </article>
                 </div>

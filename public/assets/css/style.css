@@ -908,6 +908,16 @@ header.page-header {
     font-size: 1.5rem;
 }
 
+.heading-group--extra {
+    background: #fdb127;
+    padding-top: 5em;
+    padding-bottom: 5em;
+}
+
+.heading-group--extra h2, .heading-group--extra h3 {
+    color: #FFF;
+}
+
 .button-wrapper {
     text-align: center;
 }
@@ -1080,7 +1090,7 @@ header.page-header {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 50%;
+        width: fit-content;
         margin: auto
     }
     
