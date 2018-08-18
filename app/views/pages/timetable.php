@@ -1,5 +1,5 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
-<section class="standard-section">
+<section class="standard-section timetable">
     <div class="container">
         <div class="row">
             <div class="timetable-wrapper col-lg-12">

@@ -42,7 +42,7 @@ switch($registrationType){
             <h2><?php echo $h2Text; ?></h2>
                 <?php if($competition || $workshop): ?>
                     <?php if($competition): ?>
-                        <div class="card-columns">
+                        <div class="card-columns card-columns4">
                             <a href="<?php echo URLROOT; ?>/admin/details/security">
                                 <div id="" class="card card--blue p-3">
                                     <h2><?php echo $data['securityCount']; ?></h2>
@@ -69,7 +69,7 @@ switch($registrationType){
                             </a>
                         </div>
                     <?php else: ?>
-                        <div class="card-columns">
+                        <div class="card-columns card-columns4">
                             <a href="<?php echo URLROOT; ?>/admin/details/multimedia">
                                 <div id="" class="card card--blue p-3">
                                     <h2><?php echo $data['multiCount']; ?></h2>

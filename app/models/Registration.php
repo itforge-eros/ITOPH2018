@@ -6,6 +6,73 @@
             $this->db = new Database;
         }
 
+        public function checkIn($id){
+            $this->db->query('INSERT INTO onsite_registration (registration_id, checkin_time) VALUES(:id, :checkin_time)');
+            // Bind values
+            $this->db->bind(":id", $id);
+            $this->db->bind(":checkin_time", date("y/m/d H:i:s"));
+    
+            // Execute
+            if($this->db->execute()){
+                return true;
+            } else {
+                return false;
+            }
+
+            return $this->db->resultSet();
+        }
+
+        public function getAllCheckedIn(){
+            $this->db->query('SELECT registrations.*, onsite_registration.*
+            FROM registrations
+            INNER JOIN onsite_registration ON registrations.id = onsite_registration.registration_id');
+            return $this->db->resultSet();
+        }
+
+        public function getCheckedInById($id){
+            $this->db->query("SELECT registrations.*, onsite_registration.*
+            FROM registrations
+            INNER JOIN onsite_registration ON registrations.id = onsite_registration.registration_id
+            WHERE registration_id = :id");
+            $this->db->bind(":id", $id);
+            return $this->db->single();
+        }
+
+        public function getCheckedInByDate($date){
+            $this->db->query("SELECT * FROM onsite_registration WHERE checkin_time like :selecteddate");
+            $this->db->bind(":selecteddate", "2018-08-$date%");
+            return $this->db->resultSet();
+        }
+
+        public function getAllCheckedInBySlug($slug){
+            if($slug == "competition") {
+                $this->db->query('SELECT registrations.*, onsite_registration.checkin_time
+                FROM registrations
+                INNER JOIN onsite_registration ON registrations.id = onsite_registration.registration_id
+                WHERE category = :competition1 OR category = :competition2 OR category = :competition3 OR category = :competition4');
+                $this->db->bind(":competition1", "security");
+                $this->db->bind(":competition2", "game");
+                $this->db->bind(":competition3", "skill");
+                $this->db->bind(":competition4", "website");
+            } else if($slug == "workshop") {
+                $this->db->query('SELECT registrations.*, onsite_registration.checkin_time
+                FROM registrations
+                INNER JOIN onsite_registration ON registrations.id = onsite_registration.registration_id
+                WHERE category = :workshop1 OR category = :workshop2 OR category = :workshop3 OR category = :workshop4');
+                $this->db->bind(":workshop1", "multimedia");
+                $this->db->bind(":workshop2", "networks");
+                $this->db->bind(":workshop3", "se");
+                $this->db->bind(":workshop4", "datascience");
+            } else {
+                $this->db->query('SELECT registrations.*, onsite_registration.checkin_time
+                FROM registrations
+                INNER JOIN onsite_registration ON registrations.id = onsite_registration.registration_id
+                WHERE category = :category');
+                $this->db->bind(":category", $slug);
+            }
+            return $this->db->resultSet();
+        }
+
         public function getRegistrations(){
             $this->db->query("SELECT * FROM registrations");
             return $this->db->resultSet();
@@ -15,6 +82,12 @@
             $this->db->query("SELECT * FROM registrations WHERE id = :id");
             $this->db->bind(":id", $id);
             return $this->db->single();
+        }
+
+        public function getRegistratorsById($id){
+            $this->db->query('SELECT * FROM registrations WHERE id = :id');
+            $this->db->bind(":id", $id);
+            return $this->db->resultSet();
         }
 
         public function getRegistratorsBySlug($slug){

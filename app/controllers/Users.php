@@ -146,6 +146,9 @@
                 }
 
             } else {
+                if (isset($_SESSION['user_id'])) {
+                    redirect('/admin');
+                }
                 $data = [
                     'email' => '',
                     'password' => '',

@@ -37,6 +37,20 @@
             
             $bebrasCount = $this->registrationModel->countRegistratorsBySlug('bebras');
 
+            $checkins = $this->registrationModel->getAllCheckedIn();
+
+            $checkins23 = $this->registrationModel->getCheckedInByDate(23);
+            $checkins24 = $this->registrationModel->getCheckedInByDate(24);
+            $checkins25 = $this->registrationModel->getCheckedInByDate(25);
+
+            $recentCheckins = array();
+            $count = 0;
+            foreach($checkins as $checkin):
+                if($count > 10){break;}
+                array_push($recentCheckins, array($this->registrationModel->getRegistratorsById($checkin->registration_id), $checkin->checkin_time));
+                $count++;
+            endforeach;
+
             $data = [
                 //'pages' => $pages
                 'competitions' => $competitions,
@@ -51,7 +65,12 @@
                 'skillCount' => $skillCount,
                 'gameCount' => $gameCount,
                 'websiteCount' => $websiteCount,
-                'securityCount' => $securityCount
+                'securityCount' => $securityCount,
+                'checkins' => $checkins,
+                'checkins23' => $checkins23,
+                'checkins24' => $checkins24,
+                'checkins25' => $checkins25,
+                'recentCheckins' => $recentCheckins
             ];
             $this->view('admin/index', $data);
         }
@@ -365,6 +384,98 @@
             header('Pragma: public');
             readfile($filename);
             exit(0);
+        }
+
+        public function registration(){
+            $registrators = $this->registrationModel->getAllCheckedIn();
+
+            $data = [
+                'registrators' => $registrators
+            ];
+            $this->view('admin/registration', $data);
+                        
+        }
+
+        public function checkin($id){
+            
+            $registrators = $this->registrationModel->getRegistratorsById($id);
+            $isCheckedin =  $this->registrationModel->getCheckedInById($id);
+
+            if($isCheckedin){
+                if(isset($isCheckedin->team_name)){
+                    $name = 'ทีม '.$isCheckedin->team_name;
+                } else {
+                    $name = $isCheckedin->candidate01_name;
+                }
+                flash('page_message', "$name เคยลงทะเบียนไปแล้ว");
+                redirect("admin/registration");
+            } else if($registrators){
+                $registrators = $registrators[0];
+                if($this->registrationModel->checkIn($id)){
+                    if(isset($registrators->team_name)){
+                        $name = "ทีม ".$registrators->team_name;
+                    } else {
+                        $name = $registrators->candidate01_name;
+                    }
+                    switch($registrators->category) {
+                        case "security":
+                            $type = "ความปลอดภัยของระบบคอมพิวเตอร์";
+                            break;
+                        case "game":
+                            $type = "กีฬาอิเล็กทรอนิกส์";
+                            break;
+                        case "skill":
+                            $type = "แก้ปัญหาเชิงวิเคราะห์";
+                            break;
+                        case "website":
+                            $type = "พัฒนาเว็บไซต์";
+                            break;
+                        case "multimedia":
+                            $type = "สายลับจับผิดภาพ";
+                            break;
+                        case "networks":
+                            $type = "เชื่อมต่อทุกสิ่งด้วย IoT";
+                            break;
+                        case "se":
+                            $type = "สร้างหุ่นยนต์ให้อัจฉริยะ";
+                            break;
+                        case "datascience":
+                            $type = "แกะรอยโปเกม่อน";
+                            break;
+                        case "individual":
+                            $type = "เข้าชมงาน";
+                            break;
+                        case "bebras":
+                            $type = "Bebras";
+                            break;
+                    }
+                    flash('page_message', "ลงทะเบียน $name ($type) แล้ว");
+                    redirect("admin/registration");
+                } else {
+                    die("Something went wrong");
+                }
+            } else {
+                die("ไม่พบ ID นี้ในฐานข้อมูล");
+            }
+            //$this->view('admin/registration', $data);
+        }
+
+        public function allcheckin(){
+            
+            //$allCheckin = $this->registrationModel->getAllCheckedIn();
+            $individualCheckin = $this->registrationModel->getAllCheckedInBySlug("individual");
+            $competitionCheckin = $this->registrationModel->getAllCheckedInBySlug("competition");
+            $workshopCheckin = $this->registrationModel->getAllCheckedInBySlug("workshop");
+            $bebrasCheckin = $this->registrationModel->getAllCheckedInBySlug("bebras");
+
+            $data = [
+                'individualCheckin' => $individualCheckin,
+                'competitionCheckin' => $competitionCheckin,
+                'workshopCheckin' => $workshopCheckin,
+                'bebrasCheckin' => $bebrasCheckin,
+            ];
+            
+            $this->view('admin/allcheckin', $data);
         }
 
     }

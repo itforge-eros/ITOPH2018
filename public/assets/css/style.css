@@ -69,6 +69,26 @@ Accent: #fdb127
 
         .btn-register:hover {cursor: pointer;}
         .btn-group-lg>.btn, .btn-lg {font-size: 1.25em;}
+        .card-columns1 {
+            -webkit-column-count: 1;
+            -moz-column-count: 1;
+            column-count: 1;
+        }
+        .card-columns2 {
+            -webkit-column-count: 2;
+            -moz-column-count: 2;
+            column-count: 2;
+        }
+        .card-columns3 {
+            -webkit-column-count: 3;
+            -moz-column-count: 3;
+            column-count: 3;
+        }
+        .card-columns4 {
+            -webkit-column-count: 4;
+            -moz-column-count: 4;
+            column-count: 4;
+        }
         .card-columns .card {
             border-radius: 16px
         }
@@ -452,7 +472,7 @@ Accent: #fdb127
 
             .table-responsive td {font-size: 0.9em; padding: 0.25em;}
 
-            .table-responsive {    
+            .timetable .table-responsive {    
                 width: 112%;
                 height: 70vh;
                 margin-bottom: 15px;
@@ -620,7 +640,8 @@ Accent: #fdb127
   
   #tab-one:checked ~ .tabs #tab-one-label,
   #tab-two:checked ~ .tabs #tab-two-label,
-  #tab-three:checked ~ .tabs #tab-three-label {
+  #tab-three:checked ~ .tabs #tab-three-label,
+  #tab-four:checked ~ .tabs #tab-four-label {
       background-color: #2da9dd;
       color: #FFF;
       border-radius: 50px;
@@ -630,7 +651,8 @@ Accent: #fdb127
   
   #tab-one:checked ~ .tabs #tab-one-panel,
   #tab-two:checked ~ .tabs #tab-two-panel,
-  #tab-three:checked ~ .tabs #tab-three-panel {
+  #tab-three:checked ~ .tabs #tab-three-panel,
+  #tab-four:checked ~ .tabs #tab-four-panel {
     display: block;
   }
   
@@ -665,6 +687,13 @@ Accent: #fdb127
           -ms-flex-order: 5;
               order: 5;
     }
+
+    .flex-tabs #tab-three-label {
+        -webkit-box-ordinal-group: 8;
+        -webkit-order: 7;
+            -ms-flex-order: 7;
+                order: 7;
+      }
   
     .flex-tabs #tab-one-panel {
       -webkit-box-ordinal-group: 3;
@@ -684,16 +713,25 @@ Accent: #fdb127
           -ms-flex-order: 6;
               order: 6;
     }
+
+    .flex-tabs #tab-three-panel {
+        -webkit-box-ordinal-group: 9;
+        -webkit-order: 8;
+            -ms-flex-order: 8;
+                order: 8;
+      }
   
     #tab-one:checked ~ .tabs #tab-one-label,
     #tab-two:checked ~ .tabs #tab-two-label,
-    #tab-three:checked ~ .tabs #tab-three-label {
+    #tab-three:checked ~ .tabs #tab-three-label,
+    #tab-four:checked ~ .tabs #tab-four-label {
       border-bottom: none;
     }
   
     #tab-one:checked ~ .tabs #tab-one-panel,
     #tab-two:checked ~ .tabs #tab-two-panel,
-    #tab-three:checked ~ .tabs #tab-three-panel {
+    #tab-three:checked ~ .tabs #tab-three-panel,
+    #tab-four:checked ~ .tabs #tab-four-panel {
       border-bottom: 1px solid #ccc;
     }
   }
@@ -1069,8 +1107,10 @@ header.page-header {
     }
 
     h3, .heading-group h3 {
-        font-size: 1em;
+        font-size: 1.2em;
     }
+
+    .col-sm-12 {margin-bottom: 1em;}
 
     #biglogo img {
         width: 100%;
@@ -1133,7 +1173,14 @@ header.page-header {
 /****************************
  Admin 
  *****************************/
-.admin {padding: 3em 0;}
+
+.admin-bar {padding:1em 0; background: #3e6e94;}
+.admin-bar p {
+    font-weight: 200;
+    color: #FFF;
+    margin-bottom: 0;
+    font-size: 0.8em;
+}
 .admin p, .admin-details p {font-size: 1em; font-weight: 200; margin: 0;}
 .admin-competitions div {padding: 0.5em;}
 
@@ -1142,13 +1189,20 @@ header.page-header {
     height: 60vh;
     position: relative;
 }
+
+.checkin {
+    text-align: center;
+    padding: 2em 0;
+}
+.latest-checkin table {
+    width: 100%
+}
+.latest-checkin table td, .latest-checkin table th {
+    padding: 1em;
+}
+.checkin .day-column { padding: 5em 0; }
 .login-card h2 {margin-bottom: 1em;}
 .admin-tools {margin-top: 3em;}
-.admin-tools .card-columns {
-    -webkit-column-count: 2;
-    -moz-column-count: 2;
-    column-count: 2;
-}
 .login-card {
     width: 450px;
     height: fit-content;
@@ -1164,7 +1218,7 @@ header.page-header {
 }
 
 @media screen and (max-width: 768px) {
-    .login-card {width: 94vw; padding: 3em 1.5em;}
+    .login-card {width: 94vw; height: 56vh; padding: 3em 1.5em;}
 }
 
 .login-btn {
@@ -1195,12 +1249,6 @@ header.page-header {
 .btn--export {margin-bottom: 1em; color: #FFF;}
 .btn--export:hover {color: #323643;}
 
-.admin-details .card-columns {
-        -webkit-column-count: 4;
-        -moz-column-count: 4;
-        column-count: 4;
-}
-
 .admin-tools .card > div {
     margin-bottom: 0;
     width: 100%;
@@ -1216,6 +1264,7 @@ header.page-header {
     margin: 0.2em 0 0 0;
 }
 .admin-details .container, .admin-details .col-lg-12 {padding-right: 0}
+.admin-details label {margin-bottom: 0;}
 .citizenid {display: none;}
 .id-viewer-btn {cursor: pointer; color: #323643;}
 @media (min-width: 1200px){
@@ -1224,14 +1273,18 @@ header.page-header {
     }
 }
 
+@media screen and (max-width: 1024px) {
+    .checkin {padding: 0;}
+    .checkin .day-column {padding: 2em 0;}
+}
 @media screen and (max-width: 768px) {
     .timetable-wrapper {height: 100vh;}
-    .admin-details .card-columns {
-        -webkit-column-count: 2;
-        -moz-column-count: 2;
-        column-count: 2;
+    .card-columns-sm-1 {
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
     }
-    .admin-tools .card-columns {
+    .card-columns4 {
         -webkit-column-count: 2;
         -moz-column-count: 2;
         column-count: 2;
