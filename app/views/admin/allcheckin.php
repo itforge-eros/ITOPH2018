@@ -78,7 +78,7 @@ $bebrasCheckin = $data["bebrasCheckin"];
                                         <?php
                                         foreach($individualCheckin as $item): ?>
                                             <tr>
-                                                <td data-label="id"><a href="<?php echo URLROOT; ?>/admin/delete/<?php echo $item->id; ?>" onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i></a> <?php echo sprintf("%'.05d", $item->id); ?></td>
+                                                <td data-label="id"><?php echo sprintf("%'.05d", $item->id); ?></td>
                                                 <td data-label="date"><?php echo date_format(date_create($item->checkin_time), 'y/m/d H:i:s'); ?></td>
                                                 <td><?php echo $item->candidate01_name; ?></td>
                                                 <td class="center" data-label="citizen-id"><span class="citizenid" id="id-<?php echo $item->id; ?>"><?php echo $item->candidate01_id; ?></span> <a class="id-viewer-btn" onclick="idToggle(<?php echo $item->id; ?>)"><i class="fas fa-eye"></i></a></td>
@@ -276,7 +276,7 @@ $bebrasCheckin = $data["bebrasCheckin"];
                                         <?php
                                         foreach($bebrasCheckin as $item): ?>
                                             <tr>
-                                                <td data-label="id"><a href="<?php echo URLROOT; ?>/admin/delete/<?php echo $item->id; ?>" onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i></a> <?php echo sprintf("%'.05d", $item->id); ?></td>
+                                                <td data-label="id"><?php echo sprintf("%'.05d", $item->id); ?></td>
                                                 <td data-label="date"><?php echo date_format(date_create($item->registration_date), 'y/m/d H:i:s'); ?></td>
                                                 <td><?php echo $item->candidate01_name; ?></td>
                                                 <td class="center" data-label="citizen-id"><span class="citizenid" id="id-<?php echo $item->id; ?>"><?php echo $item->candidate01_id; ?></span> <a class="id-viewer-btn" onclick="idToggle(<?php echo $item->id; ?>)"><i class="fas fa-eye"></i></a></td>
