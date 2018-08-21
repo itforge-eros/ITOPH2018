@@ -4,35 +4,6 @@ $individualCheckin = $data["individualCheckin"];
 $competitionCheckin = $data["competitionCheckin"];
 $workshopCheckin = $data["workshopCheckin"];
 $bebrasCheckin = $data["bebrasCheckin"];
-//var_dump($data['allCheckIn']);
-//var_dump($data['competitionCheckin']);
-// $type = '';
-//     switch($item->category) {
-//         case "security":
-//             $type = "ความปลอดภัยของระบบคอมพิวเตอร์";
-//             break;
-//         case "game":
-//             $type = "กีฬาอิเล็กทรอนิกส์";
-//             break;
-//         case "skill":
-//             $type = "แก้ปัญหาเชิงวิเคราะห์";
-//             break;
-//         case "website":
-//             $type = "พัฒนาเว็บไซต์";
-//             break;
-//         case "multimedia":
-//             $type = "สายลับจับผิดภาพ";
-//             break;
-//         case "networks":
-//             $type = "เชื่อมต่อทุกสิ่งด้วย IoT";
-//             break;
-//         case "se":
-//             $type = "สร้างหุ่นยนต์ให้อัจฉริยะ";
-//             break;
-//         case "datascience":
-//             $type = "แกะรอยโปเกม่อน";
-//             break;
-//     } 
 ?>
 
 <section class="admin-details standard-section">
