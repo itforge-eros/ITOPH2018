@@ -396,6 +396,22 @@
                         
         }
 
+        public function normalregistration(){
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+                $searchResult = $this->registrationModel->getRegistratorsByName($_POST['team_name']);
+                $data = [
+                    'searchResult' => $searchResult
+                ];
+            } else {
+
+            }
+            
+            $this->view('admin/normalregistration', $data);
+                        
+        }
+
         public function checkin($id){
             
             $registrators = $this->registrationModel->getRegistratorsById($id);

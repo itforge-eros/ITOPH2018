@@ -147,7 +147,7 @@
 
             } else {
                 if (isset($_SESSION['user_id'])) {
-                    redirect('/admin');
+                    redirect('admin');
                 }
                 $data = [
                     'email' => '',

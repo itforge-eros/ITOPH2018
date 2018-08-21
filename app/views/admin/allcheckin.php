@@ -67,8 +67,7 @@ $bebrasCheckin = $data["bebrasCheckin"];
                                                 <td class="center" data-label="grade"><?php echo $item->candidate01_grade; ?></td>
                                                 <td data-label="school"><?php echo $item->candidate01_school; ?></td>
                                             </tr>
-                                        <?endforeach;
-                                        ?>
+                                        <?php endforeach;?>
                                     </tbody>
                                 </table>
                             </div>
@@ -141,8 +140,7 @@ $bebrasCheckin = $data["bebrasCheckin"];
                                             ?>
                                         </td>
                                     </tr>
-                                    <?php endforeach;
-                                    ?>
+                                    <?php endforeach;?>
                                     <tbody>
                                     </tbody>
                                 </table>
@@ -265,13 +263,11 @@ $bebrasCheckin = $data["bebrasCheckin"];
                                                 <td class="center" data-label="grade"><?php echo $item->candidate01_grade; ?></td>
                                                 <td data-label="school"><?php echo $item->candidate01_school; ?></td>
                                             </tr>
-                                        <?endforeach;
-                                        ?>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
-                        <?php }
-                    ?>
+                        <?php } ?>
                     </div>
 
                 </div>

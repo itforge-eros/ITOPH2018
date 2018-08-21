@@ -90,6 +90,12 @@
             return $this->db->resultSet();
         }
 
+        public function getRegistratorsByName($name){
+            $this->db->query('SELECT * FROM registrations WHERE team_name LIKE :name OR candidate01_name LIKE :name');
+            $this->db->bind(":name", "$name%");
+            return $this->db->resultSet();
+        }
+
         public function getRegistratorsBySlug($slug){
             $this->db->query('SELECT * FROM registrations WHERE category = :category');
             $this->db->bind(":category", $slug);

@@ -9,7 +9,7 @@
                     <h1>ระบบลงทะเบียนหน้างาน</h1>
                 </div>
             </div>
-            <div class="div">
+            <div class="row">
                 
                     <div id="loadingMessage">🎥 ไม่พบกล้อง หากใช้ iOS ให้ใช้ Safari (กดอนุญาตให้ใช้กล้องด้วย)</div>
                     <canvas id="canvas" hidden></canvas>
@@ -81,6 +81,13 @@
                         }
                     </script>
                 
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="button-wrapper">
+                        <a href="<?php echo URLROOT; ?>/admin/normalregistration/" class="btn btn-primary btn-lg active">ลงทะเบียนกรณีไม่มี QR Code</a>
+                    </div>
+                </div>
             </div>
         </section>
             
