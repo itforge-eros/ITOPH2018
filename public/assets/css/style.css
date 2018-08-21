@@ -47,6 +47,7 @@ Accent: #fdb127
         label {font-weight: 200;}
         .small, small {font-size: 90%; font-weight: 400;}
         .center {text-align: center;}
+        .black {color: #000;}
     
     /* Buttons */
         .btn {
@@ -1183,13 +1184,13 @@ header.page-header {
 }
 .admin p, .admin-details p {font-size: 1em; font-weight: 200; margin: 0;}
 .admin-competitions div {padding: 0.5em;}
-
+.admin .output {padding: 3em 0;}
 .admin-login {
     display: block;
     height: 60vh;
     position: relative;
 }
-
+#normal-registration-table a {color: #000;}
 .checkin {
     text-align: center;
     padding: 2em 0;

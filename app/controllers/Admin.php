@@ -405,7 +405,9 @@
                     'searchResult' => $searchResult
                 ];
             } else {
-
+                $data = [
+                    'searchResult' => 'start'
+                ];
             }
             
             $this->view('admin/normalregistration', $data);

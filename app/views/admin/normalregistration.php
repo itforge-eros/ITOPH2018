@@ -11,42 +11,45 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <form action="<?php echo URLROOT; ?>/pages/registration/<?php echo $slug; ?>" id="registration-form" method="post">
+                    <form action="<?php echo URLROOT; ?>/admin/normalregistration" id="registration-form" method="post">
                         <div class="form-group">
                             <label for="team_name">ชื่อ/ชื่อทีม</label>
-                            <input type="text" name="team_name" class="form-control form-control-lg" value="<?php echo $data['team_name']; ?>">
+                            <input type="text" name="team_name" class="form-control form-control-lg" value="">
                         </div>
                         <div class="row">
                             <input type="submit" value="ค้นหา" class="btn btn-registration btn-block">
                         </div>
                     </form>
+                    <hr>
                 </div>
             </div>
-            <div class="row">
+            <div class="row standard-section">
                 <div class="col-lg-12">
                     <div class="table-responsive">
-                        <table class="search-table">
-                            <tr>
-                                <th>ชื่อ</th>
-                                <th></th>
-                            </tr>
-                            <?php 
-                                if(!$data['searchResult']){
+                        <table id="normal-registration-table" class="table">
+                                <?php 
+                                if($data['searchResult']=='start'){
+                                }
+                                else if(!$data['searchResult']){
                                     echo "<p class='center'>ไม่พบข้อมูล</p>";
                                 } else {
+                                    echo "<tr>
+                                        <th>ชื่อ</th>
+                                        <th></th>
+                                    </tr>";
                                     foreach($data['searchResult'] as $item): ?>
                                     <tr>
                                         <td><?php 
                                             if(isset($item->team_name)){
                                                 echo $item->team_name;
                                             } else {
-                                                echo $item->candidate01_name;
+                                                echo $item->candidate01_name." ($item->candidate01_id)";
                                             }
                                         ?></td>
-                                        <td><a href="<?php echo URLROOT;?>/admin/checkin/<?php echo $item->id; ?>">ลงทะเบียน</a></td>
+                                        <td><a class="black" href="<?php echo URLROOT;?>/admin/checkin/<?php echo $item->id; ?>"><i class="fas fa-user-check"></i> ลงทะเบียน</a></td>
                                     </tr>
                                 <?php endforeach; } ?>
-                            
+                            </tbody>
                         </table>
                     </div>
                 </div>
