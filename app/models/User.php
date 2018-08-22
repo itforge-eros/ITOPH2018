@@ -25,8 +25,9 @@
 
         //Login
         public function login($email, $password){
-            $this->db->query('SELECT * FROM users WHERE email = :email');
+            $this->db->query('SELECT * FROM users WHERE email = :email OR username = :username');
             $this->db->bind(':email', $email);
+            $this->db->bind(':username', $email);
 
             $row = $this->db->single();
 
@@ -40,8 +41,9 @@
 
         //Find user by email
         public function findUserByEmail($email){
-            $this->db->query('SELECT * FROM users WHERE email = :email');
+            $this->db->query('SELECT * FROM users WHERE email = :email OR username = :username');
             $this->db->bind(':email', $email);
+            $this->db->bind(':username', $email);
 
             $row = $this->db->single();
 

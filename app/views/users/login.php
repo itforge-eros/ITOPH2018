@@ -6,8 +6,8 @@
         <h2>Login</h2>
         <form action="<?php echo URLROOT; ?>/users/login" method="post">
             <div class="form-group">
-                <label for="email"> Email: </label>
-                <input type="email" name="email" class="form-control form-control-lg <?echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['email']; ?>">
+                <label for="email"> Email or Username: </label>
+                <input type="text" name="email" class="form-control form-control-lg <?echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['email']; ?>">
                 <span class="invalid-feedback"><?php echo $data['email_err']; ?></span>
             </div>
             <div class="form-group">
