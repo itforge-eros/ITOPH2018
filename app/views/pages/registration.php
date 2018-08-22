@@ -64,11 +64,11 @@ if($workshop):
                 <section class="page-container registration">
                     <div class="row">
                         <div class="col-lg-12">
-                            <header class="page-header">
                                 <div>
-                                    <h1><?php echo "ขออภัย ขณะนี้มีผู้สมัครเข้าร่วม Workshop รายการ ".$registrationTitle." ครบจำนวนแล้ว โปรดทำการสมัครหน้างานในวัน IT Ladkrabang Openhouse 2018 จะสามารถเข้าร่วม Workshop ได้ในช่วงบ่าย"; ?></h1>
+                                    <h1>ขออภัย ขณะนี้มีผู้สมัครเข้าร่วม Workshop รายการ</h1>
+                                    <h2><?php echo '"'.$registrationTitle.'"'; ?></h2>
+                                    <h2>ครบจำนวนแล้ว โปรดทำการสมัครหน้างานในวัน IT Ladkrabang Openhouse 2018 <u>จะสามารถเข้าร่วม Workshop ได้ในช่วงบ่าย</u></h2>
                                 </div>
-                            </header>
                         </div>
                     </div>
                 </section>

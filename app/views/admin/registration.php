@@ -22,6 +22,7 @@
                 </div>
                 <div class="col-lg-12">
                     <div class="button-wrapper">
+                        <a href="<?php echo URLROOT; ?>/admin/walkinregistration/" class="btn btn-primary btn-lg active">ลงทะเบียน Walk-in</a>
                         <a href="<?php echo URLROOT; ?>/admin/normalregistration/" class="btn btn-primary btn-lg active">ลงทะเบียนกรณีไม่มี QR Code</a>
                     </div>
                 </div>

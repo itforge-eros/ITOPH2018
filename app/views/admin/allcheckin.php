@@ -4,6 +4,8 @@ $individualCheckin = $data["individualCheckin"];
 $competitionCheckin = $data["competitionCheckin"];
 $workshopCheckin = $data["workshopCheckin"];
 $bebrasCheckin = $data["bebrasCheckin"];
+$walkinCheckin = $data["walkinCheckin"];
+$schoolCheckin = $data["schoolCheckin"];
 ?>
 
 <section class="admin-details standard-section">
@@ -18,17 +20,21 @@ $bebrasCheckin = $data["bebrasCheckin"];
                 <input class="state" type="radio" title="tab-two" name="tabs-state" id="tab-two" />
                 <input class="state" type="radio" title="tab-three" name="tabs-state" id="tab-three" />
                 <input class="state" type="radio" title="tab-four" name="tabs-state" id="tab-four" />
+                <input class="state" type="radio" title="tab-five" name="tabs-state" id="tab-five" />
+                <input class="state" type="radio" title="tab-six" name="tabs-state" id="tab-six" />
 
                 <div class="tabs flex-tabs">
                     <div class="tabs-container">
-                        <label for="tab-one" id="tab-one-label" class="tab">เข้าชมงาน</label>
-                        <label for="tab-two" id="tab-two-label" class="tab">แข่งขัน</label>
-                        <label for="tab-three" id="tab-three-label" class="tab">เวิร์คชอป</label>
-                        <label for="tab-four" id="tab-four-label" class="tab">BEBRAS</label>
+                        <label for="tab-one" id="tab-one-label" class="tab">เข้าชมงาน <?php echo "(".count($individualCheckin).")"; ?></label>
+                        <label for="tab-two" id="tab-two-label" class="tab">แข่งขัน <?php echo "(".count($competitionCheckin).")"; ?></label>
+                        <label for="tab-three" id="tab-three-label" class="tab">เวิร์คชอป <?php echo "(".count($workshopCheckin).")"; ?></label>
+                        <label for="tab-four" id="tab-four-label" class="tab">BEBRAS <?php echo "(".count($bebrasCheckin).")"; ?></label>
+                        <label for="tab-five" id="tab-five-label" class="tab">Walk-in <?php echo "(".count($walkinCheckin).")"; ?></label>
+                        <label for="tab-six" id="tab-six-label" class="tab">โรงเรียน <?php echo "(".count($schoolCheckin).")"; ?></label>
                     </div>
 
                     <div id="tab-one-panel" class="panel active">
-                    <?php 
+                        <?php 
                         if(!$individualCheckin) {
                             echo "<p class='center'>ยังไม่มีผู้ลงทะเบียนเข้าชมงาน</p>";
                         } else { ?>
@@ -47,7 +53,7 @@ $bebrasCheckin = $data["bebrasCheckin"];
                                     </thead>
                                     <tbody>
                                         <?php
-                                        foreach($individualCheckin as $item): ?>
+                                        foreach(array_reverse($individualCheckin) as $item): ?>
                                             <tr>
                                                 <td data-label="id"><?php echo sprintf("%'.05d", $item->id); ?></td>
                                                 <td data-label="date"><?php echo date_format(date_create($item->checkin_time), 'y/m/d H:i:s'); ?></td>
@@ -71,11 +77,10 @@ $bebrasCheckin = $data["bebrasCheckin"];
                                     </tbody>
                                 </table>
                             </div>
-                        <?php }
-                    ?>
+                        <?php } ?>
                     </div>
                     <div id="tab-two-panel" class="panel">
-                    <?php 
+                        <?php 
                         if(!$competitionCheckin) {
                             echo "<p class='center'>ยังไม่มีผู้ลงทะเบียนแข่งขัน</p>";
                         } else { ?>
@@ -89,7 +94,7 @@ $bebrasCheckin = $data["bebrasCheckin"];
                                             <th>ชื่อทีม</th>
                                         </tr>
                                     </thead>
-                                    <?php foreach($competitionCheckin as $item): 
+                                    <?php foreach(array_reverse($competitionCheckin) as $item): 
                                         $type = '';
                                         switch($item->category) {
                                             case "security":
@@ -145,11 +150,10 @@ $bebrasCheckin = $data["bebrasCheckin"];
                                     </tbody>
                                 </table>
                             </div>
-                        <?php }
-                    ?>
+                        <?php } ?>
                     </div>
                     <div id="tab-three-panel" class="panel">
-                    <?php 
+                        <?php 
                         if(!$workshopCheckin) {
                             echo "<p class='center'>ยังไม่มีผู้ลงทะเบียนเวิร์คชอป</p>";
                         } else { ?>
@@ -220,11 +224,10 @@ $bebrasCheckin = $data["bebrasCheckin"];
                                     </tbody>
                                 </table>
                             </div>
-                        <?php }
-                    ?>
+                        <?php } ?>
                     </div>
                     <div id="tab-four-panel" class="panel">
-                    <?php 
+                        <?php 
                         if(!$bebrasCheckin) {
                             echo "<p class='center'>ยังไม่มีผู้ลงทะเบียน BEBRAS</p>";
                         } else { ?>
@@ -243,7 +246,7 @@ $bebrasCheckin = $data["bebrasCheckin"];
                                     </thead>
                                     <tbody>
                                         <?php
-                                        foreach($bebrasCheckin as $item): ?>
+                                        foreach(array_reverse($bebrasCheckin) as $item): ?>
                                             <tr>
                                                 <td data-label="id"><?php echo sprintf("%'.05d", $item->id); ?></td>
                                                 <td data-label="date"><?php echo date_format(date_create($item->registration_date), 'y/m/d H:i:s'); ?></td>
@@ -264,6 +267,81 @@ $bebrasCheckin = $data["bebrasCheckin"];
                                                 <td data-label="school"><?php echo $item->candidate01_school; ?></td>
                                             </tr>
                                         <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <?php } ?>
+                    </div>
+                    <div id="tab-five-panel" class="panel">
+                        <?php 
+                        if(!$walkinCheckin) {
+                            echo "<p class='center'>ยังไม่มีผู้ลงทะเบียนเข้าชมงาน (Walk-in)</p>";
+                        } else { ?>
+                            <div class="table-responsive">
+                                <table id="individual-table" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>เวลาที่ Check-in</th>
+                                            <th>ชื่อ</th>
+                                            <th class="center">เลขประจำตัวประชาชน</th>
+                                            <th class="center">อายุ</th>
+                                            <th class="center">ระดับชั้น</th>
+                                            <th>โรงเรียน</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        foreach(array_reverse($walkinCheckin) as $item): ?>
+                                            <tr>
+                                                <td data-label="id"><?php echo sprintf("%'.05d", $item->id); ?></td>
+                                                <td data-label="date"><?php echo date_format(date_create($item->checkin_time), 'y/m/d H:i:s'); ?></td>
+                                                <td><?php echo $item->candidate01_name; ?></td>
+                                                <td class="center" data-label="citizen-id"><span class="citizenid" id="id-<?php echo $item->id; ?>"><?php echo $item->candidate01_id; ?></span> <a class="id-viewer-btn" onclick="idToggle(<?php echo $item->id; ?>)"><i class="fas fa-eye"></i></a></td>
+                                                <?php
+                                                    if($item->candidate01_grade==98){
+                                                        $item->candidate01_grade = "ปวช.";
+                                                    } else if($item->candidate01_grade==99){
+                                                        $item->candidate01_grade = "ปวส.";
+                                                    }
+                                                    else {
+                                                        $item->candidate01_grade = "ม. $item->candidate01_grade";
+                                                    }
+                                                ?>
+                                                <td class="center" data-label="age"><?php echo $item->candidate01_age; ?></td>
+                                                <td class="center" data-label="grade"><?php echo $item->candidate01_grade; ?></td>
+                                                <td data-label="school"><?php echo $item->candidate01_school; ?></td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <?php } ?>
+                    </div>
+                    <div id="tab-six-panel" class="panel">
+                        <?php 
+                        if(!$schoolCheckin) {
+                            echo "<p class='center'>ยังไม่มีโรงเรียนเข้าลงทะเบียน</p>";
+                        } else { ?>
+                            <div class="table-responsive">
+                                <table id="individual-table" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>เวลาที่ Check-in</th>
+                                            <th>โรงเรียน</th>
+                                        </tr>
+                                    </thead>
+                                    <tr>
+                                        <td data-label="id"><?php echo sprintf("%'.05d", $item->id); ?></td>
+                                        <td data-label="date"><?php echo date_format(date_create($item->checkin_time), 'y/m/d H:i:s'); ?></td>
+                                        <td data-label="details">
+                                            <h2>​<?php echo $item->candidate01_school; ?></h2>
+                                            <h2>​<?php echo $item->candidate01_school; ?></h2>
+                                            <p><?php echo "<hr><strong>อาจารย์ผู้ดูแล:</strong> <br>".$item->teacher_name."<br><i class='fas fa-envelope'></i> ".$item->teacher_email.", <i class='fas fa-phone'></i> ".$item->teacher_phone;?> </p>
+                                        </td>
+                                    </tr>
+                                    <tbody>
                                     </tbody>
                                 </table>
                             </div>

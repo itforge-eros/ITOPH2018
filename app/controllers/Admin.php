@@ -15,8 +15,7 @@
         }
 
         public function index(){
-            //Get pages
-            //$pages = $this->pageModel->getPages();
+            date_default_timezone_set('Asia/Bangkok');
 
             $competitions = $this->competitionModel->getCompetitions();
             $individualCount = $this->registrationModel->countRegistratorsBySlug('individual');
@@ -45,8 +44,8 @@
 
             $recentCheckins = array();
             $count = 0;
-            foreach($checkins as $checkin):
-                if($count > 10){break;}
+            foreach(array_reverse($checkins) as $checkin):
+                if($count > 9){break;}
                 array_push($recentCheckins, array($this->registrationModel->getRegistratorsById($checkin->registration_id), $checkin->checkin_time));
                 $count++;
             endforeach;
@@ -422,6 +421,8 @@
             if($isCheckedin){
                 if(isset($isCheckedin->team_name)){
                     $name = 'ทีม '.$isCheckedin->team_name;
+                } else if ($isCheckedin->category == "special") {
+                    $name = $isCheckedin->school_name;
                 } else {
                     $name = $isCheckedin->candidate01_name;
                 }
@@ -435,30 +436,38 @@
                     } else {
                         $name = $registrators->candidate01_name;
                     }
+                    $room = null;
                     switch($registrators->category) {
                         case "security":
                             $type = "ความปลอดภัยของระบบคอมพิวเตอร์";
+                            $room = "203";
                             break;
                         case "game":
                             $type = "กีฬาอิเล็กทรอนิกส์";
                             break;
                         case "skill":
                             $type = "แก้ปัญหาเชิงวิเคราะห์";
+                            $room = "205";
                             break;
                         case "website":
                             $type = "พัฒนาเว็บไซต์";
+                            $room = "207";
                             break;
                         case "multimedia":
                             $type = "สายลับจับผิดภาพ";
+                            $room = "M04";
                             break;
                         case "networks":
                             $type = "เชื่อมต่อทุกสิ่งด้วย IoT";
+                            $room = "M21";
                             break;
                         case "se":
                             $type = "สร้างหุ่นยนต์ให้อัจฉริยะ";
+                            $room = "M22";
                             break;
                         case "datascience":
                             $type = "แกะรอยโปเกม่อน";
+                            $room = "M03";
                             break;
                         case "individual":
                             $type = "เข้าชมงาน";
@@ -466,8 +475,17 @@
                         case "bebras":
                             $type = "Bebras";
                             break;
+                        case "walkin":
+                            $type = "Walk-in";
+                            break;
+                        case "special":
+                            $type = "โรงเรียนเข้าชมงาน";
+                            break;
                     }
-                    flash('page_message', "ลงทะเบียน $name ($type) แล้ว");
+                    if(isset($room)){
+                        $type = $type." ห้อง $room";
+                    }
+                    flash('page_message', "<i class='fas fa-user-check'></i> ลงทะเบียน $name ($type) แล้ว");
                     redirect("admin/registration");
                 } else {
                     die("Something went wrong");
@@ -485,15 +503,103 @@
             $competitionCheckin = $this->registrationModel->getAllCheckedInBySlug("competition");
             $workshopCheckin = $this->registrationModel->getAllCheckedInBySlug("workshop");
             $bebrasCheckin = $this->registrationModel->getAllCheckedInBySlug("bebras");
+            $walkinCheckin = $this->registrationModel->getAllCheckedInBySlug("walkin");
+            $schoolCheckin = $this->registrationModel->getAllCheckedInBySlug("special");
 
             $data = [
                 'individualCheckin' => $individualCheckin,
                 'competitionCheckin' => $competitionCheckin,
                 'workshopCheckin' => $workshopCheckin,
                 'bebrasCheckin' => $bebrasCheckin,
+                'walkinCheckin' => $walkinCheckin,
+                'schoolCheckin' => $schoolCheckin
             ];
             
             $this->view('admin/allcheckin', $data);
         }
+
+        public function walkinregistration(){
+
+            date_default_timezone_set('Asia/Bangkok');
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+                //SANITIZE POST ARRAY
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+                $data = array_map('trim', $_POST);
+   
+                //VALIDATION
+                if(empty($data['candidate01_name'])){$data['candidate01_name_err'] = 'กรุณากรอกชื่อ-สกุล';}
+                else if (!strpos($data['candidate01_name'], ' ')){$data['candidate01_name_err'] = 'กรุณากรอกทั้งชื่อและนามสกุล';}
+
+                if(empty($data['candidate01_id'])){$data['candidate01_id_err'] = 'กรุณาหมายเลขบัตรประชาชน';}
+                else if(strlen($data['candidate01_id']) != 13) {
+                    $data['candidate01_id_err'] = 'หมายเลขบัตรประชาชนไม่ถูกต้อง';
+                }
+
+                if(empty($data['candidate01_age'])){$data['candidate01_age_err'] = 'กรุณากรอกอายุ';}
+                else if($data['candidate01_age'] < 10 || $data['candidate01_age'] > 30){$data['candidate01_age_err'] = 'อายุไม่ถูกต้อง';}
+
+                if(empty($data['candidate01_school'])){$data['candidate01_school_err'] = 'กรุณากรอกชื่อสถาบัน';}
+
+                if(empty($data['candidate01_email'])){$data['candidate01_email_err'] = 'กรุณากรอกอีเมล';}
+                else{$email = filter_var($_POST['candidate01_email'], FILTER_VALIDATE_EMAIL); if(!$email){$data['candidate01_email_err'] = 'อีเมลไม่ถูกต้อง';}}
+
+                if(empty($data['candidate01_phone'])){$data['candidate01_phone_err'] = 'กรุณากรอกเบอร์โทรศัพท์';}
+                else if(strlen($data['candidate01_phone'])!=10){$data['candidate01_phone_err'] = 'เบอร์โทรศัพท์ไม่ถูกต้อง';}
+
+                $error_array = ['team_name_err', 'school_name_err', 'teacher_name_err', 'teacher_email_err', 'teacher_phone_err'];
+                for($i=1; $i<=1; $i++){
+                    $error_array[] = 'candidate0'.$i.'_name_err';
+                    $error_array[] = 'candidate0'.$i.'_age_err';
+                    $error_array[] = 'candidate0'.$i.'_id_err';
+                    $error_array[] = 'candidate0'.$i.'_phone_err';
+                    $error_array[] = 'candidate0'.$i.'_email_err';
+                }
+
+                $error = false;
+                foreach($error_array as $field) {
+                    if(!empty($data[$field])) {$error = true;}
+                }
+
+                if(!$error){
+                    $data['category']  = "walkin";
+                    $data['registration_date'] = date("Y-m-d H:i:s");
+                    $regis_id = $this->registrationModel->addRegistration($data);
+                    redirect('admin/checkin/'.$regis_id);
+                } else {
+                    $this->view('admin/walkinregistration', $data);
+                }
+            } else {
+                $data = [
+                    'team_name' => '',
+                    'school_name' => '',
+                    'teacher_name' => '',
+                    'teacher_email' => '',
+                    'teacher_phone' => ''
+                ];
+
+                for($i=1; $i<=1; $i++){
+                    $data['candidate0'.$i.'_name'] = '';
+                    $data['candidate0'.$i.'_age'] = '';
+                    $data['candidate0'.$i.'_id'] = '';
+                    $data['candidate0'.$i.'_grade'] = '';
+                    $data['candidate0'.$i.'_school'] = '';
+                    $data['candidate0'.$i.'_phone'] = '';
+                    $data['candidate0'.$i.'_email'] = '';
+                    $data['candidate0'.$i.'_name_err'] = '';
+                    $data['candidate0'.$i.'_age_err'] = '';
+                    $data['candidate0'.$i.'_id_err'] = '';
+                    $data['candidate0'.$i.'_grade_err'] = '';
+                    $data['candidate0'.$i.'_school_err'] = '';
+                    $data['candidate0'.$i.'_phone_err'] = '';
+                    $data['candidate0'.$i.'_email_err'] = '';
+                }
+
+                $this->view('admin/walkinregistration', $data);
+            }
+            
+        }
+
 
     }

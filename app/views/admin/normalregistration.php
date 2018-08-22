@@ -40,10 +40,48 @@
                                     foreach($data['searchResult'] as $item): ?>
                                     <tr>
                                         <td><?php 
+                                            switch($item->category) {
+                                                case "security":
+                                                    $type = "ความปลอดภัยของระบบคอมพิวเตอร์";
+                                                    break;
+                                                case "game":
+                                                    $type = "กีฬาอิเล็กทรอนิกส์";
+                                                    break;
+                                                case "skill":
+                                                    $type = "แก้ปัญหาเชิงวิเคราะห์";
+                                                    break;
+                                                case "website":
+                                                    $type = "พัฒนาเว็บไซต์";
+                                                    break;
+                                                case "multimedia":
+                                                    $type = "สายลับจับผิดภาพ";
+                                                    break;
+                                                case "networks":
+                                                    $type = "เชื่อมต่อทุกสิ่งด้วย IoT";
+                                                    break;
+                                                case "se":
+                                                    $type = "สร้างหุ่นยนต์ให้อัจฉริยะ";
+                                                    break;
+                                                case "datascience":
+                                                    $type = "แกะรอยโปเกม่อน";
+                                                    break;
+                                                case "individual":
+                                                    $type = "เข้าชมงาน";
+                                                    break;
+                                                case "bebras":
+                                                    $type = "Bebras";
+                                                    break;
+                                                case "walkin":
+                                                    $type = "Walk-in";
+                                                    break;
+                                                case "special":
+                                                    $type = "โรงเรียนเข้าชมงาน";
+                                                    break;
+                                            }
                                             if(isset($item->team_name)){
-                                                echo $item->team_name;
+                                                echo $item->team_name." ($type)";
                                             } else {
-                                                echo $item->candidate01_name." ($item->candidate01_id)";
+                                                echo $item->candidate01_name." ($item->candidate01_id) $type";
                                             }
                                         ?></td>
                                         <td><a class="black" href="<?php echo URLROOT;?>/admin/checkin/<?php echo $item->id; ?>"><i class="fas fa-user-check"></i> ลงทะเบียน</a></td>

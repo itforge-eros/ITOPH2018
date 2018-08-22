@@ -115,7 +115,7 @@
 
                 //Validate Email
                 if(empty($data['email'])){
-                    $data['email_err'] = 'Please enter email';
+                    $data['email_err'] = 'Please enter email or username';
                 }
 
                 //Validate Password

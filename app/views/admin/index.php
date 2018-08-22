@@ -13,7 +13,7 @@
             <section class="checkin">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>ยอดลงทะเบียนหน้างาน</h1>
+                        <h1>ยอด Check-in</h1>
                     </div>
                 </div>
                 <div class="row day-column">
@@ -53,7 +53,7 @@
             </section>
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>ลงทะเบียนล่าสุด</h2>
+                    <h2>Check-in ล่าสุด</h2>
                     <hr>
                 </div>
             </div>
@@ -71,23 +71,25 @@
                                 <td>
                                     <?php 
                                         $checkedInTime = $recent[1];
+
                                         $now = new DateTime();
-                                        echo $checkedInTime;
-                                        $checkedInTime = new DateTime($recent[1]);
+                                        $newCheckedInTime = new DateTime($recent[1]);
                                         $now = new DateTime();
-                                        $interval = $now->diff($checkedInTime);
+                                        $interval = $now->diff($newCheckedInTime);
                                         $days = $interval->format('%a');
                                         $hours = $interval->format('%h');
                                         $minutes = $interval->format('%i');
                                         $seconds = $interval->format('%s');
                                         if($days > 0) {
+                                            echo $checkedInTime;
                                             $elasped = " ($days วัน $hours ชั่วโมงที่แล้ว)";
                                         } else if($hours > 0) {
+                                            echo $checkedInTime;
                                             $elasped = " ($hours ชั่วโมง $minutes นาทีที่แล้ว)";
                                         } else if($minutes > 0){
-                                            $elasped = " ($minutes นาทีที่แล้ว)";
+                                            $elasped = " $minutes นาทีที่แล้ว";
                                         } else {
-                                            $elasped = " ($seconds วินาทีที่แล้ว)";
+                                            $elasped = " $seconds วินาทีที่แล้ว";
                                         }
                                         echo $elasped;
                                     ?>
@@ -131,6 +133,9 @@
                                             break;
                                         case "bebras":
                                             $type = "Bebras";
+                                            break;
+                                        case "walkin":
+                                            $type = "Walk-in";
                                             break;
                                     }
                                     

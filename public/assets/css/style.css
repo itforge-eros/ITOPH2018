@@ -642,7 +642,9 @@ Accent: #fdb127
   #tab-one:checked ~ .tabs #tab-one-label,
   #tab-two:checked ~ .tabs #tab-two-label,
   #tab-three:checked ~ .tabs #tab-three-label,
-  #tab-four:checked ~ .tabs #tab-four-label {
+  #tab-four:checked ~ .tabs #tab-four-label,
+  #tab-five:checked ~ .tabs #tab-five-label,
+  #tab-six:checked ~ .tabs #tab-six-label {
       background-color: #2da9dd;
       color: #FFF;
       border-radius: 50px;
@@ -653,13 +655,15 @@ Accent: #fdb127
   #tab-one:checked ~ .tabs #tab-one-panel,
   #tab-two:checked ~ .tabs #tab-two-panel,
   #tab-three:checked ~ .tabs #tab-three-panel,
-  #tab-four:checked ~ .tabs #tab-four-panel {
+  #tab-four:checked ~ .tabs #tab-four-panel,
+  #tab-five:checked ~ .tabs #tab-five-panel,
+  #tab-six:checked ~ .tabs #tab-six-panel {
     display: block;
   }
   
   @media (max-width: 600px) {
     .worko-tabs .flex-tabs .panel {padding: 0}
-    .tabs-container{background: unset;}
+    .tabs-container{background: unset; margin-bottom: 1em;}
     .flex-tabs {
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
@@ -689,12 +693,26 @@ Accent: #fdb127
               order: 5;
     }
 
-    .flex-tabs #tab-three-label {
+    .flex-tabs #tab-four-label {
         -webkit-box-ordinal-group: 8;
         -webkit-order: 7;
             -ms-flex-order: 7;
                 order: 7;
-      }
+    }
+
+    .flex-tabs #tab-five-label {
+        -webkit-box-ordinal-group: 10;
+        -webkit-order: 9;
+            -ms-flex-order: 9;
+                order: 9;
+    }
+  
+    .flex-tabs #tab-six-label {
+        -webkit-box-ordinal-group: 12;
+        -webkit-order: 11;
+            -ms-flex-order: 11;
+                order: 11;
+    }
   
     .flex-tabs #tab-one-panel {
       -webkit-box-ordinal-group: 3;
@@ -715,28 +733,45 @@ Accent: #fdb127
               order: 6;
     }
 
-    .flex-tabs #tab-three-panel {
+    .flex-tabs #tab-four-panel {
         -webkit-box-ordinal-group: 9;
         -webkit-order: 8;
             -ms-flex-order: 8;
                 order: 8;
-      }
+    }
+  
+    .flex-tabs #tab-five-panel {
+        -webkit-box-ordinal-group: 11;
+        -webkit-order: 10;
+            -ms-flex-order: 10;
+                order: 10;
+    }
+
+    .flex-tabs #tab-five-panel {
+        -webkit-box-ordinal-group: 13;
+        -webkit-order: 12;
+            -ms-flex-order: 12;
+                order: 12;
+    }
   
     #tab-one:checked ~ .tabs #tab-one-label,
     #tab-two:checked ~ .tabs #tab-two-label,
     #tab-three:checked ~ .tabs #tab-three-label,
-    #tab-four:checked ~ .tabs #tab-four-label {
+    #tab-four:checked ~ .tabs #tab-four-label,
+    #tab-five:checked ~ .tabs #tab-five-label,
+    #tab-six:checked ~ .tabs #tab-six-label {
       border-bottom: none;
     }
   
     #tab-one:checked ~ .tabs #tab-one-panel,
     #tab-two:checked ~ .tabs #tab-two-panel,
     #tab-three:checked ~ .tabs #tab-three-panel,
-    #tab-four:checked ~ .tabs #tab-four-panel {
+    #tab-four:checked ~ .tabs #tab-four-panel,
+    #tab-five:checked ~ .tabs #tab-five-panel,
+    #tab-six:checked ~ .tabs #tab-six-panel {
       border-bottom: 1px solid #ccc;
     }
   }
-  
 
     @media screen and (max-width: 768px) {
         .timetable-wrapper .card {height: 100px;}

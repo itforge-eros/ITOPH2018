@@ -7,6 +7,8 @@
         }
 
         public function checkIn($id){
+            date_default_timezone_set('Asia/Bangkok');
+            
             $this->db->query('INSERT INTO onsite_registration (registration_id, checkin_time) VALUES(:id, :checkin_time)');
             // Bind values
             $this->db->bind(":id", $id);
@@ -177,11 +179,16 @@
                 $this->db->bind(':teacher_email', $data['teacher_email']);
             }
             $this->db->bind(':registration_date', $data['registration_date']);
-            $this->db->bind(':pdf_filename', $data['pdf_filename']);
+            if(isset($data['pdf_filename'])){
+                $pdfName = $data['pdf_filename'];
+            } else {
+                $pdfName = "";
+            }
+            $this->db->bind(':pdf_filename', $pdfName);
     
             // Execute
             if($this->db->execute()){
-                return true;
+                return $this->db->lastId();
             } else {
                 return false;
             }
