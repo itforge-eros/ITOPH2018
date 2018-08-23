@@ -11,7 +11,7 @@ $schoolCheckin = $data["schoolCheckin"];
 <section class="admin-details standard-section">
     <div class="container">
         <div class="col-lg-12">
-            <a href="<?php echo URLROOT; ?>/admin" class="btn btn--export"><i class="fas fa-angle-left"></i> หน้าหลัก Admin</a> <a href="<?php echo URLROOT; ?>/admin/export/<?php echo $registrationType; ?>" class="btn btn--export disabled" disabled><i class="fas fa-file-export"></i> Export ตารางนี้</a>
+            <a href="<?php echo URLROOT; ?>/admin" class="btn btn--export"><i class="fas fa-angle-left"></i> หน้าหลัก Admin</a>
             <hr>
             
             <div class="worko-tabs">
@@ -38,6 +38,7 @@ $schoolCheckin = $data["schoolCheckin"];
                         if(!$individualCheckin) {
                             echo "<p class='center'>ยังไม่มีผู้ลงทะเบียนเข้าชมงาน</p>";
                         } else { ?>
+                        <a href="<?php echo URLROOT; ?>/admin/export/individualCheckin" class="btn btn--export"><i class="fas fa-file-export"></i> Export ตาราง Check-in เข้าชมงาน</a>
                             <div class="table-responsive">
                                 <table id="individual-table" class="table">
                                     <thead>
@@ -84,6 +85,7 @@ $schoolCheckin = $data["schoolCheckin"];
                         if(!$competitionCheckin) {
                             echo "<p class='center'>ยังไม่มีผู้ลงทะเบียนแข่งขัน</p>";
                         } else { ?>
+                            <a href="<?php echo URLROOT; ?>/admin/export/competitionCheckin" class="btn btn--export"><i class="fas fa-file-export"></i> Export ตาราง Check-in การแข่งขัน</a>
                             <div class="table-responsive">
                                 <table id="individual-table" class="table">
                                     <thead>
@@ -157,6 +159,7 @@ $schoolCheckin = $data["schoolCheckin"];
                         if(!$workshopCheckin) {
                             echo "<p class='center'>ยังไม่มีผู้ลงทะเบียนเวิร์คชอป</p>";
                         } else { ?>
+                            <a href="<?php echo URLROOT; ?>/admin/export/workshopCheckin" class="btn btn--export"><i class="fas fa-file-export"></i> Export ตาราง Check-in เวิร์คชอป</a>
                             <div class="table-responsive">
                                 <table id="individual-table" class="table">
                                     <thead>
@@ -231,6 +234,7 @@ $schoolCheckin = $data["schoolCheckin"];
                         if(!$bebrasCheckin) {
                             echo "<p class='center'>ยังไม่มีผู้ลงทะเบียน BEBRAS</p>";
                         } else { ?>
+                            <a href="<?php echo URLROOT; ?>/admin/export/bebrasCheckin" class="btn btn--export"><i class="fas fa-file-export"></i> Export ตาราง Check-in BEBRAS</a>
                             <div class="table-responsive">
                                 <table id="bebras-table" class="table">
                                     <thead>
@@ -277,6 +281,7 @@ $schoolCheckin = $data["schoolCheckin"];
                         if(!$walkinCheckin) {
                             echo "<p class='center'>ยังไม่มีผู้ลงทะเบียนเข้าชมงาน (Walk-in)</p>";
                         } else { ?>
+                        <a href="<?php echo URLROOT; ?>/admin/export/walkinCheckin" class="btn btn--export"><i class="fas fa-file-export"></i> Export ตาราง Walkin</a>
                             <div class="table-responsive">
                                 <table id="individual-table" class="table">
                                     <thead>

@@ -207,10 +207,53 @@
             return $this->db->resultSet();
         }
 
+        public function getRegistratorsCheckedinBySlugWithoutCategory($slug){
+            if($slug == "individualCheckin"){
+                $slug = "individual";
+            }
+            if($slug == "bebrasCheckin"){
+                $slug = "bebras";
+            }
+            $this->db->query('
+                SELECT registrations.id, registrations.candidate01_name, registrations.candidate01_id, registrations.candidate01_age, registrations.candidate01_grade, registrations.candidate01_school, registrations.candidate01_email, registrations.candidate01_phone
+                FROM registrations
+                INNER JOIN onsite_registration ON registrations.id = onsite_registration.registration_id
+                WHERE category = :category');
+            $this->db->bind(":category", $slug);
+            return $this->db->resultSet();
+        }
+
+
+        public function getCompetitionCheckedinRegistrators(){
+            $this->db->query('
+                SELECT registrations.*
+                FROM registrations
+                INNER JOIN onsite_registration ON registrations.id = onsite_registration.registration_id
+                WHERE (category = :security) OR (category = :game) OR (category = :skill) OR (category = :website)');
+            $this->db->bind(":security", "security");
+            $this->db->bind(":game", "game");
+            $this->db->bind(":skill", "skill");
+            $this->db->bind(":website", "website");
+            return $this->db->resultSet();
+        }
+
         public function getWorkshopRegistrators(){
             $this->db->query('
                 SELECT * 
                 FROM registrations 
+                WHERE (category = :multimedia) OR (category = :se) OR (category = :networks) OR (category = :datascience)');
+            $this->db->bind(":multimedia", "multimedia");
+            $this->db->bind(":se", "se");
+            $this->db->bind(":networks", "networks");
+            $this->db->bind(":datascience", "datascience");
+            return $this->db->resultSet();
+        }
+
+        public function getWorkshopCheckedinRegistrators(){
+            $this->db->query('
+                SELECT registrations.* 
+                FROM registrations 
+                INNER JOIN onsite_registration ON registrations.id = onsite_registration.registration_id
                 WHERE (category = :multimedia) OR (category = :se) OR (category = :networks) OR (category = :datascience)');
             $this->db->bind(":multimedia", "multimedia");
             $this->db->bind(":se", "se");

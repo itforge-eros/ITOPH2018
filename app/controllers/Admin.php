@@ -297,22 +297,28 @@
                     $sheet_titles = $individualSheetTitles;
                     break;
                 
-                case "security":
-                case "game":
-                case "skill":
-                case "website":
-                $filename = "ITOPH18-Competition-$slug-Registrators.xlsx";
-                    $registrationDataModel = $this->registrationModel->getRegistratorsBySlug($slug);
+                case "individualCheckin":
+                    $filename = "ITOPH18-Check-in-Vistors.xlsx";
+                    $registrationDataModel = $this->registrationModel->getRegistratorsCheckedinBySlugWithoutCategory($slug);
+                    $sheet_titles = $individualSheetTitles;
+                    break;
+
+                case "competitionCheckin":
+                    $filename = "ITOPH18-Competition-Check-in-Registrators.xlsx";
+                    $registrationDataModel = $this->registrationModel->getCompetitionCheckedinRegistrators();
                     $sheet_titles = $competitionSheetTitles;
                     break;
-                
-                case "multimedia":
-                case "se":
-                case "networks":
-                case "datascience":
-                    $filename = "ITOPH18-Workshop-$slug-Registrators.xlsx";
-                    $registrationDataModel = $this->registrationModel->getRegistratorsBySlug($slug);
+
+                case "workshopCheckin":
+                    $filename = "ITOPH18-Workshop-Check-in-Registrators.xlsx";
+                    $registrationDataModel = $this->registrationModel->getWorkshopCheckedinRegistrators();
                     $sheet_titles = $workshopSheetTitles;
+                    break;
+
+                case "bebrasCheckin":
+                    $filename = "ITOPH18-Bebras-Check-in-Registrators.xlsx";
+                    $registrationDataModel = $this->registrationModel->getRegistratorsCheckedinBySlugWithoutCategory($slug);
+                    $sheet_titles = $individualSheetTitles;
                     break;
 
                 default:
@@ -322,52 +328,55 @@
             $array = json_decode(json_encode($registrationDataModel), True);
             $newarray = [];
             //I DO THIS BECAUSE ID AND PHONE WILL BE STORED AS EXPONENTIAION IN XLSX!
-            foreach($array as $item) {
-                switch($item['category']) {
-                    case "security":
-                        $item['category'] = "ความปลอดภัยของระบบคอมพิวเตอร์";
-                        break;
-                    case "game":
-                        $item['category'] = "กีฬาอิเล็กทรอนิกส์";
-                        break;
-                    case "skill":
-                        $item['category'] = "แก้ปัญหาเชิงวิเคราะห์";
-                        break;
-                    case "website":
-                        $item['category'] = "พัฒนาเว็บไซต์";
-                        break;
-                    case "multimedia":
-                        $item['category'] = "สายลับจับผิดภาพ";
-                        break;
-                    case "networks":
-                        $item['category'] = "เชื่อมต่อทุกสิ่งด้วย IoT";
-                        break;
-                    case "se":
-                        $item['category'] = "สร้างหุ่นยนต์ให้อัจฉริยะ";
-                        break;
-                    case "datascience":
-                        $item['category'] = "แกะรอยโปเกม่อน";
-                        break;
-                }
-                
-                for($i=1; $i<=6; $i++){
-                    if (!is_null($item['candidate0'.$i.'_id'])) {
-                        $item['candidate0'.$i.'_id'] = " ".$item['candidate0'.$i.'_id'];
-                        $item['candidate0'.$i.'_phone'] = " ".$item['candidate0'.$i.'_phone'];
-
-                        if($item['candidate0'.$i.'_grade']==98){
-                            $item['candidate0'.$i.'_grade'] = "ปวช.";
-                        } else if($item['candidate0'.$i.'_grade']==99){
-                            $item['candidate0'.$i.'_grade'] = "ปวส.";
-                        } else {
-                            $mGrade = $item['candidate0'.$i.'_grade'];
-                            $item['candidate0'.$i.'_grade'] = "ม. $mGrade";
+            
+                foreach($array as $item) {
+                    if(isset($item['category'])){
+                        switch($item['category']) {
+                            case "security":
+                                $item['category'] = "ความปลอดภัยของระบบคอมพิวเตอร์";
+                                break;
+                            case "game":
+                                $item['category'] = "กีฬาอิเล็กทรอนิกส์";
+                                break;
+                            case "skill":
+                                $item['category'] = "แก้ปัญหาเชิงวิเคราะห์";
+                                break;
+                            case "website":
+                                $item['category'] = "พัฒนาเว็บไซต์";
+                                break;
+                            case "multimedia":
+                                $item['category'] = "สายลับจับผิดภาพ";
+                                break;
+                            case "networks":
+                                $item['category'] = "เชื่อมต่อทุกสิ่งด้วย IoT";
+                                break;
+                            case "se":
+                                $item['category'] = "สร้างหุ่นยนต์ให้อัจฉริยะ";
+                                break;
+                            case "datascience":
+                                $item['category'] = "แกะรอยโปเกม่อน";
+                                break;
                         }
                     }
+                    for($i=1; $i<=6; $i++){
+                        if (isset($item['candidate0'.$i.'_id'])) {
+                            $item['candidate0'.$i.'_id'] = " ".$item['candidate0'.$i.'_id'];
+                            $item['candidate0'.$i.'_phone'] = " ".$item['candidate0'.$i.'_phone'];
+    
+                            if($item['candidate0'.$i.'_grade']==98){
+                                $item['candidate0'.$i.'_grade'] = "ปวช.";
+                            } else if($item['candidate0'.$i.'_grade']==99){
+                                $item['candidate0'.$i.'_grade'] = "ปวส.";
+                            } else {
+                                $mGrade = $item['candidate0'.$i.'_grade'];
+                                $item['candidate0'.$i.'_grade'] = "ม. $mGrade";
+                            }
+                        }
+                    }
+    
+                    $newarray[] = $item;
                 }
 
-                $newarray[] = $item;
-            }
             
             $data = array_merge(array(), $newarray);
             array_unshift($data , $sheet_titles);
