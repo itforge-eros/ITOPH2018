@@ -281,7 +281,7 @@ $schoolCheckin = $data["schoolCheckin"];
                         if(!$walkinCheckin) {
                             echo "<p class='center'>ยังไม่มีผู้ลงทะเบียนเข้าชมงาน (Walk-in)</p>";
                         } else { ?>
-                        <a href="<?php echo URLROOT; ?>/admin/export/walkinCheckin" class="btn btn--export"><i class="fas fa-file-export"></i> Export ตาราง Walkin</a>
+                        <a href="<?php echo URLROOT; ?>/admin/export/walkin" class="btn btn--export"><i class="fas fa-file-export"></i> Export ตาราง Walkin</a>
                             <div class="table-responsive">
                                 <table id="individual-table" class="table">
                                     <thead>

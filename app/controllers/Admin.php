@@ -321,6 +321,12 @@
                     $sheet_titles = $individualSheetTitles;
                     break;
 
+                case "walkin":
+                    $filename = "ITOPH18-Walk-in-Registrators.xlsx";
+                    $registrationDataModel = $this->registrationModel->getRegistratorsCheckedinBySlugWithoutCategory($slug);
+                    $sheet_titles = $individualSheetTitles;
+                    break;
+
                 default:
                     redirect();
             }
