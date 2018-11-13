@@ -19,11 +19,11 @@
                         <h2>ตั้งแต่เวลา 9.00 เป็นต้นไป</h2>
                         <p>เปิดบ้านไอทีลาดกระบัง "IT LADKRABANG OPEN HOUSE 2018" กลับมาอีกครั้งกับการเปิดบ้านสร้างมุมมองใหม่ ค้นหาคำตอบในสิ่งที่ชอบ พร้อมด้วยการสร้างโอกาสในการเตรียมตัวสู่ไอทีลาดกระบัง มาพบคำตอบได้ในงานนี้ทั้งสาระและความสนุกจากกิจกรรมมากมาย จัดโดยคณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง</p>
                         <a href="<?php echo URLROOT; ?>/pages/timetable/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">กำหนดการ</a>
-                        <a href="<?php echo URLROOT;?>/pages/registration/individual/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ลงทะเบียนสำหรับผู้เข้าชมงาน</a>
+                        <!-- <a href="<?php //echo URLROOT;?>/pages/registration/individual/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ลงทะเบียนสำหรับผู้เข้าชมงาน</a> -->
                     </div>
-                    <div>
+                    <!-- <div>
                         <a href="#events" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">รายชื่อทีมที่มีสิทธิ์เข้าร่วมการแข่งขัน</a>
-                    </div> 
+                    </div>  -->
                 </div>
             </section>
 
@@ -44,7 +44,7 @@
                         <div class="col-lg-8 col-sm-12 info">
                             <p><strong>ครั้งแรกในประเทศไทย</strong> กับการแข่งขันกระบวนการแก้ปัญหาเชิงการคำนวณแห่งประเทศไทย (ช่วงเวลาจัดการแข่งขัน: 12-16 พ.ย. 2561)
                             ซึ่งจัดขึ้นสำหรับน้องๆ ในระดับมัธยมศึกษา (ทั้งม. ต้น และม. ปลาย) โดยคณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง
-                            มีวัตถุประสงค์เพื่อส่งเสริมการเรียน การสอน และ สร้างความตื่นตัวแก่นักเรียนที่สนใจทางด้านวิทยาการคอมพิวเตอร์ 
+                            มีวัตถุประสงค์เพื่อส่งเสริมการเรียน การสอน และ สร้างความตื่นตัวแก่นักเรียนที่สนใจทางด้านวิทยาการคอมพิวเตอร์
                             โดยน้องๆ ผู้เข้าแข่งขันไม่จำเป็นต้องมีประสบการณ์เกี่ยวกับวิทยาการคอมพิวเตอร์โดยตรง
                             </p>
                             <div class="box">
@@ -81,7 +81,7 @@
                     </div>
                 </div>
             </section>
-                
+
             <section id="selectingsection">
                 <div class="container">
                     <article class="featured">
@@ -106,10 +106,10 @@
                                     <?php foreach($data['events'] as $event): ?>
                                         <!--MODAL-->
                                         <div id="<?php echo $event->slug;?>Modal">
-                                            <div class="close-<?php echo $event->slug;?>Modal"> 
+                                            <div class="close-<?php echo $event->slug;?>Modal">
                                                 <i class="fas fa-times-circle"></i>
                                             </div>
-                                                
+
                                             <div class="modal-content">
                                                 <div class="container"><?php echo $event->full_description; ?></div>
                                             </div>
@@ -153,7 +153,7 @@
                                 <div class="col-lg-6 col-sm-12">
                                     <a id="workshop<?php echo $workshop->id;?>" href="#<?php echo $workshop->slug;?>Modal">
                                         <div id="<?php echo $workshop->slug; ?>" class="row">
-                                        
+
                                             <div class="col-lg-3 logo">
                                                 <img src="<?php echo URLROOT; ?>/assets/img/<?php echo $workshop->logo_src;?>">
                                             </div>
@@ -161,7 +161,7 @@
                                                 <h2><?php echo $workshop->title;?></h2>
                                                 <p><?php echo $workshop->short_description;?></p>
                                             </div>
-                                        
+
                                         </div>
                                     </a>
                                 </div>
@@ -206,7 +206,7 @@
                     </div>
                     <?php foreach($data['rallys'] as $rally): ?>
                         <!--MODAL-->
-                        <div id="<?php echo $rally->slug;?>Modal">     
+                        <div id="<?php echo $rally->slug;?>Modal">
                             <div class="modal-content">
                                 <div>
                                     <h2><?php echo $rally->title; ?></h2>
@@ -215,7 +215,7 @@
                                 <div>
                                     <a href="#" class="btn close-<?php echo $rally->slug;?>Modal">ปิด</a>
                                 </div>
-                            </div>                           
+                            </div>
                         </div>
                     <?php endforeach; ?>
                 </article>
@@ -324,7 +324,7 @@
                                         <li>วัดราชโกษา – เทคโน – ร่มเกล้า 7 บาท 5.00-20.00 20 นาที</li>
                                         <li>หัวตะเข้ – เทคโน – วัดอุทัย 10 บาท 5.00-17.30 40 นาที</li>
                                         <li>หัวตะเข้ – เทคโน – บึงบัว 10 บาท 5.00-17.30 30 นาที</li>
-                                    </ul>  
+                                    </ul>
                                 </div>
                                 <div class="tab-pane fade" id="van" role="tabpanel">
                                     <h1>รถตู้ด่วนพิเศษ</h1>
@@ -364,7 +364,7 @@
                                             <li>ให้สังเกตอาคารเรียนคณะเทคโนโลยีสารสนเทศ จะเป็นอาคารเรียน 6 ชั้นติดกระจก หากเลยมาแล้วให้ชิดซ้าย ใต้สะพาน เลยไปประมาณ 800 เมตร จะมีทางออกเล็กๆ ให้กลับรถ จากนั้นเลี้ยวขวา เมื่อถึงใต้สะพานแล้วให้เลี้ยวซ้าย</li>
                                         </ul>
                                         <li><strong>เริ่มจากชลบุรี</strong>ใช้เส้นทางด่วนพิเศษ กรุงเทพฯ–ชลบุรี(มอเตอร์เวย์) ออกจากมอเตอร์เวย์ที่ทางเข้าสนามบินสุวรรณภูมิ ทางเบี่ยงถนนคู่ขนานมอเตอร์เวย์ ถนนฉลองกรุง</li>
-                                    </ul>  
+                                    </ul>
                                 </div>
                                 <div class="tab-pane fade" id="bus" role="tabpanel">
                                     <h1>รถเมล์</h1>
@@ -422,7 +422,7 @@
             var offset200 = 200
             var offset300 = 300
         }
-        
+
         var info_fade_in = new ScrollMagic.Scene({tweenChanges: true, offset: offset100})
             .setTween("#infosection", 0.5, {opacity: 1})
             .addTo(controller)
@@ -469,7 +469,7 @@
                 TweenMax.to("#inphonic", 0.25, {ease: Power4.easeOut, opacity: 1}, 0),
                 TweenMax.to("#movies", 0.25, {ease: Power4.easeOut, opacity: 1}, 0),
             ])
-        
+
         /*var bg_light_stick = new ScrollMagic.Scene({tweenChanges: true, offset: 0})
             .setTween(at0)
             .addTo(controller)*/
@@ -485,11 +485,11 @@
         var events_slide = new ScrollMagic.Scene({tweenChanges: true, triggerElement: "#selectingsection"})
             .setTween(atevents)
             .addTo(controller)
-                
+
         var seminar = new ScrollMagic.Scene({tweenChanges: true, triggerElement: "#seminartrigger"})
             .setTween("#seminar", 0.75, {padding: "7em 1em", ease: Back.easeOut})
             .addTo(controller)
-        
+
         $("#biglogo").mousemove(function(e) {
             parallaxIt(e, "#stick01", -100);
             parallaxIt(e, "#stick02", -300);
