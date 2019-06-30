@@ -1,13 +1,17 @@
 server {
   listen   80; ## listen for ipv4; this line is default and implied
   listen   [::]:80 default ipv6only=on; ## listen for ipv6
+  listen 443 ssl default_server;
 
   root %%NGINX_ROOT%%;
   index index.php index.html index.htm;
 
+  ssl_certificate /etc/nginx/ssl/nginx.crt;
+  ssl_certificate_key /etc/nginx/ssl/nginx.key;
+
   # Make site accessible from http://localhost/
   #server_name localhost;
-  
+
   # Disable sendfile as per https://docs.vagrantup.com/v2/synced-folders/virtualbox.html
   sendfile off;
 
@@ -19,6 +23,10 @@ server {
   location / {
     # First attempt to serve request as file, then
     # as directory, then fall back to index.html
+    try_files $uri $uri/ /index.php?url=$uri&$args;
+  }
+
+  location ~ /2018 {
     try_files $uri $uri/ /index.php?url=$uri&$args;
   }
 
@@ -46,7 +54,7 @@ server {
   # deny access to . files, for security
   #
   location ~ /\. {
-        log_not_found off; 
+        log_not_found off;
         deny all;
   }
 
