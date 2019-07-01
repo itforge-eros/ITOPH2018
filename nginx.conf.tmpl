@@ -26,8 +26,9 @@ server {
     try_files $uri $uri/ /index.php?url=$uri&$args;
   }
 
-  location ~ /2018 {
-    try_files $uri $uri/ /index.php?url=$uri&$args;
+  location /2018/assets {
+    alias %%NGINX_ROOT%%/assets/;
+    try_files $uri $uri =404;
   }
 
   #error_page 404 /404.html;
